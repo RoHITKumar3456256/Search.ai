@@ -14,6 +14,7 @@ export const toolRecommendationSchema = z.object({
   title: z.string(),
   reason: z.string(),
   tools: z.array(z.string()),
+  logoUrls: z.array(z.string()).optional(),
 });
 
 export const sourceCitationSchema = z.object({

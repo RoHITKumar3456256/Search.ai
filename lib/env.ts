@@ -15,6 +15,9 @@ const serverEnvSchema = z.object({
   STRIPE_SECRET_KEY: z.string().optional(),
   STRIPE_WEBHOOK_SECRET: z.string().optional(),
   SENTRY_DSN: z.string().optional(),
+  TAVILY_API_KEY: z.string().optional(),
+  LOGO_DEV_API_KEY: z.string().optional(),
+  RESEND_API_KEY: z.string().optional(),
 });
 
 const clientEnvSchema = z.object({

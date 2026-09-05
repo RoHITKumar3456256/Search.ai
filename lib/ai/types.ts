@@ -12,6 +12,7 @@ export interface ToolRecommendation {
   title: string;
   reason: string;
   tools: string[];
+  logoUrls?: string[];
 }
 
 export interface SourceCitation {
