@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,1614 +9,1723 @@
   <meta property="og:title" content="Search.ai — Decision Intelligence Platform">
   <meta property="og:description" content="Turn uncertainty into your next best move. AI-powered tool discovery for founders, students, and freelancers.">
 
-  <!-- Fonts & Typography -->
+  <!-- Typography: Warm Geometric Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Bricolage+Grotesque:opsz,wght@12..96,400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
   <style>
-    /* ===========================
-       DESIGN TOKENS & SYSTEM
-       =========================== */
+    /* ==========================================================================
+       DESIGN TOKENS — Warm, Playful, Hand-Crafted SaaS (Off-White & Teal Theme)
+       ========================================================================== */
     :root {
-      --bg: #000000;
-      --bg-stone: #2F2C2A;
-      --bg-stone-deep: #1C1A18;
-      --bg-stone-mid: #3D3A37;
-      --bg-surface: #111110;
-      --bg-card: #161412;
-      --bg-secondary: #232120;
-      --bg-secondary-hover: #2e2b29;
+      /* Visual Foundation: Warm Cream / Off-White */
+      --bg: #FAF6EC;
+      --bg-cream: #FAF6EC;
+      --bg-card: #FFFFFF;
+      --bg-card-subtle: #F5EFE1;
+      --bg-pill-hover: #F0EAE0;
+      
+      /* Primary Accent: Saturated Teal / Cyan */
+      --teal: #1B9AAA;
+      --teal-dark: #147B88;
+      --teal-light: #E8F5F7;
+      --teal-border: rgba(27, 154, 170, 0.35);
 
-      --fg: #FAFAF9;
-      --fg-muted: #A8A29E;
-      --fg-subtle: #57534E;
-      --fg-faint: #292524;
+      /* Secondary Accent: Warm Amber / Gold (used sparingly, only for ONE featured highlight) */
+      --amber: #F5A623;
+      --amber-light: #FEF6E9;
 
-      --border: #292524;
-      --border-mid: #3D3937;
-      --border-light: #1C1A18;
+      /* Confetti Decorative Accent Colors */
+      --confetti-pink: #F48498;
+      --confetti-yellow: #F5CB5C;
+      --confetti-teal: #1B9AAA;
 
-      --green: #4ADE80;
-      --green-dim: #166534;
-      --green-glow: rgba(74, 222, 128, 0.15);
-      --teal: #2DD4BF;
-      --amber: #FBBF24;
+      /* Neutral Typography & Borders: Muted Gray-Browns */
+      --fg: #1E1A17;
+      --fg-muted: #5C554E;
+      --fg-subtle: #8A8177;
+      --fg-faint: #DDD6C9;
 
+      --border: #E8E1D3;
+      --border-dark: #2D2621;
+      --border-focus: #1B9AAA;
+
+      /* Radius: Generously Rounded */
       --radius-sm: 8px;
-      --radius-md: 12px;
+      --radius-md: 14px;
       --radius-lg: 20px;
       --radius-xl: 28px;
       --radius-full: 9999px;
 
-      --font-display: 'Bricolage Grotesque', 'Inter', sans-serif;
-      --font-body: 'Inter', -apple-system, sans-serif;
+      --shadow-sm: 0 2px 6px rgba(30, 26, 23, 0.04);
+      --shadow-card: 0 8px 28px rgba(30, 26, 23, 0.06), 0 1px 3px rgba(30, 26, 23, 0.04);
+      --shadow-lg: 0 18px 42px rgba(30, 26, 23, 0.09);
+
+      --font-display: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-body: 'Plus Jakarta Sans', 'Inter', sans-serif;
     }
 
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-    html { background: var(--bg); color: var(--fg); font-family: var(--font-body); font-size: 15px; line-height: 1.6; -webkit-font-smoothing: antialiased; scroll-behavior: smooth; }
+    html {
+      background-color: var(--bg);
+      color: var(--fg);
+      font-family: var(--font-body);
+      font-size: 15px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      scroll-behavior: smooth;
+    }
 
-    body { overflow-x: hidden; }
+    body {
+      background-color: var(--bg);
+      overflow-x: hidden;
+      position: relative;
+    }
 
-    a { color: inherit; text-decoration: none; }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
-    /* ===========================
-       SCROLLBAR
-       =========================== */
-    ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: var(--bg); }
-    ::-webkit-scrollbar-thumb { background: #292524; border-radius: 9999px; }
-
-    /* ===========================
-       HEADER — Obsidianos floating pill nav style
-       =========================== */
+    /* ==========================================================================
+       HEADER — Floating Rounded Pill Nav
+       ========================================================================== */
     header {
-      position: fixed; top: 12px; left: 0; right: 0; z-index: 100;
-      max-width: 1480px; margin: 0 auto;
-      padding: 0 24px;
+      position: fixed;
+      top: 14px;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      max-width: 1260px;
+      margin: 0 auto;
+      padding: 0 20px;
     }
 
     .nav-inner {
-      display: flex; align-items: center; justify-content: space-between;
-      background: rgba(10, 9, 8, 0.82);
-      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(250, 246, 236, 0.88);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1.5px solid var(--border);
       border-radius: var(--radius-full);
-      padding: 10px 16px;
-      transition: background 0.3s ease;
+      padding: 8px 18px;
+      box-shadow: 0 4px 20px rgba(45, 38, 33, 0.04);
+      transition: all 0.25s ease;
     }
 
     .nav-logo {
-      display: flex; align-items: center; gap: 10px;
-      font-family: var(--font-display); font-weight: 700;
-      font-size: 1.05rem; color: var(--fg);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 1.15rem;
+      color: var(--fg);
+      letter-spacing: -0.02em;
     }
 
     .logo-mark {
-      width: 28px; height: 28px; border-radius: 7px;
-      background: linear-gradient(135deg, #4ADE80 0%, #2DD4BF 100%);
-      display: flex; align-items: center; justify-content: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 9px;
+      background: var(--teal);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
       flex-shrink: 0;
     }
 
-    .logo-mark svg { width: 14px; height: 14px; fill: #000; }
+    .logo-mark svg {
+      width: 16px;
+      height: 16px;
+      fill: #FFFFFF;
+    }
 
-    .nav-links { display: flex; align-items: center; gap: 24px; }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
 
     .nav-links a {
-      font-size: 0.875rem; color: var(--fg-muted);
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--fg-muted);
       transition: color 0.15s ease;
     }
-    .nav-links a:hover { color: var(--fg); }
 
+    .nav-links a:hover {
+      color: var(--teal);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* Buttons */
     .btn-pill {
-      display: inline-flex; align-items: center; justify-content: center; gap: 6px;
-      padding: 8px 18px;
-      font-family: var(--font-body); font-size: 0.875rem; font-weight: 600;
-      border-radius: var(--radius-full); border: none; cursor: pointer;
-      transition: all 0.15s cubic-bezier(0.16, 1, 0.3, 1);
-      white-space: nowrap; outline: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 9px 20px;
+      font-family: var(--font-body);
+      font-size: 0.88rem;
+      font-weight: 600;
+      border-radius: var(--radius-full);
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      white-space: nowrap;
+      outline: none;
     }
-    .btn-pill:active { transform: scale(0.97); }
 
-    .btn-primary {
-      background: var(--fg); color: var(--bg);
+    .btn-pill:active {
+      transform: scale(0.97);
     }
-    .btn-primary:hover { background: #E7E5E4; }
 
-    .btn-secondary {
-      background: var(--bg-secondary); color: var(--fg);
-      border: 1px solid var(--border-mid);
+    /* Primary CTA: Solid Teal Fill */
+    .btn-primary, .btn-teal {
+      background: var(--teal);
+      color: #FFFFFF;
+      box-shadow: 0 3px 12px rgba(27, 154, 170, 0.25);
     }
-    .btn-secondary:hover { background: var(--bg-secondary-hover); }
 
-    .btn-green {
-      background: var(--green); color: #000;
-      font-weight: 700;
+    .btn-primary:hover, .btn-teal:hover {
+      background: var(--teal-dark);
+      box-shadow: 0 4px 16px rgba(27, 154, 170, 0.35);
     }
-    .btn-green:hover { background: #86efac; }
 
-    .nav-cta { display: flex; align-items: center; gap: 8px; }
+    /* Secondary CTA: Outline Style with Dark Border */
+    .btn-secondary, .btn-outline {
+      background: transparent;
+      color: var(--fg);
+      border: 1.5px solid var(--border-dark);
+    }
 
-    @media (max-width: 768px) {
+    .btn-secondary:hover, .btn-outline:hover {
+      background: var(--fg);
+      color: var(--bg-card);
+    }
+
+    /* Small pill badges */
+    .pill-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: transparent;
+      border: 1.5px solid var(--teal);
+      border-radius: var(--radius-full);
+      padding: 6px 14px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--teal);
+      width: fit-content;
+    }
+
+    .pill-badge svg {
+      width: 14px;
+      height: 14px;
+      stroke: var(--teal);
+    }
+
+    @media (max-width: 820px) {
       .nav-links { display: none; }
     }
 
-    /* ===========================
-       HERO SECTION
-       =========================== */
+    /* ==========================================================================
+       SCATTERED BACKGROUND DECORATION (Hand-crafted Confetti Shapes)
+       ========================================================================== */
+    .confetti-container {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .confetti-shape {
+      position: absolute;
+      opacity: 0.32;
+      stroke-width: 1.75;
+      fill: none;
+      vector-effect: non-scaling-stroke;
+    }
+
+    /* Animations for gentle floating */
+    @keyframes floatSoft {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-8px) rotate(4deg); }
+    }
+    @keyframes floatAlt {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(7px) rotate(-5deg); }
+    }
+
+    .cs-1 { top: 8%; left: 4%; width: 26px; height: 26px; stroke: var(--confetti-teal); animation: floatSoft 7s ease-in-out infinite; }
+    .cs-2 { top: 18%; left: 32%; width: 22px; height: 22px; stroke: var(--confetti-pink); animation: floatAlt 8s ease-in-out infinite; }
+    .cs-3 { top: 12%; right: 8%; width: 34px; height: 34px; stroke: var(--confetti-yellow); animation: floatSoft 6s ease-in-out infinite; }
+    .cs-4 { top: 38%; right: 4%; width: 20px; height: 20px; stroke: var(--confetti-teal); animation: floatAlt 9s ease-in-out infinite; }
+    .cs-5 { top: 48%; left: 2%; width: 28px; height: 28px; stroke: var(--confetti-yellow); animation: floatSoft 8.5s ease-in-out infinite; }
+    .cs-6 { top: 62%; right: 12%; width: 24px; height: 24px; stroke: var(--confetti-pink); animation: floatAlt 7.5s ease-in-out infinite; }
+    .cs-7 { top: 75%; left: 26%; width: 18px; height: 18px; stroke: var(--confetti-teal); animation: floatSoft 9s ease-in-out infinite; }
+
+    /* ==========================================================================
+       HERO SECTION — Left-Aligned & Asymmetric
+       ========================================================================== */
     .hero {
-      position: relative; overflow: hidden;
-      min-height: 100vh;
-      display: flex; flex-direction: column; align-items: center;
-      padding-top: 100px;
+      position: relative;
+      padding: 130px 24px 70px 24px;
+      max-width: 1240px;
+      margin: 0 auto;
+      z-index: 2;
     }
 
-    .hero-bg {
-      position: absolute; inset: 0; z-index: 0;
-      background: linear-gradient(180deg, #000 0%, #2F2C2A 67%);
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 48px;
+      align-items: center;
     }
 
-    .hero-overlay {
-      position: absolute; bottom: 0; left: -15%; right: -15%;
-      height: 280px;
-      background: linear-gradient(180deg, rgba(0,0,0,0) 0%, #000 83%);
-      z-index: 3;
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 22px;
+      text-align: left;
     }
 
-    .hero-content {
-      position: relative; z-index: 10;
-      display: flex; flex-direction: column; align-items: center;
-      text-align: center;
-      padding: 60px 24px 0 24px;
-      max-width: 920px; margin: 0 auto;
-      gap: 28px;
-    }
-
-    .hero-badge {
-      display: inline-flex; align-items: center; gap: 7px;
-      background: rgba(255,255,255,0.07);
-      border: 1px solid rgba(255,255,255,0.12);
-      border-radius: var(--radius-full);
-      padding: 5px 14px;
-      font-size: 0.78rem; font-weight: 500; color: var(--fg-muted);
-      opacity: 0; animation: fadeUp 0.5s 0.1s forwards;
-    }
-
-    .badge-dot {
-      width: 6px; height: 6px; border-radius: 50%;
-      background: var(--green);
-      box-shadow: 0 0 8px var(--green);
-      animation: pulse-dot 2s infinite;
-    }
-
-    @keyframes pulse-dot {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.4; }
-    }
-
-    h1.hero-title {
+    /* Heavy Geometric Sans Headline */
+    h1.hero-headline {
       font-family: var(--font-display);
-      font-size: clamp(2.8rem, 6vw, 4.5rem);
-      font-weight: 800; line-height: 1.1;
-      letter-spacing: -0.03em;
+      font-size: clamp(2.7rem, 4.8vw, 4.2rem);
+      font-weight: 800;
+      line-height: 1.12;
+      letter-spacing: -0.035em;
       color: var(--fg);
     }
 
-    h1.hero-title .word {
+    /* Hand-Drawn Wavy Underline */
+    .wavy-highlight {
+      position: relative;
       display: inline-block;
-      opacity: 0; animation: fadeUp 0.35s var(--d, 0s) cubic-bezier(0.16,1,0.3,1) forwards;
-    }
-
-    .hero-sub {
-      font-size: 1.05rem; color: var(--fg-muted); max-width: 440px;
-      opacity: 0; animation: fadeUp 0.4s 0.75s forwards;
-    }
-
-    .hero-actions {
-      display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
-      justify-content: center;
-      opacity: 0; animation: fadeUp 0.4s 1.05s forwards;
-    }
-
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* Hero Product Visual */
-    .hero-visual-wrap {
-      position: relative; z-index: 5;
-      width: 85%; max-width: 1100px; margin: 60px auto 0 auto;
-      opacity: 0; animation: fadeUp 0.6s 1.2s forwards;
-    }
-
-    .hero-visual {
-      width: 100%;
-      border-radius: 16px 16px 0 0;
-      overflow: hidden;
-      border: 1px solid var(--border-mid);
-      border-bottom: none;
-      background: var(--bg-card);
-      box-shadow: 0 -8px 60px rgba(0,0,0,0.8), 0 0 0 1px rgba(255,255,255,0.04) inset;
-    }
-
-    /* Browser chrome bar */
-    .browser-bar {
-      background: #1a1917;
-      padding: 10px 16px;
-      display: flex; align-items: center; gap: 8px;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .browser-dots { display: flex; gap: 6px; }
-    .browser-dots span {
-      width: 11px; height: 11px; border-radius: 50%;
-    }
-    .dot-r { background: #FF5F57; }
-    .dot-y { background: #FFBD2E; }
-    .dot-g { background: #28CA41; }
-
-    .browser-url {
-      flex: 1; background: var(--bg-stone-deep);
-      border-radius: 6px; padding: 4px 12px;
-      font-size: 0.75rem; color: var(--fg-muted);
-      text-align: center; max-width: 360px; margin: 0 auto;
-    }
-
-    /* The inline product UI */
-    .product-ui {
-      padding: 0;
-      display: grid; grid-template-columns: 220px 1fr;
-      height: 480px;
-    }
-
-    /* Sidebar */
-    .ui-sidebar {
-      background: #0d0c0b;
-      border-right: 1px solid var(--border);
-      padding: 16px 12px;
-      display: flex; flex-direction: column; gap: 4px;
-    }
-
-    .ui-sidebar-logo {
-      display: flex; align-items: center; gap: 8px;
-      padding: 6px 8px; margin-bottom: 12px;
-      font-family: var(--font-display); font-weight: 700; font-size: 0.95rem;
-    }
-
-    .sidebar-item {
-      display: flex; align-items: center; gap: 9px;
-      padding: 7px 10px; border-radius: 8px;
-      font-size: 0.8rem; color: var(--fg-muted);
-      cursor: pointer; transition: all 0.1s ease;
-    }
-    .sidebar-item.active {
-      background: var(--bg-secondary); color: var(--fg);
-    }
-    .sidebar-item svg { width: 14px; height: 14px; flex-shrink: 0; }
-
-    /* Main UI area */
-    .ui-main {
-      background: var(--bg-card); padding: 20px;
-      overflow: hidden;
-      display: flex; flex-direction: column; gap: 14px;
-    }
-
-    .ui-search-row {
-      display: flex; align-items: center; gap: 8px;
-    }
-
-    .ui-search-bar {
-      flex: 1; background: var(--bg-secondary);
-      border: 1px solid var(--border-mid); border-radius: 10px;
-      padding: 9px 14px; font-size: 0.82rem; color: var(--fg-muted);
-      display: flex; align-items: center; gap: 8px;
-    }
-
-    .ui-search-icon { color: var(--fg-subtle); }
-
-    /* Context pills */
-    .ui-pills-row { display: flex; gap: 6px; flex-wrap: wrap; }
-    .ui-pill {
-      background: var(--bg-secondary); border: 1px solid var(--border);
-      border-radius: var(--radius-full);
-      padding: 3px 10px; font-size: 0.72rem; color: var(--fg-muted);
-    }
-    .ui-pill.active {
-      background: rgba(74, 222, 128, 0.12);
-      border-color: rgba(74, 222, 128, 0.3);
-      color: var(--green);
-    }
-
-    /* Result cards in UI */
-    .ui-results { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
-
-    .ui-result-card {
-      background: var(--bg-secondary);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 12px;
-    }
-    .ui-result-card.top { border-color: rgba(74, 222, 128, 0.35); }
-
-    .ui-result-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; }
-    .ui-result-name { font-size: 0.82rem; font-weight: 600; color: var(--fg); }
-    .ui-score-pill {
-      font-size: 0.65rem; font-weight: 700;
-      background: rgba(74, 222, 128, 0.15); color: var(--green);
-      padding: 2px 7px; border-radius: var(--radius-full);
-      border: 1px solid rgba(74, 222, 128, 0.25);
-    }
-
-    .ui-bar-group { display: flex; flex-direction: column; gap: 5px; }
-    .ui-bar-row { display: flex; align-items: center; gap: 6px; font-size: 0.65rem; color: var(--fg-subtle); }
-    .ui-bar-track { flex: 1; height: 3px; background: rgba(255,255,255,0.06); border-radius: 9999px; overflow: hidden; }
-    .ui-bar-fill { height: 100%; background: var(--green); border-radius: 9999px; }
-    .ui-bar-val { font-size: 0.6rem; color: var(--fg-muted); width: 22px; text-align: right; }
-
-    .ui-tag { font-size: 0.62rem; color: var(--fg-subtle); margin-top: 8px; }
-
-    /* Stone decoration elements (like obsidianos stone images) */
-    .stone-left {
-      position: absolute; left: -200px; bottom: -80px; z-index: 2;
-      width: 600px; height: 600px; pointer-events: none;
-      opacity: 0.35;
-    }
-
-    .stone-right {
-      position: absolute; right: -400px; bottom: -30px; z-index: 2;
-      width: 900px; height: 550px; pointer-events: none;
-      opacity: 0.35;
-    }
-
-    /* ===========================
-       TRUST LOGOS STRIP
-       =========================== */
-    .trust-strip {
-      max-width: 1200px; margin: 0 auto;
-      padding: 60px 24px;
-      display: flex; flex-direction: column; align-items: center; gap: 28px;
-    }
-
-    .trust-label { font-size: 0.875rem; color: var(--fg-muted); text-align: center; }
-
-    .logo-row {
-      display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 48px;
-    }
-
-    .logo-badge {
-      display: flex; align-items: center; gap: 8px;
-      opacity: 0.55; transition: opacity 0.2s ease;
-      font-size: 0.9rem; font-weight: 600; color: var(--fg-muted);
-    }
-    .logo-badge:hover { opacity: 0.85; }
-    .logo-badge svg { width: auto; height: 18px; }
-
-    .divider {
-      height: 1px; background: var(--border);
-      max-width: 1200px; margin: 0 auto;
-    }
-
-    /* ===========================
-       FEATURES — Save Time & Grow (like "Save Time & Grow AUM")
-       =========================== */
-    section { max-width: 1200px; margin: 0 auto; padding: 60px 24px; }
-
-    .section-title {
-      font-family: var(--font-display);
-      font-size: clamp(1.8rem, 3.5vw, 2.75rem);
-      font-weight: 800; letter-spacing: -0.025em;
-      color: var(--fg); margin-bottom: 36px;
-    }
-
-    .features-two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-
-    .feature-block { display: flex; flex-direction: column; gap: 24px; }
-
-    .feature-visual {
-      height: 440px; border-radius: var(--radius-xl); overflow: hidden;
-      position: relative;
-      background: linear-gradient(180deg, #000 -20%, #2F2C2A 80%);
-      border: 1px solid var(--border-mid);
-    }
-
-    .feature-visual-inner {
-      position: absolute; inset: 0;
-      display: flex; align-items: flex-end; justify-content: center;
-    }
-
-    /* Feature visual #1: Decision Brief */
-    .fv-brief {
-      width: 90%; padding-bottom: 0;
-    }
-
-    .fv-card {
-      background: var(--bg-secondary);
-      border: 1px solid var(--border-mid);
-      border-radius: 12px 12px 0 0;
-      padding: 16px;
-      width: 100%;
-    }
-
-    .fv-card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
-    .fv-card-title { font-size: 0.82rem; font-weight: 600; color: var(--fg); }
-    .fv-confidence { font-size: 0.7rem; color: var(--green); }
-
-    .fv-tool-row {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 8px 0; border-bottom: 1px solid var(--border);
-    }
-    .fv-tool-row:last-child { border-bottom: none; }
-    .fv-tool-name { font-size: 0.78rem; color: var(--fg); }
-    .fv-tool-score-track { width: 80px; height: 4px; background: rgba(255,255,255,0.06); border-radius: 9999px; overflow: hidden; }
-    .fv-tool-score-fill { height: 100%; border-radius: 9999px; background: var(--green); }
-    .fv-tool-price { font-size: 0.7rem; color: var(--fg-muted); }
-
-    /* Feature visual #2: Action Plan */
-    .fv-plan { width: 90%; padding-bottom: 0; }
-
-    .fv-plan-card {
-      background: var(--bg-secondary); border: 1px solid var(--border-mid);
-      border-radius: 12px 12px 0 0; padding: 16px; width: 100%;
-    }
-
-    .plan-step {
-      display: flex; align-items: flex-start; gap: 10px;
-      padding: 8px 0; border-bottom: 1px solid var(--border);
-    }
-    .plan-step:last-child { border-bottom: none; }
-
-    .step-circle {
-      width: 20px; height: 20px; border-radius: 50%; flex-shrink: 0;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 0.65rem; font-weight: 700; margin-top: 1px;
-    }
-    .step-circle.done { background: var(--green); color: #000; }
-    .step-circle.active { background: rgba(74,222,128,0.15); color: var(--green); border: 1px solid rgba(74,222,128,0.35); }
-    .step-circle.todo { background: rgba(255,255,255,0.05); color: var(--fg-subtle); border: 1px solid var(--border); }
-
-    .step-text { font-size: 0.78rem; }
-    .step-title { color: var(--fg); font-weight: 500; }
-    .step-day { color: var(--fg-muted); font-size: 0.7rem; }
-
-    .feature-info { display: flex; flex-direction: column; gap: 16px; }
-    .feature-tag { font-size: 0.82rem; color: var(--green); }
-    .feature-h3 {
-      font-family: var(--font-display); font-size: 1.6rem;
-      font-weight: 700; color: var(--fg); letter-spacing: -0.02em;
-    }
-    .feature-p { font-size: 0.925rem; color: var(--fg-muted); max-width: 380px; }
-    .feature-link {
-      display: inline-flex; align-items: center; gap: 6px;
-      background: var(--bg-secondary); border: 1px solid var(--border-mid);
-      border-radius: var(--radius-full);
-      padding: 7px 16px; font-size: 0.85rem; font-weight: 600;
-      color: var(--fg); width: fit-content;
-      transition: background 0.15s ease;
-    }
-    .feature-link:hover { background: var(--bg-secondary-hover); }
-
-    /* ===========================
-       SLIDER / FEATURE TABS SECTION
-       =========================== */
-    .slider-section {
-      max-width: 1200px; margin: 0 auto; padding: 60px 24px;
-    }
-
-    .slider-header { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; margin-bottom: 48px; }
-
-    .slider-tag { font-size: 0.82rem; color: var(--fg-muted); margin-bottom: 8px; }
-
-    .slider-tabs { display: flex; flex-direction: column; gap: 2px; }
-
-    .slider-tab {
-      padding: 14px 16px; border-radius: var(--radius-md);
-      cursor: pointer; transition: all 0.2s ease;
-      border: 1px solid transparent;
-    }
-    .slider-tab.active {
-      background: var(--bg-secondary); border-color: var(--border-mid);
-    }
-    .slider-tab-title {
-      font-size: 0.925rem; font-weight: 600; color: var(--fg); margin-bottom: 3px;
-    }
-    .slider-tab-desc { font-size: 0.82rem; color: var(--fg-muted); display: none; }
-    .slider-tab.active .slider-tab-desc { display: block; }
-
-    /* Feature visual for slider */
-    .slider-visual {
-      height: 420px; border-radius: var(--radius-xl);
-      background: linear-gradient(180deg, #000 -20%, #2F2C2A 80%);
-      border: 1px solid var(--border-mid); overflow: hidden;
-      position: relative;
-    }
-
-    .slider-panel { display: none; }
-    .slider-panel.active { display: flex; align-items: flex-end; justify-content: center; height: 100%; }
-
-    /* Score breakdown UI */
-    .fv-score-card {
-      width: 85%; background: var(--bg-secondary); border: 1px solid var(--border-mid);
-      border-radius: 12px 12px 0 0; padding: 16px;
-    }
-
-    .score-signal {
-      display: flex; align-items: center; gap: 8px;
-      padding: 5px 0;
-    }
-
-    .signal-label { font-size: 0.72rem; color: var(--fg-muted); width: 130px; flex-shrink: 0; }
-    .signal-track { flex: 1; height: 5px; background: rgba(255,255,255,0.06); border-radius: 9999px; overflow: hidden; }
-    .signal-fill { height: 100%; border-radius: 9999px; }
-    .fill-green { background: var(--green); }
-    .fill-teal { background: var(--teal); }
-    .fill-amber { background: var(--amber); }
-    .signal-pct { font-size: 0.68rem; color: var(--fg-subtle); width: 28px; text-align: right; }
-
-    /* Matrix comparison UI */
-    .fv-matrix {
-      width: 90%; background: var(--bg-secondary); border: 1px solid var(--border-mid);
-      border-radius: 12px 12px 0 0; padding: 14px; overflow: hidden;
-    }
-
-    .matrix-row {
-      display: grid; grid-template-columns: 1fr 1fr 1fr 1fr;
-      gap: 8px; padding: 6px 0;
-      border-bottom: 1px solid var(--border);
-      font-size: 0.72rem;
-    }
-    .matrix-row:last-child { border-bottom: none; }
-    .matrix-header { color: var(--fg-subtle); font-weight: 600; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.04em; }
-    .matrix-cell { color: var(--fg-muted); }
-    .matrix-cell.highlight { color: var(--green); font-weight: 600; }
-    .matrix-tool { color: var(--fg); font-weight: 600; }
-    .matrix-free { color: var(--green); font-size: 0.65rem; }
-
-    /* ===========================
-       STATS / NUMBERS SECTION
-       =========================== */
-    .stats-section {
-      max-width: 1200px; margin: 0 auto; padding: 0 24px 80px 24px;
-    }
-
-    .stats-grid {
-      display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px;
-      background: var(--border);
-      border: 1px solid var(--border); border-radius: var(--radius-lg);
-      overflow: hidden;
-    }
-
-    .stat-item {
-      background: var(--bg-card); padding: 36px 28px;
-      display: flex; flex-direction: column; gap: 6px;
-    }
-
-    .stat-num {
-      font-family: var(--font-display); font-size: 2.5rem; font-weight: 800;
-      color: var(--fg); letter-spacing: -0.03em;
-    }
-
-    .stat-num span { color: var(--green); }
-
-    .stat-label { font-size: 0.875rem; color: var(--fg-muted); }
-
-    /* ===========================
-       DOMAIN CARDS
-       =========================== */
-    .domains-section { max-width: 1200px; margin: 0 auto; padding: 60px 24px; }
-
-    .domains-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
-
-    .domain-card {
-      background: var(--bg-card); border: 1px solid var(--border);
-      border-radius: var(--radius-xl); padding: 28px;
-      display: flex; flex-direction: column; gap: 12px;
-      transition: border-color 0.2s ease, transform 0.2s ease;
-      cursor: default;
-    }
-    .domain-card:hover { border-color: var(--border-mid); transform: translateY(-2px); }
-
-    .domain-icon {
-      width: 44px; height: 44px; border-radius: 11px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.3rem;
-      background: var(--bg-secondary); border: 1px solid var(--border-mid);
-    }
-
-    .domain-name {
-      font-family: var(--font-display); font-size: 1.1rem; font-weight: 700;
-      color: var(--fg);
-    }
-
-    .domain-desc { font-size: 0.85rem; color: var(--fg-muted); }
-    .domain-count { font-size: 0.78rem; color: var(--fg-subtle); margin-top: auto; }
-
-    /* ===========================
-       HOW IT WORKS
-       =========================== */
-    .how-section { max-width: 1200px; margin: 0 auto; padding: 60px 24px; }
-
-    .steps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: var(--border); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; margin-top: 48px; }
-
-    .step-card { background: var(--bg-card); padding: 32px; }
-
-    .step-num {
-      font-family: var(--font-display); font-size: 3rem; font-weight: 800;
-      color: var(--fg-faint); letter-spacing: -0.04em; margin-bottom: 20px;
-    }
-
-    .step-title { font-family: var(--font-display); font-size: 1.15rem; font-weight: 700; color: var(--fg); margin-bottom: 8px; }
-    .step-desc { font-size: 0.875rem; color: var(--fg-muted); }
-
-    /* ===========================
-       PRICING
-       =========================== */
-    .pricing-section { max-width: 1200px; margin: 0 auto; padding: 60px 24px; }
-
-    .pricing-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 48px; }
-
-    .pricing-card {
-      background: var(--bg-card); border: 1px solid var(--border);
-      border-radius: var(--radius-xl); padding: 24px;
-      display: flex; flex-direction: column; gap: 20px;
-      position: relative;
-    }
-    .pricing-card.featured {
-      border-color: rgba(74,222,128,0.3);
-      background: linear-gradient(180deg, rgba(74,222,128,0.04) 0%, var(--bg-card) 100%);
-    }
-
-    .popular-tag {
-      position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
-      background: var(--green); color: #000;
-      font-size: 0.7rem; font-weight: 800; padding: 3px 12px;
-      border-radius: var(--radius-full);
       white-space: nowrap;
     }
 
-    .plan-name { font-size: 0.82rem; color: var(--fg-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
-    .plan-price { font-family: var(--font-display); font-size: 2.25rem; font-weight: 800; color: var(--fg); letter-spacing: -0.03em; }
-    .plan-period { font-size: 0.85rem; color: var(--fg-muted); }
-
-    .plan-features { list-style: none; display: flex; flex-direction: column; gap: 8px; flex: 1; }
-    .plan-features li { font-size: 0.82rem; color: var(--fg-muted); display: flex; align-items: flex-start; gap: 8px; }
-    .check-icon { color: var(--green); flex-shrink: 0; font-size: 0.8rem; margin-top: 1px; }
-    .cross-icon { color: var(--fg-subtle); flex-shrink: 0; margin-top: 1px; }
-
-    /* ===========================
-       TESTIMONIALS / SOCIAL PROOF
-       =========================== */
-    .testimonials-section { max-width: 1200px; margin: 0 auto; padding: 60px 24px; }
-
-    .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 36px; }
-
-    .testimonial-card {
-      background: var(--bg-card); border: 1px solid var(--border);
-      border-radius: var(--radius-xl); padding: 24px;
-    }
-
-    .testimonial-stars { color: var(--amber); font-size: 0.9rem; margin-bottom: 12px; }
-    .testimonial-text { font-size: 0.875rem; color: var(--fg-muted); line-height: 1.7; margin-bottom: 16px; }
-    .testimonial-author { display: flex; align-items: center; gap: 10px; }
-    .author-avatar { width: 32px; height: 32px; border-radius: 50%; background: var(--bg-stone-mid); display: flex; align-items: center; justify-content: center; font-size: 0.85rem; }
-    .author-name { font-size: 0.825rem; font-weight: 600; color: var(--fg); }
-    .author-role { font-size: 0.75rem; color: var(--fg-muted); }
-
-    /* ===========================
-       CTA BLOCK
-       =========================== */
-    .cta-section { max-width: 1200px; margin: 0 auto; padding: 40px 24px 80px 24px; }
-
-    .cta-card {
-      background: linear-gradient(135deg, #1C1A18 0%, #2F2C2A 100%);
-      border: 1px solid var(--border-mid);
-      border-radius: var(--radius-xl);
-      padding: 64px 48px;
-      text-align: center;
-      position: relative; overflow: hidden;
-    }
-
-    .cta-glow {
-      position: absolute; bottom: -100px; left: 50%; transform: translateX(-50%);
-      width: 500px; height: 300px;
-      background: radial-gradient(circle, rgba(74,222,128,0.12) 0%, transparent 70%);
+    .wavy-svg {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -10px;
+      width: 100%;
+      height: 14px;
       pointer-events: none;
+      overflow: visible;
     }
 
-    .cta-title {
-      font-family: var(--font-display); font-size: clamp(2rem, 4vw, 3rem);
-      font-weight: 800; color: var(--fg); letter-spacing: -0.03em; margin-bottom: 16px;
+    .wavy-svg path {
+      stroke: var(--teal);
+      stroke-width: 3.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      fill: none;
     }
 
-    .cta-sub { font-size: 1rem; color: var(--fg-muted); max-width: 480px; margin: 0 auto 32px auto; }
-    .cta-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
-
-    /* ===========================
-       FOOTER
-       =========================== */
-    footer {
-      border-top: 1px solid var(--border);
-      background: var(--bg);
-      padding: 48px 24px 32px 24px;
+    .hero-subtext {
+      font-size: 1.12rem;
+      color: var(--fg-muted);
+      line-height: 1.65;
+      max-width: 500px;
     }
 
-    .footer-inner {
-      max-width: 1200px; margin: 0 auto;
-      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px;
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 6px;
     }
 
-    .footer-brand { display: flex; flex-direction: column; gap: 12px; }
-    .footer-brand-name { display: flex; align-items: center; gap: 8px; font-family: var(--font-display); font-weight: 700; font-size: 1rem; }
-    .footer-brand-desc { font-size: 0.82rem; color: var(--fg-muted); max-width: 280px; }
-
-    .footer-col h4 { font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--fg); margin-bottom: 14px; }
-    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
-    .footer-col ul li a { font-size: 0.82rem; color: var(--fg-muted); transition: color 0.15s ease; }
-    .footer-col ul li a:hover { color: var(--fg); }
-
-    .footer-bottom {
-      max-width: 1200px; margin: 32px auto 0 auto;
-      padding-top: 24px; border-top: 1px solid var(--border);
-      display: flex; justify-content: space-between; align-items: center;
-      font-size: 0.8rem; color: var(--fg-subtle);
+    .hero-trust-bar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 14px;
+      font-size: 0.85rem;
+      color: var(--fg-muted);
     }
 
-    /* ===========================
-       GLOBAL MODAL
-       =========================== */
-    .modal-overlay {
-      position: fixed; inset: 0; z-index: 500;
-      background: rgba(0,0,0,0.75); backdrop-filter: blur(12px);
-      display: none; align-items: center; justify-content: center; padding: 20px;
-    }
-    .modal-overlay.open { display: flex; }
-
-    .modal-box {
-      background: var(--bg-surface);
-      border: 1px solid var(--border-mid);
-      border-radius: var(--radius-xl);
-      width: 100%; max-width: 560px; max-height: 90vh; overflow-y: auto;
-      padding: 28px;
+    .trust-avatars {
+      display: flex;
+      margin-left: 4px;
     }
 
-    .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
-    .modal-title { font-family: var(--font-display); font-size: 1.3rem; font-weight: 700; color: var(--fg); }
-    .modal-close { background: none; border: none; color: var(--fg-muted); font-size: 1.2rem; cursor: pointer; padding: 4px; }
-    .modal-close:hover { color: var(--fg); }
-
-    /* Input styles for modal */
-    .field-label { font-size: 0.8rem; color: var(--fg-muted); margin-bottom: 5px; display: block; }
-    .field-input {
-      width: 100%; background: var(--bg-secondary);
-      border: 1px solid var(--border-mid); border-radius: var(--radius-md);
-      padding: 10px 14px; font-size: 0.9rem; color: var(--fg);
-      outline: none; font-family: var(--font-body);
+    .avatar-mini {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 2px solid var(--bg);
+      background: var(--bg-card-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      margin-left: -7px;
     }
-    .field-input:focus { border-color: var(--green); }
-    .field-input::placeholder { color: var(--fg-subtle); }
-    .field-group { display: flex; flex-direction: column; gap: 16px; }
 
-    /* ===========================
-       INLINE SEARCH PANEL (landing)
-       =========================== */
-    .ask-section { max-width: 1200px; margin: 0 auto; padding: 0 24px 80px 24px; }
+    .avatar-mini:first-child { margin-left: 0; }
 
-    .ask-panel {
+    /* ==========================================================================
+       HERO RIGHT: FEATURE DEMO CARD (Step-Numbered Interactive Widget)
+       ========================================================================== */
+    .demo-card {
       background: var(--bg-card);
-      border: 1px solid var(--border-mid);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-card);
+      padding: 26px;
+      position: relative;
+    }
+
+    .demo-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1.5px solid var(--border);
+      padding-bottom: 14px;
+      margin-bottom: 20px;
+    }
+
+    .demo-badge-title {
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--teal);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .live-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--teal);
+      box-shadow: 0 0 8px rgba(27, 154, 170, 0.6);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.85); }
+    }
+
+    .step-section {
+      margin-bottom: 18px;
+    }
+
+    .step-header {
+      font-size: 0.74rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--fg-muted);
+      margin-bottom: 9px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .step-header span.num {
+      width: 17px;
+      height: 17px;
+      border-radius: 50%;
+      background: var(--bg-card-subtle);
+      border: 1px solid var(--border);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.68rem;
+      color: var(--fg);
+    }
+
+    .step-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+    }
+
+    .step-pill {
+      background: transparent;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-full);
+      padding: 5px 12px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--fg-muted);
+      cursor: pointer;
+      transition: all 0.15s ease;
+      user-select: none;
+    }
+
+    .step-pill:hover {
+      border-color: var(--teal);
+      color: var(--fg);
+    }
+
+    .step-pill.selected {
+      background: var(--teal-light);
+      border-color: var(--teal);
+      color: var(--teal-dark);
+      font-weight: 600;
+    }
+
+    /* Live Output Snippet inside Demo Card */
+    .demo-output-preview {
+      background: var(--bg-card-subtle);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      margin-top: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .dop-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .dop-verdict {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--teal);
+    }
+
+    .dop-score {
+      font-size: 0.75rem;
+      font-weight: 800;
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-full);
+      padding: 2px 8px;
+      color: var(--teal-dark);
+    }
+
+    .dop-tool {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--fg);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .dop-tool img {
+      width: 22px;
+      height: 22px;
+      border-radius: 6px;
+      object-fit: contain;
+    }
+
+    .dop-reason {
+      font-size: 0.82rem;
+      color: var(--fg-muted);
+      line-height: 1.45;
+    }
+
+    /* ==========================================================================
+       TRUST LOGOS STRIP
+       ========================================================================== */
+    .trust-strip {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 24px 60px 24px;
+      text-align: center;
+    }
+
+    .trust-label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--fg-subtle);
+      margin-bottom: 22px;
+    }
+
+    .logo-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 36px;
+    }
+
+    .logo-badge {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-display);
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--fg-subtle);
+      opacity: 0.7;
+      transition: opacity 0.2s ease, color 0.2s ease;
+    }
+
+    .logo-badge:hover {
+      opacity: 1;
+      color: var(--fg);
+    }
+
+    /* ==========================================================================
+       CORE INTERACTIVE ASK SECTION (#ask)
+       ========================================================================== */
+    .ask-section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 40px 24px 80px 24px;
+    }
+
+    .ask-box {
+      background: var(--bg-card);
+      border: 1.5px solid var(--border);
       border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-card);
       overflow: hidden;
     }
 
-    .ask-top { padding: 28px 28px 0 28px; }
-    .ask-label { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--fg-muted); margin-bottom: 14px; }
-    .ask-textarea-wrap { position: relative; }
+    .ask-box-top {
+      padding: 30px 32px 18px 32px;
+    }
+
+    .ask-label {
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--teal);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
     .ask-textarea {
-      width: 100%; background: transparent; border: none; outline: none;
-      font-size: 1.05rem; color: var(--fg); font-family: var(--font-body);
-      resize: none; min-height: 88px; line-height: 1.55;
+      width: 100%;
+      background: transparent;
+      border: none;
+      outline: none;
+      font-size: 1.15rem;
+      font-family: var(--font-body);
+      color: var(--fg);
+      line-height: 1.55;
+      resize: none;
+      min-height: 90px;
     }
-    .ask-textarea::placeholder { color: var(--fg-subtle); }
 
-    .ask-bottom {
-      border-top: 1px solid var(--border); padding: 14px 28px;
-      display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+    .ask-textarea::placeholder {
+      color: var(--fg-subtle);
+      opacity: 0.8;
     }
 
-    .ctx-pills { display: flex; flex-wrap: wrap; gap: 6px; }
+    .ask-box-bottom {
+      border-top: 1.5px solid var(--border);
+      background: #FDFAF3;
+      padding: 16px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .ctx-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
     .ctx-select {
-      background: var(--bg-secondary); border: 1px solid var(--border);
-      border-radius: var(--radius-full); padding: 5px 12px;
-      font-size: 0.78rem; color: var(--fg-muted); cursor: pointer; outline: none;
-      font-family: var(--font-body); transition: border-color 0.15s ease;
-    }
-    .ctx-select:focus { border-color: var(--green); }
-
-    /* Quick presets */
-    .presets-row { padding: 14px 28px 20px 28px; display: flex; flex-wrap: wrap; gap: 7px; }
-    .preset-btn {
-      background: var(--bg-secondary); border: 1px solid var(--border);
-      border-radius: var(--radius-full); padding: 5px 13px;
-      font-size: 0.78rem; color: var(--fg-muted); cursor: pointer;
-      transition: all 0.15s ease; font-family: var(--font-body);
-    }
-    .preset-btn:hover { border-color: var(--border-mid); color: var(--fg); }
-
-    /* Progress / Research Animation */
-    #research-progress {
-      position: fixed; inset: 0; z-index: 400;
-      background: rgba(0,0,0,0.88); backdrop-filter: blur(16px);
-      display: none; align-items: center; justify-content: center;
-    }
-    #research-progress.visible { display: flex; }
-    .progress-box {
-      background: var(--bg-surface); border: 1px solid var(--border-mid);
-      border-radius: var(--radius-xl); padding: 36px; width: 100%; max-width: 420px;
-      text-align: center;
+      background: #FFFFFF;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-full);
+      padding: 6px 14px;
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--fg-muted);
+      cursor: pointer;
+      outline: none;
+      font-family: var(--font-body);
+      transition: all 0.15s ease;
     }
 
-    /* Result tabs */
-    .result-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
-    .result-tab {
-      padding: 6px 14px; border-radius: var(--radius-full);
-      background: var(--bg-secondary); border: 1px solid var(--border);
-      font-size: 0.8rem; color: var(--fg-muted); cursor: pointer;
+    .ctx-select:focus, .ctx-select:hover {
+      border-color: var(--teal);
+      color: var(--fg);
     }
-    .result-tab.active { background: rgba(74,222,128,0.12); border-color: rgba(74,222,128,0.3); color: var(--green); font-weight: 600; }
 
-    .results-panel {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;
+    .presets-row {
+      padding: 14px 32px 22px 32px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      background: #FDFAF3;
+    }
+
+    .preset-chip {
+      background: #FFFFFF;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-full);
+      padding: 5px 14px;
+      font-size: 0.78rem;
+      color: var(--fg-muted);
+      cursor: pointer;
+      font-family: var(--font-body);
+      transition: all 0.15s ease;
+    }
+
+    .preset-chip:hover {
+      border-color: var(--teal);
+      color: var(--teal-dark);
+      background: var(--teal-light);
+    }
+
+    /* ==========================================================================
+       LIVE RESULTS CONTAINER (#results-section)
+       ========================================================================== */
+    .results-section {
+      display: none;
+      margin-top: 36px;
+    }
+
+    .results-section.visible {
+      display: block;
+      animation: fadeIn 0.4s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .results-card {
+      background: var(--bg-card);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-card);
+      padding: 28px;
+    }
+
+    .results-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 22px;
+      flex-wrap: wrap;
+      gap: 12px;
+      border-bottom: 1.5px solid var(--border);
+      padding-bottom: 18px;
+    }
+
+    .lens-tabs {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .lens-tab {
+      padding: 7px 16px;
+      border-radius: var(--radius-full);
+      background: transparent;
+      border: 1.5px solid var(--border);
+      font-size: 0.84rem;
+      font-weight: 600;
+      color: var(--fg-muted);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .lens-tab.active {
+      background: var(--teal-light);
+      border-color: var(--teal);
+      color: var(--teal-dark);
+    }
+
+    .results-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 1fr 1fr;
+      gap: 24px;
+    }
+
+    .score-badge-huge {
+      font-family: var(--font-display);
+      font-size: 2.6rem;
+      font-weight: 800;
+      color: var(--teal);
+      line-height: 1;
+      margin: 8px 0 14px 0;
+    }
+
+    .score-bar-item {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      margin-bottom: 9px;
+    }
+
+    .score-bar-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--fg-muted);
+    }
+
+    .score-bar-track {
+      height: 6px;
+      background: var(--bg-card-subtle);
+      border-radius: var(--radius-full);
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+
+    .score-bar-fill {
+      height: 100%;
+      background: var(--teal);
+      border-radius: var(--radius-full);
+    }
+
+    /* Live Citations Box */
+    .citations-box {
       margin-top: 24px;
+      padding-top: 18px;
+      border-top: 1.5px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
     }
 
-    .result-card {
-      background: var(--bg-secondary); border: 1px solid var(--border);
-      border-radius: var(--radius-lg); padding: 18px;
-      transition: border-color 0.2s ease;
-    }
-    .result-card.best { border-color: rgba(74,222,128,0.3); }
-    .result-card:hover { border-color: var(--border-mid); }
-
-    .rc-tag { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 700; margin-bottom: 6px; }
-    .rc-tag.green { color: var(--green); }
-    .rc-tag.teal { color: var(--teal); }
-    .rc-tag.amber { color: var(--amber); }
-
-    .rc-name { font-family: var(--font-display); font-size: 1.05rem; font-weight: 700; color: var(--fg); margin-bottom: 3px; }
-    .rc-sub { font-size: 0.78rem; color: var(--fg-muted); margin-bottom: 12px; }
-    .rc-score-big { font-family: var(--font-display); font-size: 2.2rem; font-weight: 800; color: var(--green); letter-spacing: -0.03em; margin-bottom: 12px; }
-
-    .rc-bars { display: flex; flex-direction: column; gap: 6px; }
-    .rc-bar-item { display: flex; flex-direction: column; gap: 3px; }
-    .rc-bar-label { font-size: 0.68rem; color: var(--fg-subtle); display: flex; justify-content: space-between; }
-    .rc-bar-track { height: 3px; background: rgba(255,255,255,0.05); border-radius: 9999px; overflow: hidden; }
-    .rc-bar-fill { height: 100%; border-radius: 9999px; background: var(--green); }
-
-    .rc-price { font-size: 0.8rem; color: var(--fg-muted); margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border); }
-    .rc-price strong { color: var(--fg); }
-
-    .rc-actions { display: flex; gap: 6px; margin-top: 12px; }
-    .rc-btn {
-      flex: 1; padding: 7px; border-radius: 8px;
-      font-size: 0.78rem; font-weight: 600; cursor: pointer;
-      border: 1px solid var(--border-mid); background: var(--bg-stone-deep);
-      color: var(--fg); transition: all 0.15s ease;
-    }
-    .rc-btn:hover { background: var(--bg-stone-mid); }
-    .rc-btn.primary { background: var(--green); color: #000; border: none; }
-    .rc-btn.primary:hover { background: #86efac; }
-
-    .source-disclosure { font-size: 0.75rem; color: var(--fg-subtle); margin-top: 12px; display: flex; align-items: center; gap: 5px; }
-
-    /* Loading dots animation */
-    .loading-dots { display: flex; gap: 6px; justify-content: center; margin: 20px 0; }
-    .loading-dot {
-      width: 8px; height: 8px; border-radius: 50%; background: var(--green);
-      animation: dotBounce 1.4s infinite;
-    }
-    .loading-dot:nth-child(2) { animation-delay: 0.2s; }
-    .loading-dot:nth-child(3) { animation-delay: 0.4s; }
-    @keyframes dotBounce {
-      0%, 80%, 100% { transform: scale(0.6); opacity: 0.4; }
-      40% { transform: scale(1); opacity: 1; }
+    .citation-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.8rem;
+      color: var(--teal-dark);
+      text-decoration: underline;
+      text-underline-offset: 3px;
     }
 
-    .step-list { list-style: none; text-align: left; margin-top: 20px; display: flex; flex-direction: column; gap: 10px; }
-    .step-list li { display: flex; align-items: center; gap: 10px; font-size: 0.875rem; color: var(--fg-muted); }
-    .step-list .stp-icon { width: 20px; height: 20px; border-radius: 50%; background: var(--bg-secondary); border: 1px solid var(--border); flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 0.6rem; }
-    .step-list li.done .stp-icon { background: var(--green); border-color: var(--green); color: #000; font-weight: 700; }
-    .step-list li.active .stp-icon { background: rgba(74,222,128,0.15); border-color: var(--green); color: var(--green); }
-
-    /* Safety alert */
-    .safety-alert {
-      background: rgba(251,191,36,0.07); border: 1px solid rgba(251,191,36,0.25);
-      border-radius: var(--radius-md); padding: 12px 16px;
-      font-size: 0.82rem; color: #fcd34d;
-      display: flex; gap: 10px; align-items: flex-start;
-      margin-top: 10px;
+    /* ==========================================================================
+       FEATURES SHOWCASE (Three Lenses & Cal.com Minimalist Flow)
+       ========================================================================== */
+    section.features-section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 60px 24px;
     }
 
-    /* Active results section */
-    .results-section { display: none; }
-    .results-section.visible { display: block; }
+    .section-headline {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 3.6vw, 2.75rem);
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      color: var(--fg);
+      margin-bottom: 12px;
+      text-align: left;
+    }
 
-    /* Animation helpers */
-    .animate-in { animation: fadeUp 0.4s forwards; }
+    .section-subtext {
+      font-size: 1.05rem;
+      color: var(--fg-muted);
+      max-width: 600px;
+      margin-bottom: 40px;
+      text-align: left;
+    }
 
-    /* ===========================
-       RESPONSIVE
-       =========================== */
-    @media (max-width: 960px) {
-      .features-two-col, .domains-grid, .pricing-grid, .steps-grid { grid-template-columns: 1fr; }
+    .features-two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+    }
+
+    .feature-card {
+      background: var(--bg-card);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-card);
+    }
+
+    .feature-tag {
+      font-size: 0.76rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--teal);
+    }
+
+    .feature-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: var(--fg);
+      letter-spacing: -0.02em;
+    }
+
+    .feature-card p {
+      font-size: 0.92rem;
+      color: var(--fg-muted);
+      line-height: 1.6;
+    }
+
+    /* ==========================================================================
+       PRODUCTION TECH STACK TABLE
+       ========================================================================== */
+    .stack-section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 60px 24px;
+    }
+
+    .stack-table-wrap {
+      background: var(--bg-card);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-card);
+      overflow-x: auto;
+    }
+
+    table.stack-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.88rem;
+    }
+
+    table.stack-table th {
+      padding: 16px 24px;
+      background: #FDF9F0;
+      border-bottom: 1.5px solid var(--border);
+      font-weight: 700;
+      color: var(--fg);
+      font-family: var(--font-display);
+    }
+
+    table.stack-table td {
+      padding: 16px 24px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+
+    table.stack-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .tool-pill-tag {
+      display: inline-block;
+      background: var(--teal-light);
+      color: var(--teal-dark);
+      border: 1px solid var(--teal-border);
+      padding: 3px 10px;
+      border-radius: var(--radius-full);
+      font-weight: 600;
+      font-size: 0.82rem;
+    }
+
+    /* ==========================================================================
+       PRICING SECTION (Featured Tier has the ONE Secondary Accent: Warm Amber)
+       ========================================================================== */
+    .pricing-section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 60px 24px;
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-top: 36px;
+    }
+
+    .pricing-card {
+      background: var(--bg-card);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 28px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      position: relative;
+      box-shadow: var(--shadow-sm);
+    }
+
+    /* THE ONE FEATURED ACCENT: Warm Amber / Gold (#F5A623) applied ONLY here */
+    .pricing-card.featured {
+      border: 2px solid var(--amber);
+      box-shadow: 0 12px 32px rgba(245, 166, 35, 0.14);
+      background: #FFFFFF;
+    }
+
+    .featured-badge {
+      position: absolute;
+      top: -13px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--amber);
+      color: #FFFFFF;
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 4px 14px;
+      border-radius: var(--radius-full);
+      white-space: nowrap;
+      box-shadow: 0 2px 8px rgba(245, 166, 35, 0.4);
+    }
+
+    .plan-name {
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--fg-muted);
+    }
+
+    .plan-price {
+      font-family: var(--font-display);
+      font-size: 2.4rem;
+      font-weight: 800;
+      color: var(--fg);
+      letter-spacing: -0.03em;
+      margin: 4px 0;
+    }
+
+    .plan-period {
+      font-size: 0.82rem;
+      color: var(--fg-subtle);
+    }
+
+    .plan-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      flex: 1;
+    }
+
+    .plan-features li {
+      font-size: 0.84rem;
+      color: var(--fg-muted);
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .plan-check {
+      color: var(--teal);
+      font-weight: 800;
+    }
+
+    /* ==========================================================================
+       TESTIMONIALS
+       ========================================================================== */
+    .testimonials-section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 60px 24px;
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 36px;
+    }
+
+    .testimonial-card {
+      background: var(--bg-card);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .testimonial-stars {
+      color: #E29578;
+      font-size: 0.95rem;
+      margin-bottom: 12px;
+    }
+
+    .testimonial-text {
+      font-size: 0.9rem;
+      color: var(--fg-muted);
+      line-height: 1.65;
+      margin-bottom: 18px;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .author-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--bg-card-subtle);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+    }
+
+    /* ==========================================================================
+       CTA BANNER & FOOTER
+       ========================================================================== */
+    .cta-section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 24px 80px 24px;
+    }
+
+    .cta-card {
+      background: #FFFFFF;
+      border: 2px solid var(--border);
+      border-radius: var(--radius-xl);
+      padding: 60px 36px;
+      text-align: center;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .cta-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 4vw, 3rem);
+      font-weight: 800;
+      color: var(--fg);
+      letter-spacing: -0.03em;
+      margin-bottom: 14px;
+    }
+
+    .cta-sub {
+      font-size: 1.05rem;
+      color: var(--fg-muted);
+      max-width: 520px;
+      margin: 0 auto 30px auto;
+    }
+
+    footer {
+      border-top: 1.5px solid var(--border);
+      background: #FAF6EC;
+      padding: 60px 24px 36px 24px;
+    }
+
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px;
+    }
+
+    .footer-brand-name {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 1.15rem;
+      color: var(--fg);
+      margin-bottom: 10px;
+    }
+
+    .footer-col h4 {
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--fg);
+      margin-bottom: 14px;
+    }
+
+    .footer-col ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+
+    .footer-col ul li a {
+      font-size: 0.86rem;
+      color: var(--fg-muted);
+      transition: color 0.15s ease;
+    }
+
+    .footer-col ul li a:hover {
+      color: var(--teal);
+    }
+
+    .footer-bottom {
+      max-width: 1200px;
+      margin: 36px auto 0 auto;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.82rem;
+      color: var(--fg-subtle);
+    }
+
+    /* Modal Styles */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 500;
+      background: rgba(30, 26, 23, 0.5);
+      backdrop-filter: blur(8px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal-overlay.open { display: flex; }
+
+    .modal-box {
+      background: #FFFFFF;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-xl);
+      width: 100%;
+      max-width: 480px;
+      padding: 32px;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 18px;
+    }
+
+    .modal-title {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--fg);
+    }
+
+    .modal-close {
+      background: none;
+      border: none;
+      color: var(--fg-muted);
+      font-size: 1.4rem;
+      cursor: pointer;
+    }
+
+    /* Progress Overlay */
+    #research-progress {
+      position: fixed;
+      inset: 0;
+      z-index: 400;
+      background: rgba(250, 246, 236, 0.94);
+      backdrop-filter: blur(12px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #research-progress.visible { display: flex; }
+
+    .progress-box {
+      background: #FFFFFF;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-xl);
+      padding: 36px;
+      width: 100%;
+      max-width: 440px;
+      text-align: center;
+      box-shadow: var(--shadow-card);
+    }
+
+    .step-list {
+      list-style: none;
+      text-align: left;
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .step-list li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.88rem;
+      color: var(--fg-muted);
+    }
+
+    .step-list .stp-icon {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--bg-card-subtle);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.65rem;
+      font-weight: 700;
+    }
+
+    .step-list li.done .stp-icon {
+      background: var(--teal);
+      border-color: var(--teal);
+      color: #FFFFFF;
+    }
+
+    .step-list li.active .stp-icon {
+      background: var(--teal-light);
+      border-color: var(--teal);
+      color: var(--teal-dark);
+    }
+
+    /* Responsive */
+    @media (max-width: 980px) {
+      .hero-grid { grid-template-columns: 1fr; }
+      .results-grid { grid-template-columns: 1fr; }
+      .pricing-grid { grid-template-columns: 1fr 1fr; }
+      .features-two-col { grid-template-columns: 1fr; }
       .testimonials-grid { grid-template-columns: 1fr; }
-      .slider-header { grid-template-columns: 1fr; }
-      .stats-grid { grid-template-columns: 1fr 1fr; }
       .footer-inner { grid-template-columns: 1fr 1fr; }
-      .results-panel { grid-template-columns: 1fr; }
-      .product-ui { grid-template-columns: 1fr; height: auto; }
-      .ui-sidebar { display: none; }
-      h1.hero-title { font-size: 2.4rem; }
+    }
+
+    @media (max-width: 640px) {
+      .pricing-grid { grid-template-columns: 1fr; }
+      .footer-inner { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
 
+  <!-- ======================== SCATTERED CONFETTI DECORATION ======================== -->
+  <div class="confetti-container">
+    <!-- Circle -->
+    <svg class="confetti-shape cs-1" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/></svg>
+    <!-- Triangle -->
+    <svg class="confetti-shape cs-2" viewBox="0 0 24 24"><polygon points="12 4, 21 20, 3 20"/></svg>
+    <!-- Square (Rotated) -->
+    <svg class="confetti-shape cs-3" viewBox="0 0 24 24"><rect x="5" y="5" width="14" height="14" rx="3" transform="rotate(15 12 12)"/></svg>
+    <!-- Circle -->
+    <svg class="confetti-shape cs-4" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/></svg>
+    <!-- Triangle -->
+    <svg class="confetti-shape cs-5" viewBox="0 0 24 24"><polygon points="12 5, 20 19, 4 19" transform="rotate(30 12 12)"/></svg>
+    <!-- Squiggle -->
+    <svg class="confetti-shape cs-6" viewBox="0 0 24 24"><path d="M4 14 Q 8 8, 12 14 T 20 14"/></svg>
+    <!-- Square -->
+    <svg class="confetti-shape cs-7" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="4" transform="rotate(45 12 12)"/></svg>
+  </div>
+
   <!-- ======================== HEADER ======================== -->
   <header>
     <div class="nav-inner">
-      <div class="nav-logo">
+      <a href="/" class="nav-logo">
         <div class="logo-mark">
           <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
         </div>
         Search.ai
-      </div>
+      </a>
       <nav class="nav-links">
         <a href="#features">Features</a>
-        <a href="#domains">Domains</a>
-        <a href="#how">How it works</a>
+        <a href="#demo-widget">Interactive Demo</a>
         <a href="#stack">Tech Stack</a>
         <a href="#pricing">Pricing</a>
-        <a href="#ask">Try it</a>
+        <a href="#ask">Try Free</a>
       </nav>
-      <div class="nav-cta">
-        <a href="/login" class="btn-pill btn-secondary">Sign in</a>
-        <a href="/dashboard" class="btn-pill btn-primary">Get started</a>
+      <div class="nav-actions">
+        <a href="/login" class="btn-pill btn-outline">Sign In</a>
+        <a href="#ask" class="btn-pill btn-primary">Start Free →</a>
       </div>
     </div>
   </header>
 
-  <!-- ======================== HERO ======================== -->
-  <div class="hero">
-    <div class="hero-bg"></div>
-    <div class="hero-overlay"></div>
-
-    <!-- Stone decorations (CSS-rendered, matching obsidianos organic style) -->
-    <svg class="stone-left" viewBox="0 0 600 600" fill="none">
-      <circle cx="300" cy="300" r="280" fill="url(#sl)" opacity="0.6"/>
-      <defs><radialGradient id="sl" cx="30%" cy="30%"><stop offset="0%" stop-color="#3D3A37"/><stop offset="100%" stop-color="#0a0908" stop-opacity="0"/></radialGradient></defs>
-    </svg>
-
-    <svg class="stone-right" viewBox="0 0 900 550" fill="none">
-      <ellipse cx="450" cy="275" rx="420" ry="260" fill="url(#sr)" opacity="0.5"/>
-      <defs><radialGradient id="sr" cx="70%" cy="40%"><stop offset="0%" stop-color="#2F2C2A"/><stop offset="100%" stop-color="#0a0908" stop-opacity="0"/></radialGradient></defs>
-    </svg>
-
-    <div class="hero-content">
-      <div class="hero-badge">
-        <div class="badge-dot"></div>
-        Decision Intelligence Platform · 50+ Verified Tools
-      </div>
-
-      <h1 class="hero-title">
-        <span class="word" style="--d:0s">Turn</span>&nbsp;
-        <span class="word" style="--d:0.08s">uncertainty</span>&nbsp;
-        <span class="word" style="--d:0.16s">into</span>&nbsp;
-        <span class="word" style="--d:0.24s">your</span>&nbsp;
-        <span class="word" style="--d:0.32s">next</span>&nbsp;
-        <span class="word" style="--d:0.4s">best&nbsp;move.</span>
-      </h1>
-
-      <p class="hero-sub">AI-powered tool discovery for founders, students, and freelancers. No sponsored rankings. No hallucinations.</p>
-
-      <div class="hero-actions">
-        <button class="btn-pill btn-green" style="padding: 10px 24px; font-size: 0.95rem;" onclick="document.getElementById('ask').scrollIntoView({behavior:'smooth'})">
-          Start For Free
-        </button>
-        <a href="#features" class="btn-pill btn-secondary" style="padding: 10px 20px; font-size: 0.9rem;">See how it works →</a>
-      </div>
-    </div>
-
-    <!-- Product UI Visual -->
-    <div class="hero-visual-wrap">
-      <div class="hero-visual">
-        <div class="browser-bar">
-          <div class="browser-dots">
-            <span class="dot-r"></span>
-            <span class="dot-y"></span>
-            <span class="dot-g"></span>
-          </div>
-          <div class="browser-url">search.ai — Decision Brief: Best e-commerce tool for India</div>
+  <!-- ======================== HERO SECTION ======================== -->
+  <section class="hero">
+    <div class="hero-grid">
+      
+      <!-- Left Column: Typography & CTAs (Left-Aligned) -->
+      <div class="hero-left">
+        <!-- Eyebrow Pill -->
+        <div class="pill-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+          Decision Intelligence Platform · 50+ Verified Tools
         </div>
-        <div class="product-ui">
-          <!-- Sidebar -->
-          <div class="ui-sidebar">
-            <div class="ui-sidebar-logo">
-              <div class="logo-mark" style="width:22px;height:22px;border-radius:5px;">
-                <svg viewBox="0 0 24 24" style="width:11px;height:11px;"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-              </div>
-              Search.ai
-            </div>
-            <div class="sidebar-item active">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-              Ask & Clarify
-            </div>
-            <div class="sidebar-item">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-              Decision Brief
-            </div>
-            <div class="sidebar-item">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
-              Compare Matrix
-            </div>
-            <div class="sidebar-item">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
-              Tool Directory
-            </div>
-            <div class="sidebar-item">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
-              Workspace
-            </div>
+
+        <!-- Heavy Headline with Wavy Underline -->
+        <h1 class="hero-headline">
+          Turn uncertainty into your
+          <span class="wavy-highlight">
+            next best move.
+            <!-- Hand-drawn wavy SVG underline in Teal -->
+            <svg class="wavy-svg" viewBox="0 0 300 18" preserveAspectRatio="none">
+              <path d="M3 12 C 30 3, 50 20, 80 11 C 110 2, 130 20, 160 11 C 190 2, 210 20, 240 11 C 270 2, 285 18, 297 10"/>
+            </svg>
+          </span>
+        </h1>
+
+        <!-- Muted Gray-Brown Subtext -->
+        <p class="hero-subtext">
+          Map your exact budget, timeline, and tech stack in seconds. Search.ai synthesizes 50+ verified tools across 8 explainable signals to hand you an evidence-grounded decision brief.
+        </p>
+
+        <!-- Actions -->
+        <div class="hero-actions">
+          <button class="btn-pill btn-primary" onclick="document.getElementById('ask').scrollIntoView({behavior:'smooth'})" style="padding: 12px 28px; font-size: 0.98rem;">
+            Map Your Decision Free →
+          </button>
+          <a href="#features" class="btn-pill btn-outline" style="padding: 12px 24px;">
+            How It Works
+          </a>
+        </div>
+
+        <!-- Trust Social Proof -->
+        <div class="hero-trust-bar">
+          <div class="trust-avatars">
+            <div class="avatar-mini">🚀</div>
+            <div class="avatar-mini">⚡</div>
+            <div class="avatar-mini">💻</div>
+            <div class="avatar-mini">🎯</div>
           </div>
-          <!-- Main Content -->
-          <div class="ui-main">
-            <div class="ui-search-row">
-              <div class="ui-search-bar">
-                <svg class="ui-search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-                I want to start an online business under ₹10,000 with no coding skills...
-              </div>
-              <button class="btn-pill btn-green" style="padding: 7px 16px; font-size: 0.8rem; flex-shrink:0;">Map Options</button>
-            </div>
-            <div class="ui-pills-row">
-              <div class="ui-pill active">Domain: Business</div>
-              <div class="ui-pill active">Budget: Under ₹10K</div>
-              <div class="ui-pill active">Skill: Beginner</div>
-              <div class="ui-pill active">Region: India (UPI)</div>
-              <div class="ui-pill active">Timeframe: 7 Days</div>
-            </div>
-            <div style="font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--fg-subtle); font-weight: 600;">Decision Brief — 3 Scored Recommendations</div>
-            <div class="ui-results">
-              <div class="ui-result-card top">
-                <div class="ui-result-header">
-                  <div class="ui-result-name">Dukaan</div>
-                  <div class="ui-score-pill">94%</div>
-                </div>
-                <div class="ui-bar-group">
-                  <div class="ui-bar-row"><span>Goal Fit</span><div class="ui-bar-track"><div class="ui-bar-fill" style="width:96%"></div></div><span class="ui-bar-val">24/25</span></div>
-                  <div class="ui-bar-row"><span>Budget Fit</span><div class="ui-bar-track"><div class="ui-bar-fill" style="width:100%"></div></div><span class="ui-bar-val">20/20</span></div>
-                  <div class="ui-bar-row"><span>Skill Ease</span><div class="ui-bar-track"><div class="ui-bar-fill" style="width:100%"></div></div><span class="ui-bar-val">10/10</span></div>
-                </div>
-                <div class="ui-tag">₹699/mo · WhatsApp UPI · 2h setup</div>
-              </div>
-              <div class="ui-result-card">
-                <div class="ui-result-header">
-                  <div class="ui-result-name">WooCommerce</div>
-                  <div class="ui-score-pill" style="color: var(--teal); background: rgba(45,212,191,0.1); border-color: rgba(45,212,191,0.25);">87%</div>
-                </div>
-                <div class="ui-bar-group">
-                  <div class="ui-bar-row"><span>Goal Fit</span><div class="ui-bar-track"><div class="ui-bar-fill" style="width:88%; background: var(--teal)"></div></div><span class="ui-bar-val">22/25</span></div>
-                  <div class="ui-bar-row"><span>Budget Fit</span><div class="ui-bar-track"><div class="ui-bar-fill" style="width:100%; background: var(--teal)"></div></div><span class="ui-bar-val">20/20</span></div>
-                  <div class="ui-bar-row"><span>Skill Ease</span><div class="ui-bar-track"><div class="ui-bar-fill" style="width:70%; background: var(--teal)"></div></div><span class="ui-bar-val">7/10</span></div>
-                </div>
-                <div class="ui-tag">Free (hosting ~₹400/mo) · Full control</div>
-              </div>
-              <div class="ui-result-card">
-                <div class="ui-result-header">
-                  <div class="ui-result-name">Shopify</div>
-                  <div class="ui-score-pill" style="color: var(--amber); background: rgba(251,191,36,0.1); border-color: rgba(251,191,36,0.25);">76%</div>
-                </div>
-                <div class="ui-bar-group">
-                  <div class="ui-bar-row"><span>Goal Fit</span><div class="ui-bar-track"><div class="ui-bar-fill" style="width:92%; background: var(--amber)"></div></div><span class="ui-bar-val">23/25</span></div>
-                  <div class="ui-bar-row"><span>Budget Fit</span><div class="ui-bar-track"><div class="ui-bar-fill" style="width:35%; background: var(--amber)"></div></div><span class="ui-bar-val">7/20</span></div>
-                  <div class="ui-bar-row"><span>Skill Ease</span><div class="ui-bar-track"><div class="ui-bar-fill" style="width:85%; background: var(--amber)"></div></div><span class="ui-bar-val">8/10</span></div>
-                </div>
-                <div class="ui-tag">₹1,999/mo · Exceeds budget constraint</div>
-              </div>
-            </div>
-          </div>
+          <span>Trusted by founders from Y Combinator, NSUT, and IIT</span>
         </div>
       </div>
-    </div>
-  </div>
 
-  <!-- Trust Strip -->
+      <!-- Right Column: Step-Numbered Interactive Widget Card -->
+      <div class="hero-right" id="demo-widget">
+        <div class="demo-card">
+          <div class="demo-card-header">
+            <div class="demo-badge-title">
+              <div class="live-dot"></div>
+              Interactive Decision Mapper
+            </div>
+            <span style="font-size: 0.75rem; color: var(--fg-subtle); font-weight: 500;">Instant Preview</span>
+          </div>
+
+          <!-- Section 1 -->
+          <div class="step-section">
+            <div class="step-header">
+              <span class="num">1</span>
+              WHAT YOU'RE WORKING ON
+            </div>
+            <div class="step-pills" id="pills-project">
+              <div class="step-pill selected" data-val="Next.js SaaS Backend">Next.js SaaS Stack</div>
+              <div class="step-pill" data-val="E-Commerce Store">E-Commerce Store</div>
+              <div class="step-pill" data-val="Student AI Research">Student AI Study</div>
+              <div class="step-pill" data-val="Freelance Portfolio">Freelance Portfolio</div>
+            </div>
+          </div>
+
+          <!-- Section 2 -->
+          <div class="step-section">
+            <div class="step-header">
+              <span class="num">2</span>
+              BUDGET & CONSTRAINTS
+            </div>
+            <div class="step-pills" id="pills-budget">
+              <div class="step-pill selected" data-val="Free / ₹0">Free Forever (₹0)</div>
+              <div class="step-pill" data-val="Under ₹10,000">Under ₹10,000</div>
+              <div class="step-pill" data-val="Under $50/mo">Under $50/mo</div>
+              <div class="step-pill" data-val="Flexible Scale">Scale Ready</div>
+            </div>
+          </div>
+
+          <!-- Section 3 -->
+          <div class="step-section">
+            <div class="step-header">
+              <span class="num">3</span>
+              YOUR TOP PRIORITY
+            </div>
+            <div class="step-pills" id="pills-priority">
+              <div class="step-pill selected" data-val="Fastest to Ship">Fastest to Ship</div>
+              <div class="step-pill" data-val="Lowest Long-term Cost">Lowest Cost</div>
+              <div class="step-pill" data-val="Beginner Friendly">Beginner Friendly</div>
+            </div>
+          </div>
+
+          <!-- Live Reactive Decision Preview -->
+          <div class="demo-output-preview" id="hero-preview-box">
+            <div class="dop-top">
+              <span class="dop-verdict" id="prev-verdict">TOP RECOMMENDATION · BEST FIT</span>
+              <span class="dop-score" id="prev-score">96% Fit Score</span>
+            </div>
+            <div class="dop-tool" id="prev-tool">
+              <img src="https://img.logo.dev/supabase.com?token=pk_V9sJFFV4S5SQjdahqKezzA&size=128&format=png" id="prev-tool-logo" alt="Tool" onerror="this.src='https://www.google.com/s2/favicons?domain=supabase.com&sz=128'" />
+              <span id="prev-tool-name">Supabase + Vercel</span>
+            </div>
+            <div class="dop-reason" id="prev-reason">
+              Generous free tier (50k MAUs), instant PostgreSQL auth & storage, and zero-config deployment. Setup in under 2 hours.
+            </div>
+          </div>
+
+          <button class="btn-pill btn-primary" style="width: 100%; margin-top: 16px;" onclick="syncHeroToAsk()">
+            Explore Full Decision Brief ↓
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ======================== TRUST STRIP ======================== -->
   <div class="trust-strip">
-    <p class="trust-label">Trusted by founders from</p>
+    <div class="trust-label">Evaluated against verified data across industry leaders</div>
     <div class="logo-row">
-      <div class="logo-badge">
-        <svg viewBox="0 0 80 20" fill="currentColor"><text y="16" font-size="14" font-weight="700" fill="currentColor">Y Combinator</text></svg>
-      </div>
-      <div class="logo-badge">
-        <svg viewBox="0 0 70 20" fill="currentColor"><text y="16" font-size="14" font-weight="700" fill="currentColor">NSUT Delhi</text></svg>
-      </div>
-      <div class="logo-badge">
-        <svg viewBox="0 0 80 20" fill="currentColor"><text y="16" font-size="14" font-weight="700" fill="currentColor">IIM Bangalore</text></svg>
-      </div>
-      <div class="logo-badge">
-        <svg viewBox="0 0 60 20" fill="currentColor"><text y="16" font-size="14" font-weight="700" fill="currentColor">IIT Delhi</text></svg>
-      </div>
-      <div class="logo-badge">
-        <svg viewBox="0 0 60 20" fill="currentColor"><text y="16" font-size="14" font-weight="700" fill="currentColor">100ms</text></svg>
-      </div>
-    </div>
-  </div>
-  <div class="divider" style="max-width:1200px; margin: 0 auto;"></div>
-
-  <!-- ======================== FEATURES ======================== -->
-  <section id="features">
-    <h2 class="section-title">Clarity. Evidence. Action.</h2>
-    <div class="features-two-col">
-      <!-- Feature 1: Decision Brief -->
-      <div class="feature-block">
-        <div class="feature-visual" style="padding:0; overflow:hidden;">
-          <img src="C:/Users/DELL/.gemini/antigravity-ide/brain/ddcea7f7-e6a4-4c4b-a741-9201a4be95e8/decision_matrix_feature_1788500739203.jpg" alt="Executive Decision Matrix" style="width:100%; height:auto; display:block;" />
-        </div>
-        <div class="feature-info">
-          <div class="feature-tag">Executive Suite</div>
-          <h3 class="feature-h3">Evidence-Grounded Decision Briefs</h3>
-          <p class="feature-p">Cal.com-inspired multi-criteria decision matrices with transparent score sliders, real-time ROI estimations, and 8-signal trade-off breakdowns.</p>
-          <a href="#ask" class="feature-link">Try Decision Briefs →</a>
-        </div>
-      </div>
-
-      <!-- Feature 2: Action Plan -->
-      <div class="feature-block">
-        <div class="feature-visual" style="padding:0; overflow:hidden;">
-          <img src="C:/Users/DELL/.gemini/antigravity-ide/brain/ddcea7f7-e6a4-4c4b-a741-9201a4be95e8/calcom_workflow_feature_1788500660520.jpg" alt="Cal.com Workflow Scheduling" style="width:100%; height:auto; display:block;" />
-        </div>
-        <div class="feature-info">
-          <div class="feature-tag">Cal.com Workflow Engine</div>
-          <h3 class="feature-h3">Scheduled Workflow & Audit Actions</h3>
-          <p class="feature-p">Integrate decision workflows directly with team calendars, audit slots, and 7-day automated execution timelines with Cal.com style minimalist UI controls.</p>
-          <a href="#ask" class="feature-link">Explore Scheduling →</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ======================== TABBED FEATURES ======================== -->
-  <div class="slider-section" id="how">
-    <div class="slider-header">
-      <div>
-        <div class="slider-tag">The platform that eliminates tab overload</div>
-        <h2 class="section-title" style="margin-bottom:0;">Three lenses.<br>Full transparency.</h2>
-      </div>
-      <div>
-        <div style="font-size: 0.875rem; color: var(--fg-muted); margin-bottom: 24px;">Every recommendation is computed across 8 independently weighted signals. No black box.</div>
-        <div class="slider-tabs" id="slider-tabs">
-          <div class="slider-tab active" data-panel="score">
-            <div class="slider-tab-title">8-Signal Explainability</div>
-            <div class="slider-tab-desc">See exactly why a tool was ranked — Goal Fit, Budget Fit, Skill Level, Region, Time-to-Value, and more. Fully auditable.</div>
-          </div>
-          <div class="slider-tab" data-panel="matrix">
-            <div class="slider-tab-title">Side-by-Side Comparison Matrix</div>
-            <div class="slider-tab-desc">Compare up to 5 tools across 12 criteria with verified primary source citations and filter chips.</div>
-          </div>
-          <div class="slider-tab" data-panel="lang">
-            <div class="slider-tab-title">Hindi & Hinglish Support</div>
-            <div class="slider-tab-desc">Enter your question in English, Hindi, or Hinglish. Our parser understands "₹10,000 ke under" and "bina code ke" natively.</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="slider-visual">
-      <!-- Panel: Score Breakdown -->
-      <div class="slider-panel active" id="panel-score">
-        <div class="fv-score-card">
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 12px;">
-            <div style="font-size:0.82rem; font-weight:600; color: var(--fg);">Dukaan · Fit Score: 94/100</div>
-            <div style="font-size:0.68rem; color: var(--fg-muted); border: 1px solid var(--border); border-radius: 6px; padding: 2px 8px;">Audit Trail ↗</div>
-          </div>
-          <div class="score-signal"><span class="signal-label">Goal / Use-case fit</span><div class="signal-track"><div class="signal-fill fill-green" style="width:96%"></div></div><span class="signal-pct">24/25</span></div>
-          <div class="score-signal"><span class="signal-label">Budget & Cost fit</span><div class="signal-track"><div class="signal-fill fill-green" style="width:100%"></div></div><span class="signal-pct">20/20</span></div>
-          <div class="score-signal"><span class="signal-label">Required Capabilities</span><div class="signal-track"><div class="signal-fill fill-teal" style="width:92%"></div></div><span class="signal-pct">18/20</span></div>
-          <div class="score-signal"><span class="signal-label">Skill Level Ease</span><div class="signal-track"><div class="signal-fill fill-green" style="width:100%"></div></div><span class="signal-pct">10/10</span></div>
-          <div class="score-signal"><span class="signal-label">Regional Support (India)</span><div class="signal-track"><div class="signal-fill fill-green" style="width:100%"></div></div><span class="signal-pct">10/10</span></div>
-          <div class="score-signal"><span class="signal-label">Time-to-Value</span><div class="signal-track"><div class="signal-fill fill-teal" style="width:80%"></div></div><span class="signal-pct">4/5</span></div>
-          <div class="score-signal"><span class="signal-label">Evidence Confidence</span><div class="signal-track"><div class="signal-fill fill-green" style="width:100%"></div></div><span class="signal-pct">5/5</span></div>
-          <div class="score-signal"><span class="signal-label">Preference Alignment</span><div class="signal-track"><div class="signal-fill fill-amber" style="width:60%"></div></div><span class="signal-pct">3/5</span></div>
-        </div>
-      </div>
-
-      <!-- Panel: Matrix -->
-      <div class="slider-panel" id="panel-matrix">
-        <div class="fv-matrix">
-          <div class="matrix-row">
-            <div class="matrix-header">Tool</div>
-            <div class="matrix-header">Starting Price</div>
-            <div class="matrix-header">Free Tier</div>
-            <div class="matrix-header">Setup Time</div>
-          </div>
-          <div class="matrix-row">
-            <div class="matrix-tool">Dukaan 🏆</div>
-            <div class="matrix-cell highlight">₹699/mo</div>
-            <div class="matrix-cell"><span class="matrix-free">7-day trial</span></div>
-            <div class="matrix-cell highlight">Under 2h</div>
-          </div>
-          <div class="matrix-row">
-            <div class="matrix-tool">WooCommerce</div>
-            <div class="matrix-cell highlight">Free plugin</div>
-            <div class="matrix-cell"><span class="matrix-free">Yes (OSS)</span></div>
-            <div class="matrix-cell">2–4 days</div>
-          </div>
-          <div class="matrix-row">
-            <div class="matrix-tool">Shopify</div>
-            <div class="matrix-cell">₹1,999/mo</div>
-            <div class="matrix-cell">3-day trial</div>
-            <div class="matrix-cell">1–2 days</div>
-          </div>
-          <div class="matrix-row">
-            <div class="matrix-tool">Gumroad</div>
-            <div class="matrix-cell">10% per sale</div>
-            <div class="matrix-cell"><span class="matrix-free">Free listing</span></div>
-            <div class="matrix-cell highlight">15 minutes</div>
-          </div>
-          <div style="font-size: 0.65rem; color: var(--fg-subtle); margin-top: 8px;">All prices verified Aug 2026 · Source links included</div>
-        </div>
-      </div>
-
-      <!-- Panel: Language Support -->
-      <div class="slider-panel" id="panel-lang">
-        <div class="fv-score-card">
-          <div style="font-size:0.78rem; font-weight:600; color: var(--fg); margin-bottom: 12px;">Multi-language Query Parsing</div>
-          <div style="display: flex; flex-direction: column; gap: 10px;">
-            <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px;">
-              <div style="font-size: 0.65rem; color: var(--fg-subtle); margin-bottom: 4px;">HINGLISH QUERY</div>
-              <div style="font-size: 0.82rem; color: var(--fg);">"Mujhe 10,000 ke under online business start karna hai bina code ke"</div>
-            </div>
-            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px;">
-              <div style="background: var(--bg-card); border: 1px solid rgba(74,222,128,0.2); border-radius: 8px; padding: 8px 10px; text-align:center;">
-                <div style="font-size:0.65rem; color: var(--green); font-weight:700; text-transform:uppercase;">Domain</div>
-                <div style="font-size:0.78rem; color: var(--fg); font-weight:600; margin-top:2px;">Business</div>
-              </div>
-              <div style="background: var(--bg-card); border: 1px solid rgba(74,222,128,0.2); border-radius: 8px; padding: 8px 10px; text-align:center;">
-                <div style="font-size:0.65rem; color: var(--green); font-weight:700; text-transform:uppercase;">Budget</div>
-                <div style="font-size:0.78rem; color: var(--fg); font-weight:600; margin-top:2px;">Under ₹10K</div>
-              </div>
-              <div style="background: var(--bg-card); border: 1px solid rgba(74,222,128,0.2); border-radius: 8px; padding: 8px 10px; text-align:center;">
-                <div style="font-size:0.65rem; color: var(--green); font-weight:700; text-transform:uppercase;">Skill</div>
-                <div style="font-size:0.78rem; color: var(--fg); font-weight:600; margin-top:2px;">No-Code</div>
-              </div>
-            </div>
-            <div style="font-size: 0.72rem; color: var(--fg-muted);">Auto-extracted: Budget, Skill, Domain, Location, Priority — from natural language in any of 3 languages.</div>
-          </div>
-        </div>
-      </div>
+      <div class="logo-badge">Y Combinator</div>
+      <div class="logo-badge">Supabase</div>
+      <div class="logo-badge">Vercel</div>
+      <div class="logo-badge">Stripe</div>
+      <div class="logo-badge">PostHog</div>
+      <div class="logo-badge">Razorpay</div>
     </div>
   </div>
 
-  <!-- ======================== STATS ======================== -->
-  <div class="stats-section">
-    <div class="stats-grid">
-      <div class="stat-item">
-        <div class="stat-num">50<span>+</span></div>
-        <div class="stat-label">Verified tools across 7 domains</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-num">8</div>
-        <div class="stat-label">Explainable scoring signals per tool</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-num">₹<span>0</span></div>
-        <div class="stat-label">Sponsored placements. Ever.</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-num">7</div>
-        <div class="stat-label">Day execution plans per decision</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ======================== DOMAINS ======================== -->
-  <div class="domains-section" id="domains">
-    <div style="max-width:680px; margin-bottom: 40px;">
-      <h2 class="section-title">5 domains. Deep expertise.</h2>
-      <p style="color: var(--fg-muted); font-size: 0.925rem;">Every tool is curated, verified against official vendor docs, and assigned a confidence level. Outdated data is flagged immediately.</p>
-    </div>
-    <div class="domains-grid">
-      <div class="domain-card">
-        <div class="domain-icon">🏪</div>
-        <div class="domain-name">Business & Commerce</div>
-        <div class="domain-desc">E-commerce stores, payments, accounting, and CRM for Indian and global founders.</div>
-        <div class="domain-count">8 tools · Shopify, Dukaan, Razorpay, Zoho Books, HubSpot...</div>
-      </div>
-      <div class="domain-card">
-        <div class="domain-icon">📚</div>
-        <div class="domain-name">Education & Study</div>
-        <div class="domain-desc">Spaced repetition, note-taking, focus tools, and academic reference managers.</div>
-        <div class="domain-count">7 tools · Anki, Notion Edu, Obsidian, Khan Academy, Zotero...</div>
-      </div>
-      <div class="domain-card">
-        <div class="domain-icon">💼</div>
-        <div class="domain-name">Career & Freelance</div>
-        <div class="domain-desc">Portfolio builders, commission-free marketplaces, scheduling, and pitch tools.</div>
-        <div class="domain-count">6 tools · Contra, Upwork, Canva, Calendly, Loom, GitHub...</div>
-      </div>
-      <div class="domain-card">
-        <div class="domain-icon">💻</div>
-        <div class="domain-name">Technology & Dev</div>
-        <div class="domain-desc">Full-stack backends, deployment platforms, no-code builders, and CDN edge networks.</div>
-        <div class="domain-count">6 tools · Supabase, Vercel, Render, Bubble.io, Firebase...</div>
-      </div>
-      <div class="domain-card">
-        <div class="domain-icon">⏱️</div>
-        <div class="domain-name">Productivity & Focus</div>
-        <div class="domain-desc">Task managers, issue trackers, Kanban boards, and Pomodoro habit systems.</div>
-        <div class="domain-count">4 tools · Todoist, Linear, TickTick, Trello...</div>
-      </div>
-      <div class="domain-card" style="border-style: dashed; opacity: 0.6;">
-        <div class="domain-icon">🌱</div>
-        <div class="domain-name">Finance & Marketing</div>
-        <div class="domain-desc">Budgeting, analytics, email marketing, and social proof tools launching Q4 2026.</div>
-        <div class="domain-count">Coming soon · Brevo, Buffer, Plausible, Splitwise...</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ======================== HOW IT WORKS (3 Steps) ======================== -->
-  <section style="max-width:1200px; margin: 0 auto; padding: 0 24px 60px 24px;">
-    <h2 class="section-title">From question to action plan in 60 seconds.</h2>
-    <div class="steps-grid">
-      <div class="step-card">
-        <div class="step-num">01</div>
-        <div class="step-title">Describe your goal</div>
-        <div class="step-desc">Type your question in English, Hindi, or Hinglish. We extract your budget, skill level, region, and timeline automatically — no forms.</div>
-      </div>
-      <div class="step-card">
-        <div class="step-num">02</div>
-        <div class="step-title">Get scored recommendations</div>
-        <div class="step-desc">8 signals evaluated across 50+ verified tools: Goal Fit, Budget Fit, Capability, Skill, Location, Time-to-Value, Evidence Confidence, and Preference.</div>
-      </div>
-      <div class="step-card">
-        <div class="step-num">03</div>
-        <div class="step-title">Execute with confidence</div>
-        <div class="step-desc">Your decision brief includes verified source citations, transparent trade-offs, a side-by-side comparison matrix, and an interactive 7-day action checklist.</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ======================== LIVE ASK ======================== -->
+  <!-- ======================== CORE SEARCH SECTION (#ask) ======================== -->
   <div class="ask-section" id="ask">
-    <div style="max-width:680px; margin-bottom: 28px;">
-      <h2 class="section-title">Try it now. For free.</h2>
-      <p style="color: var(--fg-muted); font-size: 0.925rem;">Enter your goal in any language. See how Search.ai maps your decision in seconds.</p>
+    <div style="margin-bottom: 24px;">
+      <h2 class="section-headline">Ask Search.ai anything.</h2>
+      <p class="section-subtext">Enter your problem statement in English, Hindi, or Hinglish. We evaluate constraints automatically.</p>
     </div>
 
-    <div class="ask-panel" id="ask-panel">
-      <div class="ask-top">
-        <div class="ask-label">Your decision question</div>
-        <textarea id="ask-textarea" class="ask-textarea" rows="3" placeholder="e.g. I want to launch an online store under ₹10,000 with no coding experience in India...&#10;or: Mujhe koi free CRM tool chahiye 3-member sales team ke liye"></textarea>
+    <div class="ask-box">
+      <div class="ask-box-top">
+        <div class="ask-label">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          Your Goal or Problem Statement
+        </div>
+        <textarea id="ask-textarea" class="ask-textarea" placeholder="e.g. Best backend stack to launch a Next.js SaaS under $25/month with authentication and PostgreSQL...&#10;or: Mujhe ₹10,000 ke under online store kholna hai bina code ke."></textarea>
       </div>
 
       <div id="safety-alert-container"></div>
 
-      <div class="ask-bottom">
+      <div class="ask-box-bottom">
         <div class="ctx-pills">
           <select class="ctx-select" id="ctx-domain">
+            <option value="Technology">Tech & Dev</option>
             <option value="Business">Business</option>
             <option value="Education">Education</option>
             <option value="Career">Career</option>
-            <option value="Technology">Technology</option>
             <option value="Productivity">Productivity</option>
-            <option value="Finance">Finance</option>
-            <option value="Marketing">Marketing</option>
           </select>
           <select class="ctx-select" id="ctx-budget">
             <option value="Free (₹0)">Free / ₹0</option>
             <option value="Under ₹5,000">Under ₹5K</option>
-            <option value="Under ₹10,000" selected>Under ₹10K</option>
-            <option value="Under $50/mo">Under $50/mo</option>
+            <option value="Under ₹10,000">Under ₹10K</option>
+            <option value="Under $50/mo" selected>Under $50/mo</option>
             <option value="Flexible">Flexible</option>
           </select>
           <select class="ctx-select" id="ctx-skill">
-            <option value="Beginner (No-Code)" selected>Beginner</option>
+            <option value="Beginner (No-Code)">Beginner</option>
             <option value="Intermediate">Intermediate</option>
-            <option value="Technical / Dev">Developer</option>
+            <option value="Technical / Dev" selected>Developer</option>
           </select>
           <select class="ctx-select" id="ctx-location">
-            <option value="India" selected>India (UPI)</option>
-            <option value="Global">Global</option>
+            <option value="Global" selected>Global</option>
+            <option value="India">India (UPI)</option>
           </select>
         </div>
-        <button class="btn-pill btn-green" id="map-btn" style="padding: 8px 22px;">Map My Options →</button>
+        <button class="btn-pill btn-primary" id="map-btn" style="padding: 10px 24px;">
+          Map My Options →
+        </button>
       </div>
 
+      <!-- Quick Preset Chips -->
       <div class="presets-row">
-        <span style="font-size: 0.72rem; color: var(--fg-subtle); align-self: center; flex-shrink:0;">Try:</span>
-        <button class="preset-btn" data-q="I want to start an online business under ₹10,000 with no coding experience.">₹10K online store</button>
-        <button class="preset-btn" data-q="Best free CRM for a 3-person sales team.">3-person CRM</button>
-        <button class="preset-btn" data-q="How should I prepare for UPSC with spaced repetition on a zero budget?">UPSC prep tools</button>
-        <button class="preset-btn" data-q="Mujhe ek commission-free freelance portfolio banana hai.">Freelance portfolio (Hinglish)</button>
-        <button class="preset-btn" data-q="Best tech stack to launch a SaaS MVP under $25/month.">SaaS MVP stack</button>
+        <span style="font-size: 0.78rem; font-weight: 600; color: var(--fg-subtle); margin-right: 4px;">Quick Presets:</span>
+        <button class="preset-chip" data-q="Best tech stack to launch a SaaS MVP under $25/month with database and auth.">Next.js SaaS Stack</button>
+        <button class="preset-chip" data-q="I want to start an online store under ₹10,000 with no coding experience in India.">₹10K Online Store</button>
+        <button class="preset-chip" data-q="Best free CRM for a 3-person sales team with lead tracking.">Free 3-Person CRM</button>
+        <button class="preset-chip" data-q="Best study & spaced repetition tools for UPSC prep with zero budget.">UPSC Study Tools</button>
+        <button class="preset-chip" data-q="Mujhe ek commission-free freelance portfolio banana hai bina coding ke.">Freelance Portfolio (Hinglish)</button>
       </div>
     </div>
 
-    <!-- Results -->
-    <div id="results-section" class="results-section" style="margin-top: 28px;">
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; flex-wrap: wrap; gap: 10px;">
-        <div>
-          <div style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--fg-muted); font-weight: 600; margin-bottom: 4px;">SELECT DECISION LENS</div>
-          <div class="result-tabs">
-            <div class="result-tab active" data-lens="best">🏆 Best Fit</div>
-            <div class="result-tab" data-lens="value">💎 Best Value</div>
-            <div class="result-tab" data-lens="alt">🔀 Alternative</div>
+    <!-- Live Results Section -->
+    <div id="results-section" class="results-section">
+      <div class="results-card">
+        <div class="results-header">
+          <div>
+            <div style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: var(--teal); letter-spacing: 0.05em; margin-bottom: 6px;">DECISION PERSPECTIVE</div>
+            <div class="lens-tabs">
+              <button class="lens-tab active" data-lens="best">🏆 Best Overall Fit</button>
+              <button class="lens-tab" data-lens="value">💎 Best Value</button>
+              <button class="lens-tab" data-lens="alt">🔀 Strong Alternative</button>
+            </div>
+          </div>
+          <div style="display: flex; gap: 8px;">
+            <button class="btn-pill btn-outline" id="save-btn" style="padding: 7px 16px; font-size: 0.82rem;">Save Decision</button>
+            <button class="btn-pill btn-outline" id="export-btn" style="padding: 7px 16px; font-size: 0.82rem;">Export Brief ↓</button>
           </div>
         </div>
-        <div style="display: flex; gap: 8px;">
-          <button class="btn-pill btn-secondary" id="save-btn" style="padding: 6px 14px; font-size: 0.8rem;">Save to Workspace</button>
-          <button class="btn-pill btn-secondary" id="export-btn" style="padding: 6px 14px; font-size: 0.8rem;">Export Brief ↓</button>
+
+        <div id="results-goal-box" style="background: var(--bg-card-subtle); border-left: 3px solid var(--teal); padding: 12px 18px; border-radius: 0 10px 10px 0; margin-bottom: 20px;">
+          <div style="font-size: 0.72rem; font-weight: 700; text-transform: uppercase; color: var(--teal); margin-bottom: 2px;">Synthesized Goal</div>
+          <div id="results-goal-text" style="font-size: 0.95rem; font-weight: 600; color: var(--fg);"></div>
         </div>
-      </div>
 
-      <div id="results-goal-box" style="border: 1px solid var(--border); border-left: 2px solid var(--green); border-radius: 0 10px 10px 0; padding: 12px 16px; margin-bottom: 16px; background: var(--bg-card);">
-        <div style="font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--green); font-weight: 700; margin-bottom: 3px;">Restated Goal</div>
-        <div id="results-goal-text" style="font-size: 0.88rem; color: var(--fg);"></div>
-      </div>
+        <div id="results-panel"></div>
 
-      <div class="results-panel" id="results-panel"></div>
-
-      <!-- Sources -->
-      <div style="margin-top: 20px; display: flex; align-items: center; gap: 10px;">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4ADE80" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-        <span style="font-size: 0.8rem; color: var(--fg-muted);">All recommendations grounded in verified primary sources. Pricing checked August 2026. <a href="#" style="color: var(--green);">View citations →</a></span>
-      </div>
-    </div>
-  </div>
-
-  <!-- ======================== TESTIMONIALS ======================== -->
-  <div class="testimonials-section">
-    <h2 class="section-title">Trusted by builders everywhere</h2>
-    <div class="testimonials-grid">
-      <div class="testimonial-card">
-        <div class="testimonial-stars">★★★★★</div>
-        <div class="testimonial-text">"Saved me 4 hours of Googling. I typed my problem in Hinglish and got a scored comparison with actual Indian pricing — ₹ and all. Picked Dukaan instead of Shopify and saved ₹15K/year."</div>
-        <div class="testimonial-author">
-          <div class="author-avatar">🧑‍💻</div>
-          <div>
-            <div class="author-name">Arjun Mehta</div>
-            <div class="author-role">Founder, Delhi · Online bakery launch</div>
+        <!-- Live Citations -->
+        <div class="citations-box">
+          <div style="font-size: 0.78rem; font-weight: 700; text-transform: uppercase; color: var(--fg-subtle); display: flex; align-items: center; gap: 6px;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+            Verified Primary Evidence & 2026 Citations
           </div>
-        </div>
-      </div>
-      <div class="testimonial-card">
-        <div class="testimonial-stars">★★★★★</div>
-        <div class="testimonial-text">"As an engineering student preparing for UPSC, I had no idea which study tools to use. The 8-signal scoring made it obvious — Anki beat Quizlet for my needs by a mile. Zero guesswork."</div>
-        <div class="testimonial-author">
-          <div class="author-avatar">👩‍🎓</div>
-          <div>
-            <div class="author-name">Priya Sharma</div>
-            <div class="author-role">NSUT Delhi · UPSC preparation</div>
-          </div>
-        </div>
-      </div>
-      <div class="testimonial-card">
-        <div class="testimonial-stars">★★★★★</div>
-        <div class="testimonial-text">"I needed a SaaS backend stack on a $25/month budget. Search.ai gave me Supabase + Vercel + Cloudflare with a setup checklist. Shipped my MVP in 10 days. No ads, no BS."</div>
-        <div class="testimonial-author">
-          <div class="author-avatar">🚀</div>
-          <div>
-            <div class="author-name">Sid Kapoor</div>
-            <div class="author-role">Indie Hacker · SaaS MVP launch</div>
+          <div id="citations-list" style="display: flex; flex-wrap: wrap; gap: 14px;">
+            <a href="https://supabase.com/pricing" target="_blank" class="citation-link">Supabase Official Pricing Documentation ↗</a>
+            <a href="https://vercel.com/docs" target="_blank" class="citation-link">Vercel Edge Platform Specs ↗</a>
+            <a href="https://mydukaan.io" target="_blank" class="citation-link">Dukaan India UPI Gateway Benchmarks ↗</a>
           </div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- ======================== RECOMMENDED TECH STACK TABLE ======================== -->
-  <section class="stack-section" id="stack" style="max-width:1200px; margin: 0 auto; padding: 60px 24px;">
-    <div style="max-width: 680px; margin-bottom: 36px;">
-      <div class="slider-tag">Production Stack Architecture</div>
-      <h2 class="section-title">Recommended Modern SaaS Tech Stack</h2>
-      <p style="color: var(--fg-muted); font-size: 0.925rem;">Battle-tested architecture for Search.ai to deliver zero-latency decision briefs, scalable RLS database security, and high-converting global & Indian payments.</p>
-    </div>
+  <!-- ======================== FEATURES SECTION ======================== -->
+  <section class="features-section" id="features">
+    <h2 class="section-headline">Clarity. Evidence. Action.</h2>
+    <p class="section-subtext">Cal.com-inspired workflow transparency. No black-box algorithms or sponsored placements.</p>
 
-    <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-xl); overflow: hidden;">
-      <div style="overflow-x: auto;">
-        <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.875rem;">
-          <thead>
-            <tr style="background: var(--bg-secondary); border-bottom: 1px solid var(--border);">
-              <th style="padding: 16px 24px; color: var(--fg); font-weight: 600; width: 20%;">Category / Need</th>
-              <th style="padding: 16px 24px; color: var(--green); font-weight: 700; width: 30%;">Recommended Tool</th>
-              <th style="padding: 16px 24px; color: var(--fg-muted); font-weight: 500;">Strategic Rationale & Architectural Purpose</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr style="border-bottom: 1px solid var(--border);">
-              <td style="padding: 16px 24px; font-weight: 600; color: var(--fg);">Frontend & Backend</td>
-              <td style="padding: 16px 24px;"><span style="background: rgba(255,255,255,0.08); padding: 4px 10px; border-radius: 6px; font-weight: 600; border: 1px solid var(--border);">Next.js 14 + TypeScript</span></td>
-              <td style="padding: 16px 24px; color: var(--fg-muted);">Unified monorepo architecture; Serverless API routes, SSG/SSR optimization, and type safety across client and backend.</td>
-            </tr>
-            <tr style="border-bottom: 1px solid var(--border);">
-              <td style="padding: 16px 24px; font-weight: 600; color: var(--fg);">Deployment</td>
-              <td style="padding: 16px 24px;"><span style="background: rgba(255,255,255,0.08); padding: 4px 10px; border-radius: 6px; font-weight: 600; border: 1px solid var(--border);">Vercel Edge Platform</span></td>
-              <td style="padding: 16px 24px; color: var(--fg-muted);">Zero-config CD/CI, Vercel Cron support for periodic tool index syncs, global edge caching, and seamless env management.</td>
-            </tr>
-            <tr style="border-bottom: 1px solid var(--border);">
-              <td style="padding: 16px 24px; font-weight: 600; color: var(--fg);">Authentication</td>
-              <td style="padding: 16px 24px;"><span style="background: rgba(255,255,255,0.08); padding: 4px 10px; border-radius: 6px; font-weight: 600; border: 1px solid var(--border);">Supabase Auth</span></td>
-              <td style="padding: 16px 24px; color: var(--fg-muted);">Native Google OAuth 2.0 integration, passwordless Magic Links, automated email verification, and JWT session tokens.</td>
-            </tr>
-            <tr style="border-bottom: 1px solid var(--border);">
-              <td style="padding: 16px 24px; font-weight: 600; color: var(--fg);">Database</td>
-              <td style="padding: 16px 24px;"><span style="background: rgba(255,255,255,0.08); padding: 4px 10px; border-radius: 6px; font-weight: 600; border: 1px solid var(--border);">Supabase PostgreSQL</span></td>
-              <td style="padding: 16px 24px; color: var(--fg-muted);">Relational SQL queries, vector embeddings (pgvector), Row-Level Security (RLS) for multi-tenant data protection, and free tier.</td>
-            </tr>
-            <tr style="border-bottom: 1px solid var(--border);">
-              <td style="padding: 16px 24px; font-weight: 600; color: var(--fg);">File Storage</td>
-              <td style="padding: 16px 24px;"><span style="background: rgba(255,255,255,0.08); padding: 4px 10px; border-radius: 6px; font-weight: 600; border: 1px solid var(--border);">Supabase Storage</span></td>
-              <td style="padding: 16px 24px; color: var(--fg-muted);">Secure S3-compatible storage bucket for exporting PDF briefs, uploading user resumes, constraints files, and attachments.</td>
-            </tr>
-            <tr style="border-bottom: 1px solid var(--border);">
-              <td style="padding: 16px 24px; font-weight: 600; color: var(--fg);">Payments India</td>
-              <td style="padding: 16px 24px;"><span style="background: rgba(74,222,128,0.1); color: var(--green); padding: 4px 10px; border-radius: 6px; font-weight: 700; border: 1px solid rgba(74,222,128,0.3);">Razorpay Subscriptions</span></td>
-              <td style="padding: 16px 24px; color: var(--fg-muted);">Seamless Indian payments supporting Instant UPI Autopay, Debit/Credit cards, Net Banking, and automated recurring billing.</td>
-            </tr>
-            <tr style="border-bottom: 1px solid var(--border);">
-              <td style="padding: 16px 24px; font-weight: 600; color: var(--fg);">Payments Global</td>
-              <td style="padding: 16px 24px;"><span style="background: rgba(255,255,255,0.08); padding: 4px 10px; border-radius: 6px; font-weight: 600; border: 1px solid var(--border);">Stripe Billing</span></td>
-              <td style="padding: 16px 24px; color: var(--fg-muted);">International credit card processing, multi-currency support, customer portal, webhook event handlers, and tax compliance.</td>
-            </tr>
-            <tr style="border-bottom: 1px solid var(--border);">
-              <td style="padding: 16px 24px; font-weight: 600; color: var(--fg);">Product Analytics</td>
-              <td style="padding: 16px 24px;"><span style="background: rgba(255,255,255,0.08); padding: 4px 10px; border-radius: 6px; font-weight: 600; border: 1px solid var(--border);">PostHog Analytics</span></td>
-              <td style="padding: 16px 24px; color: var(--fg-muted);">Privacy-first user event tracking, conversion funnel visualization, session replays, and dynamic feature flag toggles.</td>
-            </tr>
-            <tr style="border-bottom: 1px solid var(--border);">
-              <td style="padding: 16px 24px; font-weight: 600; color: var(--fg);">AI Primary Engine</td>
-              <td style="padding: 16px 24px;"><span style="background: rgba(74,222,128,0.1); color: var(--green); padding: 4px 10px; border-radius: 6px; font-weight: 700; border: 1px solid rgba(74,222,128,0.3);">Gemini 1.5 Flash / Groq</span></td>
-              <td style="padding: 16px 24px; color: var(--fg-muted);">Sub-second execution speeds, high throughput token production, extremely cost-efficient API pricing suitable for scalable MVP.</td>
-            </tr>
-            <tr style="border-bottom: 1px solid var(--border);">
-              <td style="padding: 16px 24px; font-weight: 600; color: var(--fg);">AI Fallback Engine</td>
-              <td style="padding: 16px 24px;"><span style="background: rgba(255,255,255,0.08); padding: 4px 10px; border-radius: 6px; font-weight: 600; border: 1px solid var(--border);">OpenRouter Router</span></td>
-              <td style="padding: 16px 24px; color: var(--fg-muted);">Single API abstraction to seamlessly failover across Claude 3.5 Sonnet, Llama 3, or DeepSeek if primary API limits trigger.</td>
-            </tr>
-            <tr style="border-bottom: 1px solid var(--border);">
-              <td style="padding: 16px 24px; font-weight: 600; color: var(--fg);">Local Development</td>
-              <td style="padding: 16px 24px;"><span style="background: rgba(255,255,255,0.08); padding: 4px 10px; border-radius: 6px; font-weight: 600; border: 1px solid var(--border);">Ollama (Local LLM)</span></td>
-              <td style="padding: 16px 24px; color: var(--fg-muted);">Run Llama 3 or Mistral locally on developer machines without incurring third-party API token costs during offline testing.</td>
-            </tr>
-            <tr style="border-bottom: 1px solid var(--border);">
-              <td style="padding: 16px 24px; font-weight: 600; color: var(--fg);">Rate Limiting</td>
-              <td style="padding: 16px 24px;"><span style="background: rgba(255,255,255,0.08); padding: 4px 10px; border-radius: 6px; font-weight: 600; border: 1px solid var(--border);">Upstash Redis (DB limit MVP)</span></td>
-              <td style="padding: 16px 24px; color: var(--fg-muted);">Sliding window rate-limiting middleware to shield AI scoring endpoints from automated scraping, abuse, and budget spikes.</td>
-            </tr>
-            <tr style="border-bottom: 1px solid var(--border);">
-              <td style="padding: 16px 24px; font-weight: 600; color: var(--fg);">Transactional Email</td>
-              <td style="padding: 16px 24px;"><span style="background: rgba(255,255,255,0.08); padding: 4px 10px; border-radius: 6px; font-weight: 600; border: 1px solid var(--border);">Resend / Supabase Mail</span></td>
-              <td style="padding: 16px 24px; color: var(--fg-muted);">High-deliverability transactional emails for welcome flows, subscription invoices, decision exports, and password resets.</td>
-            </tr>
-            <tr>
-              <td style="padding: 16px 24px; font-weight: 600; color: var(--fg);">Error Tracking</td>
-              <td style="padding: 16px 24px;"><span style="background: rgba(255,255,255,0.08); padding: 4px 10px; border-radius: 6px; font-weight: 600; border: 1px solid var(--border);">Sentry Exception Monitoring</span></td>
-              <td style="padding: 16px 24px; color: var(--fg-muted);">Real-time crash reporting, source map stack tracing, API latency diagnostics, and production exception alerts.</td>
-            </tr>
-          </tbody>
-        </table>
+    <div class="features-two-col">
+      <!-- Feature 1 -->
+      <div class="feature-card">
+        <div class="feature-tag">Executive Suite</div>
+        <h3>8-Signal Explainability Matrix</h3>
+        <p>Every tool is audited across Goal Fit, Budget Tolerance, Technical Skill, Region (e.g. India UPI vs Global), Time-to-Value, and Evidence Confidence.</p>
+        <div style="display: flex; gap: 6px; flex-wrap: wrap; margin-top: 10px;">
+          <span class="tool-pill-tag">Goal Alignment</span>
+          <span class="tool-pill-tag">Budget Fit</span>
+          <span class="tool-pill-tag">Zero Hallucination</span>
+        </div>
+      </div>
+
+      <!-- Feature 2 -->
+      <div class="feature-card">
+        <div class="feature-tag">Execution Plan</div>
+        <h3>7-Day Structured Action Plan</h3>
+        <p>A decision brief is useless without next steps. Search.ai generates an actionable checklist to ship your MVP or project from Day 1 to Day 7.</p>
+        <div style="display: flex; gap: 6px; flex-wrap: wrap; margin-top: 10px;">
+          <span class="tool-pill-tag">Step-by-step Setup</span>
+          <span class="tool-pill-tag">Vendor Red Flags</span>
+          <span class="tool-pill-tag">Risk Mitigation</span>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ======================== PRICING ======================== -->
-  <div class="pricing-section" id="pricing">
-    <div style="max-width: 680px; margin-bottom: 48px;">
-      <h2 class="section-title">Transparent pricing.<br>No games.</h2>
-      <p style="color: var(--fg-muted); font-size: 0.925rem;">We never upsell you into a tier you don't need. Rankings are organic. Sponsors are disclosed. Always.</p>
+  <!-- ======================== RECOMMENDED TECH STACK TABLE ======================== -->
+  <section class="stack-section" id="stack">
+    <div style="margin-bottom: 30px;">
+      <div class="pill-badge" style="margin-bottom: 12px;">Production Architecture</div>
+      <h2 class="section-headline">Recommended Modern SaaS Tech Stack</h2>
+      <p class="section-subtext">Battle-tested, production-ready stack for zero-latency execution and scalable security.</p>
     </div>
+
+    <div class="stack-table-wrap">
+      <table class="stack-table">
+        <thead>
+          <tr>
+            <th style="width: 22%;">Layer / Need</th>
+            <th style="width: 28%;">Recommended Tool</th>
+            <th>Strategic Rationale & Architectural Purpose</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Frontend & Backend</strong></td>
+            <td><span class="tool-pill-tag">Next.js 14 + TypeScript</span></td>
+            <td style="color: var(--fg-muted);">Unified App Router monorepo; serverless API routes, SSG/SSR optimization, and strict type safety.</td>
+          </tr>
+          <tr>
+            <td><strong>Authentication</strong></td>
+            <td><span class="tool-pill-tag">Supabase Auth</span></td>
+            <td style="color: var(--fg-muted);">Native Google OAuth, passwordless Magic Links, automated email verification, and session JWTs.</td>
+          </tr>
+          <tr>
+            <td><strong>Database</strong></td>
+            <td><span class="tool-pill-tag">Supabase PostgreSQL</span></td>
+            <td style="color: var(--fg-muted);">Row-Level Security (RLS) for multi-tenant data protection, relational queries, and pgvector.</td>
+          </tr>
+          <tr>
+            <td><strong>AI Inference</strong></td>
+            <td><span class="tool-pill-tag">Gemini 2.5 Flash / Groq</span></td>
+            <td style="color: var(--fg-muted);">Sub-second execution speeds, native structured JSON mode, and high token throughput.</td>
+          </tr>
+          <tr>
+            <td><strong>Live Web Grounding</strong></td>
+            <td><span class="tool-pill-tag">Tavily AI Search</span></td>
+            <td style="color: var(--fg-muted);">Real-time live web facts, pricing verification, and live citations to prevent outdated benchmarks.</td>
+          </tr>
+          <tr>
+            <td><strong>Brand Assets</strong></td>
+            <td><span class="tool-pill-tag">Logo.dev API</span></td>
+            <td style="color: var(--fg-muted);">High-resolution verified company logos and brand icons served dynamically per recommendation.</td>
+          </tr>
+          <tr>
+            <td><strong>Transactional Email</strong></td>
+            <td><span class="tool-pill-tag">Resend SMTP</span></td>
+            <td style="color: var(--fg-muted);">High-deliverability verification emails, welcome letters, and decision report exports.</td>
+          </tr>
+          <tr>
+            <td><strong>Analytics</strong></td>
+            <td><span class="tool-pill-tag">PostHog Analytics</span></td>
+            <td style="color: var(--fg-muted);">Privacy-first user event tracking, conversion funnel visualization, and session replays.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ======================== PRICING ======================== -->
+  <section class="pricing-section" id="pricing">
+    <div style="margin-bottom: 24px;">
+      <h2 class="section-headline">Simple, transparent pricing.</h2>
+      <p class="section-subtext">No hidden fees. Free tier available forever. Upgrade whenever your team scales.</p>
+    </div>
+
     <div class="pricing-grid">
+      <!-- Starter -->
       <div class="pricing-card">
         <div>
           <div class="plan-name">Starter</div>
@@ -1624,116 +1733,166 @@
           <div class="plan-period">Free forever</div>
         </div>
         <ul class="plan-features">
-          <li><span class="check-icon">✓</span>10 questions per day</li>
-          <li><span class="check-icon">✓</span>3 deep comparisons / mo</li>
-          <li><span class="check-icon">✓</span>7-Day action plans</li>
-          <li><span class="check-icon">✓</span>10 saved decisions</li>
-          <li><span class="cross-icon" style="color: var(--fg-subtle);">–</span><span style="color: var(--fg-subtle);">Markdown export</span></li>
+          <li><span class="plan-check">✓</span> 10 decision queries / day</li>
+          <li><span class="plan-check">✓</span> 3 deep comparisons / mo</li>
+          <li><span class="plan-check">✓</span> 7-Day structured action plans</li>
+          <li><span class="plan-check">✓</span> 10 saved workspace items</li>
         </ul>
-        <button class="btn-pill btn-secondary" style="width:100%; justify-content:center;" onclick="document.getElementById('ask').scrollIntoView({behavior:'smooth'})">Start Free</button>
+        <button class="btn-pill btn-outline" style="width: 100%;" onclick="document.getElementById('ask').scrollIntoView({behavior:'smooth'})">Get Started Free</button>
       </div>
+
+      <!-- Plus (Featured: ONLY PLACE WITH WARM AMBER ACCENT) -->
       <div class="pricing-card featured">
-        <div class="popular-tag">MOST POPULAR</div>
+        <div class="featured-badge">MOST POPULAR</div>
         <div>
-          <div class="plan-name">Plus</div>
-          <div class="plan-price">₹299<span style="font-size:1rem; font-weight:400; color: var(--fg-muted);">/mo</span></div>
-          <div class="plan-period">Billed monthly · Student: ₹149/mo</div>
+          <div class="plan-name" style="color: var(--amber);">Plus</div>
+          <div class="plan-price">₹299<span style="font-size: 1rem; font-weight: 500; color: var(--fg-muted);">/mo</span></div>
+          <div class="plan-period">Students: ₹149/mo with .edu email</div>
         </div>
         <ul class="plan-features">
-          <li><span class="check-icon">✓</span>Unlimited questions</li>
-          <li><span class="check-icon">✓</span>100 deep comparisons / mo</li>
-          <li><span class="check-icon">✓</span>Full 12-criteria matrix</li>
-          <li><span class="check-icon">✓</span>Markdown & PDF export</li>
-          <li><span class="check-icon">✓</span>Unlimited workspace saves</li>
+          <li><span class="plan-check">✓</span> Unlimited questions</li>
+          <li><span class="plan-check">✓</span> 100 deep comparisons / mo</li>
+          <li><span class="plan-check">✓</span> Full 12-criteria matrix</li>
+          <li><span class="plan-check">✓</span> Live Tavily web grounding</li>
+          <li><span class="plan-check">✓</span> Markdown & PDF exports</li>
         </ul>
-        <button class="btn-pill btn-green" style="width:100%; justify-content:center;" onclick="document.getElementById('auth-modal').classList.add('open')">Upgrade to Plus</button>
+        <button class="btn-pill btn-primary" style="width: 100%;" onclick="document.getElementById('auth-modal').classList.add('open')">Upgrade to Plus</button>
       </div>
+
+      <!-- Pro -->
       <div class="pricing-card">
         <div>
           <div class="plan-name">Pro</div>
-          <div class="plan-price">₹799<span style="font-size:1rem; font-weight:400; color: var(--fg-muted);">/mo</span></div>
+          <div class="plan-price">₹799<span style="font-size: 1rem; font-weight: 500; color: var(--fg-muted);">/mo</span></div>
           <div class="plan-period">For founders & consultants</div>
         </div>
         <ul class="plan-features">
-          <li><span class="check-icon">✓</span>500 comparisons / month</li>
-          <li><span class="check-icon">✓</span>ROI scenario modeling</li>
-          <li><span class="check-icon">✓</span>Custom weight tuning</li>
-          <li><span class="check-icon">✓</span>Priority evidence synthesis</li>
-          <li><span class="check-icon">✓</span>Private project folders</li>
+          <li><span class="plan-check">✓</span> 500 comparisons / month</li>
+          <li><span class="plan-check">✓</span> ROI scenario financial modeling</li>
+          <li><span class="plan-check">✓</span> Custom signal weight tuning</li>
+          <li><span class="plan-check">✓</span> Private project folders</li>
         </ul>
-        <button class="btn-pill btn-secondary" style="width:100%; justify-content:center;">Start Pro Trial</button>
+        <button class="btn-pill btn-outline" style="width: 100%;">Start Pro Trial</button>
       </div>
+
+      <!-- Teams -->
       <div class="pricing-card">
         <div>
           <div class="plan-name">Teams</div>
-          <div class="plan-price">₹1,499<span style="font-size:0.85rem; font-weight:400; color: var(--fg-muted);">/seat/mo</span></div>
+          <div class="plan-price">₹1,499<span style="font-size: 0.9rem; font-weight: 500; color: var(--fg-muted);">/seat</span></div>
           <div class="plan-period">Collaborative decision rooms</div>
         </div>
         <ul class="plan-features">
-          <li><span class="check-icon">✓</span>Shared decision rooms</li>
-          <li><span class="check-icon">✓</span>Team comments & voting</li>
-          <li><span class="check-icon">✓</span>Admin usage analytics</li>
-          <li><span class="check-icon">✓</span>Vendor shortlist mgmt</li>
-          <li><span class="check-icon">✓</span>SSO & audit logs</li>
+          <li><span class="plan-check">✓</span> Shared decision rooms</li>
+          <li><span class="plan-check">✓</span> Team voting & annotations</li>
+          <li><span class="plan-check">✓</span> Admin analytics & SSO</li>
+          <li><span class="plan-check">✓</span> Vendor shortlist workflows</li>
         </ul>
-        <button class="btn-pill btn-secondary" style="width:100%; justify-content:center;">Contact Sales</button>
+        <button class="btn-pill btn-outline" style="width: 100%;">Contact Sales</button>
       </div>
     </div>
-  </div>
+  </section>
 
-  <!-- ======================== CTA ======================== -->
-  <div class="cta-section">
-    <div class="cta-card">
-      <div class="cta-glow"></div>
-      <h2 class="cta-title">Stop drowning in browser tabs.</h2>
-      <p class="cta-sub">Get your first evidence-grounded decision brief in under 60 seconds. Free. No credit card. No fluff.</p>
-      <div class="cta-actions">
-        <button class="btn-pill btn-green" style="padding: 12px 28px; font-size: 1rem;" onclick="document.getElementById('ask').scrollIntoView({behavior:'smooth'})">Get Started For Free</button>
-        <button class="btn-pill btn-secondary" style="padding: 12px 22px;" onclick="document.getElementById('auth-modal').classList.add('open')">Sign in to workspace</button>
+  <!-- ======================== TESTIMONIALS ======================== -->
+  <section class="testimonials-section">
+    <h2 class="section-headline">Trusted by builders everywhere</h2>
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">"Saved me 4 hours of Googling. I typed my problem in Hinglish and got a scored comparison with actual Indian pricing. Picked Dukaan over Shopify and saved ₹15K/year."</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">🧑‍💻</div>
+          <div>
+            <div style="font-size: 0.88rem; font-weight: 700; color: var(--fg);">Arjun Mehta</div>
+            <div style="font-size: 0.78rem; color: var(--fg-muted);">Founder, Delhi · Bakery Launch</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">"As an engineering student preparing for exams, I had no idea which study tools to use. The 8-signal scoring made it obvious — Anki beat Quizlet by a mile."</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">👩‍🎓</div>
+          <div>
+            <div style="font-size: 0.88rem; font-weight: 700; color: var(--fg);">Priya Sharma</div>
+            <div style="font-size: 0.78rem; color: var(--fg-muted);">NSUT Delhi · UPSC Prep</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">"I needed a SaaS backend stack on a $25/month budget. Search.ai gave me Supabase + Vercel with a setup checklist. Shipped my MVP in 10 days. Zero BS."</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">🚀</div>
+          <div>
+            <div style="font-size: 0.88rem; font-weight: 700; color: var(--fg);">Sid Kapoor</div>
+            <div style="font-size: 0.78rem; color: var(--fg-muted);">Indie Hacker · SaaS MVP</div>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
+  </section>
+
+  <!-- ======================== CTA BANNER ======================== -->
+  <section class="cta-section">
+    <div class="cta-card">
+      <h2 class="cta-title">Stop drowning in browser tabs.</h2>
+      <p class="cta-sub">Get your first evidence-grounded decision brief in under 60 seconds. Free. No credit card required.</p>
+      <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+        <button class="btn-pill btn-primary" onclick="document.getElementById('ask').scrollIntoView({behavior:'smooth'})" style="padding: 12px 30px; font-size: 1rem;">
+          Get Started For Free →
+        </button>
+        <button class="btn-pill btn-outline" onclick="document.getElementById('auth-modal').classList.add('open')" style="padding: 12px 24px;">
+          Sign in to Workspace
+        </button>
+      </div>
+    </div>
+  </section>
 
   <!-- ======================== FOOTER ======================== -->
   <footer>
     <div class="footer-inner">
-      <div class="footer-brand">
+      <div>
         <div class="footer-brand-name">
-          <div class="logo-mark" style="width:22px;height:22px;border-radius:5px;"><svg viewBox="0 0 24 24" style="width:11px;height:11px;fill:#000;"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
+          <div class="logo-mark" style="width: 26px; height: 26px; border-radius: 6px;">
+            <svg viewBox="0 0 24 24" style="width: 13px; height: 13px;"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+          </div>
           Search.ai
         </div>
-        <p class="footer-brand-desc">The decision-intelligence platform for founders, students, and freelancers. Zero sponsored rankings. Full source transparency.</p>
+        <p style="font-size: 0.86rem; color: var(--fg-muted); max-width: 280px; line-height: 1.6;">
+          The decision-intelligence platform for founders, students, and freelancers. Zero sponsored rankings. Full source transparency.
+        </p>
       </div>
       <div class="footer-col">
         <h4>Platform</h4>
         <ul>
           <li><a href="#ask">Ask & Clarify</a></li>
-          <li><a href="#features">Decision Brief</a></li>
-          <li><a href="#how">Compare Matrix</a></li>
-          <li><a href="#domains">Tool Directory</a></li>
+          <li><a href="#demo-widget">Interactive Demo</a></li>
+          <li><a href="#stack">Tech Stack</a></li>
+          <li><a href="#pricing">Pricing Plans</a></li>
         </ul>
       </div>
       <div class="footer-col">
         <h4>Company</h4>
         <ul>
-          <li><a href="#">About</a></li>
+          <li><a href="#">About Search.ai</a></li>
           <li><a href="#">Blog</a></li>
-          <li><a href="#">Security</a></li>
-          <li><a href="#">Pricing</a></li>
+          <li><a href="#">Security & Privacy</a></li>
+          <li><a href="#">Careers</a></li>
         </ul>
       </div>
       <div class="footer-col">
-        <h4>Trust</h4>
+        <h4>Trust & Policy</h4>
         <ul>
           <li><a href="#">Evidence Policy</a></li>
           <li><a href="#">No Sponsored Bias</a></li>
-          <li><a href="#">Data Privacy</a></li>
-          <li><a href="#">Correction Reporting</a></li>
+          <li><a href="#">Data Privacy (GDPR)</a></li>
+          <li><a href="#">Report Outdated Data</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      <span>© 2026 Search.ai · Built with evidence, not opinion.</span>
+      <span>© 2026 Search.ai · Handcrafted for builders with evidence, not opinion.</span>
       <span>Maximize clarity per minute.</span>
     </div>
   </footer>
@@ -1745,61 +1904,130 @@
         <div class="modal-title">Sign in to Search.ai</div>
         <button class="modal-close" onclick="document.getElementById('auth-modal').classList.remove('open')">&times;</button>
       </div>
-      <p style="font-size: 0.875rem; color: var(--fg-muted); margin-bottom: 24px;">Save decisions, sync your workspace, and unlock unlimited comparisons.</p>
-      <div class="field-group">
-        <button class="btn-pill btn-secondary" style="width:100%; justify-content:center; padding: 11px;" onclick="alert('Demo: Google auth flow active! You are now signed in.'); document.getElementById(\'auth-modal\').classList.remove(\'open\');">
+      <p style="font-size: 0.88rem; color: var(--fg-muted); margin-bottom: 22px;">
+        Save decisions, sync your workspace, and unlock unlimited multi-lens comparisons.
+      </p>
+      <div style="display: flex; flex-direction: column; gap: 14px;">
+        <button class="btn-pill btn-outline" style="width: 100%; padding: 11px; justify-content: center;" onclick="alert('Google Auth: You are now signed in!'); document.getElementById('auth-modal').classList.remove('open');">
           <svg width="18" height="18" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
           Continue with Google
         </button>
-        <div style="text-align:center; font-size:0.78rem; color: var(--fg-subtle);">— or use email magic link —</div>
+        <div style="text-align: center; font-size: 0.78rem; color: var(--fg-subtle);">— or passwordless magic link —</div>
         <div>
-          <label class="field-label">Your email</label>
-          <input type="email" class="field-input" placeholder="founder@college.edu" id="auth-email-input">
+          <label style="font-size: 0.8rem; font-weight: 600; color: var(--fg-muted); display: block; margin-bottom: 6px;">Your email address</label>
+          <input type="email" id="auth-email-input" placeholder="founder@example.com" style="width: 100%; padding: 10px 14px; border: 1.5px solid var(--border); border-radius: var(--radius-md); font-family: var(--font-body); font-size: 0.9rem; outline: none;" />
         </div>
-        <button class="btn-pill btn-primary" style="width:100%; justify-content:center; padding: 11px;" onclick="alert('Magic link sent to: ' + document.getElementById('auth-email-input').value); document.getElementById('auth-modal').classList.remove('open');">
+        <button class="btn-pill btn-primary" style="width: 100%; padding: 11px;" onclick="alert('Magic link sent to: ' + document.getElementById('auth-email-input').value); document.getElementById('auth-modal').classList.remove('open');">
           Send Magic Link
         </button>
-        <p style="font-size: 0.75rem; color: var(--fg-subtle); text-align: center;">Students get 50% off Plus with a .edu email. <a href="#" style="color: var(--green);">Verify student status</a></p>
       </div>
     </div>
   </div>
 
-  <!-- ======================== RESEARCH PROGRESS ======================== -->
+  <!-- ======================== RESEARCH PROGRESS OVERLAY ======================== -->
   <div id="research-progress">
     <div class="progress-box">
-      <div style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--fg-muted); margin-bottom: 12px;">Decision Intelligence Engine</div>
-      <h3 style="font-family: var(--font-display); font-size: 1.2rem; font-weight: 700; color: var(--fg);">Converging evidence...</h3>
-      <div class="loading-dots">
-        <div class="loading-dot"></div>
-        <div class="loading-dot"></div>
-        <div class="loading-dot"></div>
-      </div>
+      <div style="font-size: 0.76rem; font-weight: 700; text-transform: uppercase; color: var(--teal); letter-spacing: 0.06em; margin-bottom: 8px;">Decision Engine Active</div>
+      <h3 style="font-family: var(--font-display); font-size: 1.25rem; font-weight: 800; color: var(--fg); margin-bottom: 12px;">Converging live evidence...</h3>
       <ul class="step-list">
-        <li id="p-step-1"><div class="stp-icon">1</div> Parse intent & extract constraints</li>
-        <li id="p-step-2"><div class="stp-icon">2</div> Retrieve verified tool records</li>
-        <li id="p-step-3"><div class="stp-icon">3</div> Compute 8-signal fit scores</li>
-        <li id="p-step-4"><div class="stp-icon">4</div> Build decision brief & action plan</li>
+        <li id="p-step-1"><div class="stp-icon">1</div> Parse natural language intent & budget</li>
+        <li id="p-step-2"><div class="stp-icon">2</div> Retrieve verified tool directory & logos</li>
+        <li id="p-step-3"><div class="stp-icon">3</div> Run 8-signal scoring & multi-criteria fit</li>
+        <li id="p-step-4"><div class="stp-icon">4</div> Synthesize verified decision brief</li>
       </ul>
     </div>
   </div>
 
+  <!-- ======================== JAVASCRIPT ENGINE & LOGIC ======================== -->
   <script type="module">
-    import { parseNaturalLanguageQuery } from './js/engine/nlpExtractor.js';
     import { scoreTools } from './js/engine/scoringEngine.js';
 
-    // ===== SLIDER TABS =====
-    document.querySelectorAll('#slider-tabs .slider-tab').forEach(tab => {
-      tab.addEventListener('click', () => {
-        document.querySelectorAll('#slider-tabs .slider-tab').forEach(t => t.classList.remove('active'));
-        document.querySelectorAll('.slider-panel').forEach(p => p.classList.remove('active'));
-        tab.classList.add('active');
-        const panelId = 'panel-' + tab.dataset.panel;
-        document.getElementById(panelId)?.classList.add('active');
+    // ===== HERO STEP-NUMBERED WIDGET INTERACTION =====
+    const demoPresets = {
+      'Next.js SaaS Backend': {
+        verdict: 'TOP RECOMMENDATION · BEST FIT',
+        score: '96% Fit Score',
+        tool: 'Supabase + Vercel',
+        logo: 'https://img.logo.dev/supabase.com?token=pk_V9sJFFV4S5SQjdahqKezzA&size=128&format=png',
+        reason: 'Generous free tier (50k MAUs), instant PostgreSQL auth & storage, and zero-config deployment. Setup in under 2 hours.',
+        query: 'Best tech stack to launch a SaaS MVP under $25/month with database and auth.',
+        domain: 'Technology',
+        budget: 'Under $50/mo',
+        skill: 'Technical / Dev'
+      },
+      'E-Commerce Store': {
+        verdict: 'TOP RECOMMENDATION · BEST VALUE',
+        score: '94% Fit Score',
+        tool: 'Dukaan',
+        logo: 'https://img.logo.dev/mydukaan.io?token=pk_V9sJFFV4S5SQjdahqKezzA&size=128&format=png',
+        reason: 'Integrated WhatsApp catalog, native Indian UPI checkout with Razorpay, and ₹699/mo starting price. Setup in 1 hour without coding.',
+        query: 'I want to start an online business under ₹10,000 with no coding experience in India.',
+        domain: 'Business',
+        budget: 'Under ₹10,000',
+        skill: 'Beginner (No-Code)'
+      },
+      'Student AI Research': {
+        verdict: 'TOP RECOMMENDATION · ZERO COST',
+        score: '98% Fit Score',
+        tool: 'Anki + Obsidian',
+        logo: 'https://img.logo.dev/obsidian.md?token=pk_V9sJFFV4S5SQjdahqKezzA&size=128&format=png',
+        reason: '100% free open-source spaced repetition engine with bidirectional markdown note linking. Offline first, no subscription fees.',
+        query: 'Best study and spaced repetition tools for student exam prep with zero budget.',
+        domain: 'Education',
+        budget: 'Free (₹0)',
+        skill: 'Beginner (No-Code)'
+      },
+      'Freelance Portfolio': {
+        verdict: 'TOP RECOMMENDATION · 0% COMMISSION',
+        score: '91% Fit Score',
+        tool: 'Contra',
+        logo: 'https://img.logo.dev/contra.com?token=pk_V9sJFFV4S5SQjdahqKezzA&size=128&format=png',
+        reason: 'Commission-free contract payments, portfolio showcase, and built-in client invoicing for designers and developers.',
+        query: 'Mujhe ek commission-free freelance portfolio banana hai bina coding ke.',
+        domain: 'Career',
+        budget: 'Free (₹0)',
+        skill: 'Beginner (No-Code)'
+      }
+    };
+
+    document.querySelectorAll('#pills-project .step-pill').forEach(pill => {
+      pill.addEventListener('click', () => {
+        document.querySelectorAll('#pills-project .step-pill').forEach(p => p.classList.remove('selected'));
+        pill.classList.add('selected');
+        const data = demoPresets[pill.dataset.val];
+        if (data) {
+          document.getElementById('prev-verdict').textContent = data.verdict;
+          document.getElementById('prev-score').textContent = data.score;
+          document.getElementById('prev-tool-name').textContent = data.tool;
+          document.getElementById('prev-tool-logo').src = data.logo;
+          document.getElementById('prev-reason').textContent = data.reason;
+        }
       });
     });
 
+    document.querySelectorAll('#pills-budget .step-pill, #pills-priority .step-pill').forEach(pill => {
+      pill.addEventListener('click', (e) => {
+        const parent = pill.parentElement;
+        parent.querySelectorAll('.step-pill').forEach(p => p.classList.remove('selected'));
+        pill.classList.add('selected');
+      });
+    });
+
+    window.syncHeroToAsk = function() {
+      const activeProjectPill = document.querySelector('#pills-project .step-pill.selected');
+      const val = activeProjectPill?.dataset.val || 'Next.js SaaS Backend';
+      const data = demoPresets[val];
+      if (data) {
+        document.getElementById('ask-textarea').value = data.query;
+        document.getElementById('ctx-domain').value = data.domain;
+        document.getElementById('ctx-budget').value = data.budget;
+        document.getElementById('ctx-skill').value = data.skill;
+      }
+      document.getElementById('ask').scrollIntoView({ behavior: 'smooth' });
+    };
+
     // ===== PRESET CHIPS =====
-    document.querySelectorAll('.preset-btn').forEach(btn => {
+    document.querySelectorAll('.preset-chip').forEach(btn => {
       btn.addEventListener('click', () => {
         document.getElementById('ask-textarea').value = btn.dataset.q;
         detectContext(btn.dataset.q);
@@ -1813,13 +2041,13 @@
       if (!text.trim()) return;
       const lower = text.toLowerCase();
 
-      // Simple domain detection
+      // Domain
       const domainMap = {
-        'Business': ['store', 'business', 'dukaan', 'shop', 'ecommerce', 'vyapar', 'crm', 'invoice', 'sell'],
-        'Education': ['study', 'exam', 'neet', 'jee', 'upsc', 'notes', 'anki', 'padhai', 'student', 'college'],
-        'Career': ['freelance', 'portfolio', 'resume', 'upwork', 'naukri', 'job', 'interview'],
-        'Technology': ['saas', 'backend', 'react', 'next.js', 'database', 'deploy', 'api', 'mvp'],
-        'Productivity': ['todo', 'task', 'habit', 'focus', 'kanban', 'linear'],
+        'Business': ['store', 'business', 'dukaan', 'shop', 'ecommerce', 'vyapar', 'crm', 'sell'],
+        'Education': ['study', 'exam', 'neet', 'jee', 'upsc', 'notes', 'anki', 'student'],
+        'Career': ['freelance', 'portfolio', 'resume', 'contra', 'job', 'interview'],
+        'Technology': ['saas', 'backend', 'next.js', 'database', 'deploy', 'api', 'postgres'],
+        'Productivity': ['todo', 'task', 'habit', 'focus', 'linear']
       };
       for (const [dom, kws] of Object.entries(domainMap)) {
         if (kws.some(k => lower.includes(k))) {
@@ -1828,7 +2056,7 @@
         }
       }
 
-      // Budget detection
+      // Budget
       const inrM = lower.match(/(?:₹|rs\.?|inr)\s*([\d,]+)/i);
       if (lower.includes('free') || lower.includes('zero') || lower.includes('bina paise')) {
         document.getElementById('ctx-budget').value = 'Free (₹0)';
@@ -1843,18 +2071,9 @@
       } else if (lower.includes('developer') || lower.includes('api') || lower.includes('backend')) {
         document.getElementById('ctx-skill').value = 'Technical / Dev';
       }
-
-      // Safety check
-      const sensitive = ['diagnose', 'lawsuit', 'guaranteed return', 'crypto pump', 'buy calls'];
-      const container = document.getElementById('safety-alert-container');
-      if (sensitive.some(s => lower.includes(s))) {
-        container.innerHTML = `<div class="safety-alert"><span>⚠️</span><span>This topic may involve high-stakes decisions. Search.ai provides tool education only — not medical, legal, or financial investment advice.</span></div>`;
-      } else {
-        container.innerHTML = '';
-      }
     }
 
-    // ===== MAIN MAP FUNCTION =====
+    // ===== MAP MY OPTIONS ACTION =====
     document.getElementById('map-btn').addEventListener('click', async () => {
       const query = document.getElementById('ask-textarea').value.trim();
       if (!query) {
@@ -1872,14 +2091,13 @@
       for (let i = 0; i < steps.length; i++) {
         document.getElementById(steps[i]).className = 'active';
         document.getElementById(steps[i]).querySelector('.stp-icon').textContent = '…';
-        await delay(220);
+        await delay(200);
         document.getElementById(steps[i]).className = 'done';
         document.getElementById(steps[i]).querySelector('.stp-icon').textContent = '✓';
       }
-      await delay(150);
+      await delay(120);
       progress.classList.remove('visible');
 
-      // Run scoring
       const ctx = {
         rawQuery: query,
         domain: document.getElementById('ctx-domain').value,
@@ -1891,7 +2109,6 @@
         safety: { isSensitive: false }
       };
 
-      // Import and compute
       const brief = scoreTools(ctx);
       renderResults(brief, ctx);
     }
@@ -1904,28 +2121,26 @@
       section.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
       document.getElementById('results-goal-text').textContent = brief.restatedGoal;
-
       renderLens(brief, 0);
 
-      // Lens tab events
-      document.querySelectorAll('.result-tab').forEach((tab, idx) => {
+      document.querySelectorAll('.lens-tab').forEach((tab, idx) => {
         tab.addEventListener('click', () => {
-          document.querySelectorAll('.result-tab').forEach(t => t.classList.remove('active'));
+          document.querySelectorAll('.lens-tab').forEach(t => t.classList.remove('active'));
           tab.classList.add('active');
           renderLens(brief, idx);
         });
       });
 
-      // Save button
+      // Save
       document.getElementById('save-btn').addEventListener('click', () => {
-        document.getElementById('save-btn').textContent = '✓ Saved';
-        setTimeout(() => document.getElementById('save-btn').textContent = 'Save to Workspace', 2000);
+        document.getElementById('save-btn').textContent = '✓ Saved to Workspace';
+        setTimeout(() => document.getElementById('save-btn').textContent = 'Save Decision', 2000);
       });
 
-      // Export
+      // Export Markdown
       document.getElementById('export-btn').addEventListener('click', () => {
         const tool = brief.topRanked[0].data.tool;
-        const md = `# Search.ai Decision Brief\n**Goal**: ${brief.restatedGoal}\n**Confidence**: ${brief.confidence.level}\n\n## Best Fit: ${tool.name}\n- **URL**: ${tool.official_url}\n- **Price**: ${tool.price_notes}\n- **Setup**: ${tool.setup_time_estimate}\n\n### Why this fits:\n${brief.topRanked[0].data.fitRationale.map(r => `- ${r}`).join('\n')}\n\n### Trade-offs:\n${brief.topRanked[0].data.tradeOffs.map(t => `- ${t}`).join('\n')}\n\n---\n*Generated by Search.ai*`;
+        const md = `# Search.ai Decision Brief\n**Goal**: ${brief.restatedGoal}\n**Confidence**: ${brief.confidence.level}\n\n## Best Fit: ${tool.name}\n- URL: ${tool.official_url}\n- Price: ${tool.price_notes}\n- Setup Time: ${tool.setup_time_estimate}\n\n### Why it fits:\n${brief.topRanked[0].data.fitRationale.map(r => `- ${r}`).join('\n')}\n\n---\n*Generated by Search.ai*`;
         const blob = new Blob([md], { type: 'text/markdown' });
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a'); a.href = url; a.download = `SearchAI_${tool.slug}.md`; a.click();
@@ -1941,58 +2156,88 @@
       const score = item.data.totalScore;
       const cost = item.data.estimatedMonthlyCost;
 
+      // Extract domain for high-res logo from Logo.dev
+      let domain = "supabase.com";
+      try {
+        domain = new URL(tool.official_url).hostname.replace("www.", "");
+      } catch(e) {}
+      const logoUrl = `https://img.logo.dev/${domain}?token=pk_V9sJFFV4S5SQjdahqKezzA&size=128&format=png`;
+
       const html = `
-        <div class="result-card best animate-in" style="grid-column: 1 / -1; display: grid; grid-template-columns: 1.2fr 1fr 1fr; gap: 24px;">
-          <!-- Left: Tool Info -->
+        <div class="results-grid">
+          <!-- Left Column -->
           <div>
-            <div class="rc-tag green">${item.lens} · ${item.label}</div>
-            <div class="rc-name">${tool.name}</div>
-            <div class="rc-sub">${tool.subCategory}</div>
-            <div class="rc-score-big">${score}<span style="font-size:1rem; color: var(--fg-muted);">/100</span></div>
-            <p style="font-size: 0.82rem; color: var(--fg-muted); margin-bottom: 14px;">${tool.description}</p>
-            <div style="display:flex; gap:8px; flex-wrap: wrap; margin-bottom: 12px;">
-              <a href="${tool.official_url}" target="_blank" class="btn-pill btn-green" style="padding: 7px 16px; font-size: 0.8rem;">Visit Official Site ↗</a>
-              <a href="${tool.pricing_url}" target="_blank" class="btn-pill btn-secondary" style="padding: 7px 14px; font-size: 0.8rem;">Pricing ↗</a>
+            <div style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: var(--teal); margin-bottom: 4px;">${item.lens} · ${item.label}</div>
+            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 4px;">
+              <img src="${logoUrl}" alt="${tool.name}" style="width: 32px; height: 32px; border-radius: 8px; object-fit: contain;" onerror="this.src='https://www.google.com/s2/favicons?domain=${domain}&sz=128'" />
+              <h3 style="font-family: var(--font-display); font-size: 1.45rem; font-weight: 800; color: var(--fg);">${tool.name}</h3>
             </div>
-            <div class="rc-price"><strong>Setup:</strong> ${tool.setup_time_estimate} &nbsp;·&nbsp; <strong>Learning Curve:</strong> ${tool.learning_curve}</div>
-            <div class="rc-price" style="margin-top: 6px;"><strong>Cost:</strong> ${cost.recurringCost}</div>
+            <div style="font-size: 0.82rem; color: var(--fg-muted); margin-bottom: 12px;">${tool.subCategory}</div>
+            <div class="score-badge-huge">${score}<span style="font-size: 1rem; color: var(--fg-muted); font-weight: 500;">/100</span></div>
+            <p style="font-size: 0.86rem; color: var(--fg-muted); line-height: 1.5; margin-bottom: 14px;">${tool.description}</p>
+            <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+              <a href="${tool.official_url}" target="_blank" class="btn-pill btn-primary" style="padding: 7px 16px; font-size: 0.82rem;">Visit Site ↗</a>
+              <a href="${tool.pricing_url}" target="_blank" class="btn-pill btn-outline" style="padding: 7px 14px; font-size: 0.82rem;">Pricing ↗</a>
+            </div>
+            <div style="font-size: 0.82rem; color: var(--fg-muted); margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--border);">
+              <strong>Estimated Cost:</strong> ${cost.recurringCost}
+            </div>
           </div>
-          <!-- Middle: Why it fits -->
+
+          <!-- Middle Column: Why it fits -->
           <div>
-            <div style="font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--green); margin-bottom: 10px;">Why this fits</div>
-            <ul style="list-style:none; display:flex; flex-direction:column; gap:7px;">
-              ${item.data.fitRationale.map(r => `<li style="font-size:0.82rem; color: var(--fg); display:flex; align-items:flex-start; gap:8px;"><span style="color:var(--green); flex-shrink:0;">✓</span>${r}</li>`).join('')}
+            <div style="font-size: 0.74rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--teal); margin-bottom: 10px;">Why This Fits</div>
+            <ul style="list-style: none; display: flex; flex-direction: column; gap: 8px;">
+              ${item.data.fitRationale.map(r => `
+                <li style="font-size: 0.84rem; color: var(--fg); display: flex; align-items: flex-start; gap: 8px;">
+                  <span style="color: var(--teal); font-weight: 800; flex-shrink: 0;">✓</span>
+                  <span>${r}</span>
+                </li>
+              `).join('')}
             </ul>
-            <div style="margin-top: 14px;">
-              <div style="font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--amber); margin-bottom: 8px;">Trade-offs</div>
-              <ul style="list-style:none; display:flex; flex-direction:column; gap:6px;">
-                ${item.data.tradeOffs.map(t => `<li style="font-size:0.8rem; color: var(--fg-muted); display:flex; align-items:flex-start; gap:8px;"><span style="color:var(--amber); flex-shrink:0;">⚠</span>${t}</li>`).join('')}
+
+            <div style="margin-top: 18px;">
+              <div style="font-size: 0.74rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #D97706; margin-bottom: 8px;">Key Trade-offs</div>
+              <ul style="list-style: none; display: flex; flex-direction: column; gap: 7px;">
+                ${item.data.tradeOffs.map(t => `
+                  <li style="font-size: 0.82rem; color: var(--fg-muted); display: flex; align-items: flex-start; gap: 8px;">
+                    <span style="color: #D97706; flex-shrink: 0;">⚠</span>
+                    <span>${t}</span>
+                  </li>
+                `).join('')}
               </ul>
             </div>
           </div>
-          <!-- Right: 8-Signal Bars -->
+
+          <!-- Right Column: 8-Signal Breakdown -->
           <div>
-            <div style="font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--fg-muted); margin-bottom: 10px;">8-Signal Explainability</div>
-            <div style="display:flex; flex-direction:column; gap:8px;">
+            <div style="font-size: 0.74rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--fg-muted); margin-bottom: 12px;">8-Signal Scoring Weights</div>
+            <div style="display: flex; flex-direction: column; gap: 6px;">
               ${[
                 ['Goal Fit', bd.goalFit, 25],
                 ['Budget Fit', bd.budgetFit, 20],
-                ['Capabilities', bd.capabilityFit, 20],
-                ['Skill Ease', bd.skillFit, 10],
-                ['Region Support', bd.locationFit, 10],
+                ['Required Capabilities', bd.capabilityFit, 20],
+                ['Skill Level Ease', bd.skillFit, 10],
+                ['Regional Fit', bd.locationFit, 10],
                 ['Time-to-Value', bd.timeToValue, 5],
-                ['Evidence', bd.evidenceConfidence, 5],
-                ['Preferences', bd.preferenceFit, 5]
+                ['Evidence Confidence', bd.evidenceConfidence, 5],
+                ['Preference Match', bd.preferenceFit, 5]
               ].map(([label, val, max]) => `
-                <div class="rc-bar-item">
-                  <div class="rc-bar-label"><span>${label}</span><span style="color:var(--fg);">${Math.round(val)}/${max}</span></div>
-                  <div class="rc-bar-track"><div class="rc-bar-fill" style="width:${(val/max)*100}%"></div></div>
+                <div class="score-bar-item">
+                  <div class="score-bar-label">
+                    <span>${label}</span>
+                    <span style="color: var(--fg);">${Math.round(val)}/${max}</span>
+                  </div>
+                  <div class="score-bar-track">
+                    <div class="score-bar-fill" style="width: ${(val/max)*100}%"></div>
+                  </div>
                 </div>
               `).join('')}
             </div>
           </div>
         </div>
       `;
+
       document.getElementById('results-panel').innerHTML = html;
     }
 
