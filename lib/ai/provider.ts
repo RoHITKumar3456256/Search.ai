@@ -13,7 +13,7 @@ export async function generateDecisionBrief(input: DecisionInput): Promise<{ bri
     try {
       const brief = await generateGeminiDecision(input);
       const validated = decisionBriefSchema.parse(brief);
-      return { brief: validated, provider: "gemini", model: "gemini-1.5-flash" };
+      return { brief: validated, provider: "gemini", model: "gemini-2.5-flash" };
     } catch (e) {
       console.warn("Gemini provider failed, falling back to Groq...", e);
     }
