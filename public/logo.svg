@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48" fill="none">
+  <!-- Rounded Squircle Badge in Saturated Teal -->
+  <rect width="48" height="48" rx="14" fill="#1B9AAA"/>
+  
+  <!-- Subtle Top Lighting -->
+  <path d="M5 14C5 9.02944 9.02944 5 14 5H34C38.9706 5 43 9.02944 43 14V18C43 13.0294 38.9706 9 34 9H14C9.02944 9 5 13.0294 5 18V14Z" fill="white" fill-opacity="0.16"/>
+
+  <!-- Magnifying Lens Outer Rim -->
+  <circle cx="26" cy="22" r="11" stroke="white" stroke-width="3.2" stroke-linecap="round"/>
+  
+  <!-- Inner Glass Reflection Curve -->
+  <path d="M21 16C23 14.5 26 14.5 28 15.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-opacity="0.75"/>
+
+  <!-- Magnifying Glass Pill Handle -->
+  <path d="M18.5 29.5L12 36" stroke="white" stroke-width="3.8" stroke-linecap="round"/>
+
+  <!-- AI Intelligence Star Spark in Warm Amber (#F5A623) -->
+  <path d="M26 14.5C26 18.5 23 22 18.5 22C23 22 26 25.5 26 29.5C26 25.5 29 22 33.5 22C29 22 26 18.5 26 14.5Z" fill="#F5A623"/>
+
+  <!-- Center Core Star Dot -->
+  <circle cx="26" cy="22" r="1.2" fill="white"/>
+</svg>
