@@ -2279,9 +2279,9 @@
     const SUPABASE_ANON = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRiY3FjdHp6anZrbnNrZmJvbnlxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg1ODY2NjksImV4cCI6MjEwNDE2MjY2OX0.brxpf5kVnlZWg91XWYkoQeRFxnflusl1GPCyu6zsF78";
 
     window.fillAndLoginDemo = async function() {
-      document.getElementById('auth-email-input').value = 'founder@search.ai';
-      document.getElementById('auth-password-input').value = 'Password123!';
-      await performAuth('founder@search.ai', 'Password123!');
+      document.getElementById('auth-email-input').value = 'demo@searchai.app';
+      document.getElementById('auth-password-input').value = 'SearchAI2026!';
+      await performAuth('demo@searchai.app', 'SearchAI2026!');
     };
 
     window.handleLandingLogin = async function(e) {
@@ -2297,42 +2297,129 @@
       statusBox.style.display = 'block';
       statusBox.style.background = '#E8F5F7';
       statusBox.style.color = '#147B88';
-      statusBox.textContent = 'Authenticating with Supabase...';
+      statusBox.textContent = 'Connecting to Supabase...';
       submitBtn.disabled = true;
 
       try {
-        const res = await fetch(`${SUPABASE_URL}/auth/v1/token?grant_type=password`, {
+        // Step 1: Try Sign In
+        const signInRes = await fetch(`${SUPABASE_URL}/auth/v1/token?grant_type=password`, {
           method: 'POST',
-          headers: {
-            'apikey': SUPABASE_ANON,
-            'Content-Type': 'application/json'
-          },
+          headers: { 'apikey': SUPABASE_ANON, 'Content-Type': 'application/json' },
           body: JSON.stringify({ email, password })
         });
+        const signInData = await signInRes.json();
 
-        const data = await res.json();
-        if (res.ok && data.access_token) {
+        if (signInRes.ok && signInData.access_token) {
+          // ✅ Sign In Successful
           statusBox.style.background = '#ECFDF5';
           statusBox.style.color = '#065F46';
-          statusBox.textContent = '✓ Signed in successfully! Welcome back.';
-          localStorage.setItem('search_ai_session', JSON.stringify(data));
+          statusBox.textContent = '✓ Signed in! Redirecting to workspace...';
+          localStorage.setItem('search_ai_session', JSON.stringify(signInData));
+          localStorage.setItem('search_ai_user_email', email);
           setTimeout(() => {
             document.getElementById('auth-modal').classList.remove('open');
+            updateNavForLoggedInUser(email);
             window.location.reload();
           }, 900);
+          return;
+        }
+
+        // Step 2: If "Invalid credentials" → try Sign Up (new user)
+        const errMsg = (signInData.error_description || signInData.msg || signInData.error || '').toLowerCase();
+        const isNewUser = errMsg.includes('invalid') || errMsg.includes('credentials') || errMsg.includes('not found') || errMsg.includes('email not confirmed');
+
+        if (isNewUser) {
+          statusBox.textContent = 'New account detected — creating your workspace...';
+
+          const signUpRes = await fetch(`${SUPABASE_URL}/auth/v1/signup`, {
+            method: 'POST',
+            headers: { 'apikey': SUPABASE_ANON, 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, password, data: { full_name: email.split('@')[0] } })
+          });
+          const signUpData = await signUpRes.json();
+
+          if (signUpRes.ok && (signUpData.id || signUpData.user)) {
+            // ✅ Sign Up Successful
+            if (signUpData.access_token) {
+              // Supabase returned token directly (email confirm disabled)
+              localStorage.setItem('search_ai_session', JSON.stringify(signUpData));
+              localStorage.setItem('search_ai_user_email', email);
+              statusBox.style.background = '#ECFDF5';
+              statusBox.style.color = '#065F46';
+              statusBox.textContent = '✓ Account created! Welcome to Search.ai 🎉';
+              setTimeout(() => {
+                document.getElementById('auth-modal').classList.remove('open');
+                updateNavForLoggedInUser(email);
+              }, 1200);
+            } else {
+              // Email confirmation required
+              statusBox.style.background = '#FEF9C3';
+              statusBox.style.color = '#78350F';
+              statusBox.textContent = '📧 Check your email — a confirmation link has been sent to ' + email + '. Click it to activate your account.';
+            }
+          } else {
+            // Sign Up also failed
+            const signUpErr = signUpData.error_description || signUpData.msg || signUpData.message || 'Could not create account.';
+            statusBox.style.background = '#FEF2F2';
+            statusBox.style.color = '#991B1B';
+            statusBox.textContent = '⚠ ' + signUpErr;
+          }
         } else {
+          // Some other error (network, server issue)
           statusBox.style.background = '#FEF2F2';
           statusBox.style.color = '#991B1B';
-          statusBox.textContent = data.error_description || data.msg || data.message || 'Invalid email or password.';
+          statusBox.textContent = '⚠ ' + (signInData.error_description || signInData.msg || signInData.message || 'Authentication failed. Please try again.');
         }
+
       } catch (err) {
         statusBox.style.background = '#FEF2F2';
         statusBox.style.color = '#991B1B';
-        statusBox.textContent = 'Network error connecting to auth server.';
+        statusBox.textContent = 'Network error — please check your internet connection.';
       } finally {
         submitBtn.disabled = false;
       }
     }
+
+    function updateNavForLoggedInUser(email) {
+      const navActions = document.querySelector('.nav-actions');
+      if (navActions) {
+        const initial = (email || 'U').charAt(0).toUpperCase();
+        navActions.innerHTML = `
+          <span style="font-size:0.85rem; color:var(--fg-muted); font-weight:500;">Hi, ${email.split('@')[0]}</span>
+          <div style="width:32px;height:32px;border-radius:50%;background:var(--teal);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.85rem;">${initial}</div>
+          <button onclick="signOutUser()" class="btn-pill btn-outline" style="padding:6px 14px;font-size:0.82rem;">Sign Out</button>
+        `;
+      }
+    }
+
+    window.signOutUser = async function() {
+      try {
+        const session = JSON.parse(localStorage.getItem('search_ai_session') || '{}');
+        if (session.access_token) {
+          await fetch(`${SUPABASE_URL}/auth/v1/logout`, {
+            method: 'POST',
+            headers: { 'apikey': SUPABASE_ANON, 'Authorization': `Bearer ${session.access_token}` }
+          });
+        }
+      } catch(e) {}
+      localStorage.removeItem('search_ai_session');
+      localStorage.removeItem('search_ai_user_email');
+      window.location.reload();
+    };
+
+    // Auto-restore session on page load
+    (function restoreSession() {
+      const session = localStorage.getItem('search_ai_session');
+      const email = localStorage.getItem('search_ai_user_email');
+      if (session && email) {
+        try {
+          const parsed = JSON.parse(session);
+          if (parsed.access_token) {
+            updateNavForLoggedInUser(email);
+          }
+        } catch(e) {}
+      }
+    })();
   </script>
 </body>
 </html>

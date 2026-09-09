@@ -12,7 +12,7 @@ export interface UserProfile {
 }
 
 export async function getUserProfile(userId: string): Promise<UserProfile | null> {
-  const supabase = createClient();
+  const supabase = await createClient();
   const { data, error } = await supabase
     .from("profiles")
     .select("*")
@@ -28,7 +28,7 @@ export async function updateOnboardingProfile(userId: string, data: {
   locale?: string;
   country_code?: string;
 }) {
-  const supabase = createClient();
+  const supabase = await createClient();
   const { error } = await supabase
     .from("profiles")
     .update({

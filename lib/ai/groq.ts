@@ -13,7 +13,7 @@ export async function generateGroqDecision(input: DecisionInput): Promise<Decisi
       "Content-Type": "application/json"
     },
     body: JSON.stringify({
-      model: "llama3-70b-8192",
+      model: "openai/gpt-oss-120b",
       response_format: { type: "json_object" },
       messages: [
         { role: "system", content: SYSTEM_PROMPT },

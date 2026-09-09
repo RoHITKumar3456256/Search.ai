@@ -1,4 +1,3 @@
-import "server-only";
 import { z } from "zod";
 
 const serverEnvSchema = z.object({
@@ -18,6 +17,10 @@ const serverEnvSchema = z.object({
   TAVILY_API_KEY: z.string().optional(),
   LOGO_DEV_API_KEY: z.string().optional(),
   RESEND_API_KEY: z.string().optional(),
+  // Vector DB (Pinecone)
+  PINECONE_API_KEY: z.string().optional(),
+  // Web Scraping (Apify)
+  APIFY_API_KEY: z.string().optional(),
 });
 
 const clientEnvSchema = z.object({
