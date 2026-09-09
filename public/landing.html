@@ -1,0 +1,2425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Search.ai — Turn Uncertainty Into Your Next Best Move</title>
+  <meta name="description" content="Search.ai maps your constraints, scores 50+ verified tools across 8 signals, and hands you an evidence-grounded decision brief with a 7-day action plan.">
+  <link rel="icon" type="image/svg+xml" href="/logo.svg">
+  <link rel="apple-touch-icon" href="/logo.png">
+  <meta property="og:title" content="Search.ai — Decision Intelligence Platform">
+  <meta property="og:description" content="Turn uncertainty into your next best move. AI-powered tool discovery for founders, students, and freelancers.">
+
+  <!-- Typography: Warm Geometric Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       DESIGN TOKENS — Warm, Playful, Hand-Crafted SaaS (Off-White & Teal Theme)
+       ========================================================================== */
+    :root {
+      /* Visual Foundation: Warm Cream / Off-White */
+      --bg: #FAF6EC;
+      --bg-cream: #FAF6EC;
+      --bg-card: #FFFFFF;
+      --bg-card-subtle: #F5EFE1;
+      --bg-pill-hover: #F0EAE0;
+      
+      /* Primary Accent: Saturated Teal / Cyan */
+      --teal: #1B9AAA;
+      --teal-dark: #147B88;
+      --teal-light: #E8F5F7;
+      --teal-border: rgba(27, 154, 170, 0.35);
+
+      /* Secondary Accent: Warm Amber / Gold (used sparingly, only for ONE featured highlight) */
+      --amber: #F5A623;
+      --amber-light: #FEF6E9;
+
+      /* Confetti Decorative Accent Colors */
+      --confetti-pink: #F48498;
+      --confetti-yellow: #F5CB5C;
+      --confetti-teal: #1B9AAA;
+
+      /* Neutral Typography & Borders: Muted Gray-Browns */
+      --fg: #1E1A17;
+      --fg-muted: #5C554E;
+      --fg-subtle: #8A8177;
+      --fg-faint: #DDD6C9;
+
+      --border: #E8E1D3;
+      --border-dark: #2D2621;
+      --border-focus: #1B9AAA;
+
+      /* Radius: Generously Rounded */
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --radius-xl: 28px;
+      --radius-full: 9999px;
+
+      --shadow-sm: 0 2px 6px rgba(30, 26, 23, 0.04);
+      --shadow-card: 0 8px 28px rgba(30, 26, 23, 0.06), 0 1px 3px rgba(30, 26, 23, 0.04);
+      --shadow-lg: 0 18px 42px rgba(30, 26, 23, 0.09);
+
+      --font-display: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-body: 'Plus Jakarta Sans', 'Inter', sans-serif;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      background-color: var(--bg);
+      color: var(--fg);
+      font-family: var(--font-body);
+      font-size: 15px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg);
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* ==========================================================================
+       HEADER — Floating Rounded Pill Nav
+       ========================================================================== */
+    header {
+      position: fixed;
+      top: 14px;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      max-width: 1260px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(250, 246, 236, 0.88);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-full);
+      padding: 8px 18px;
+      box-shadow: 0 4px 20px rgba(45, 38, 33, 0.04);
+      transition: all 0.25s ease;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 1.15rem;
+      color: var(--fg);
+      letter-spacing: -0.02em;
+    }
+
+    .logo-mark {
+      width: 32px;
+      height: 32px;
+      border-radius: 9px;
+      background: var(--teal);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      flex-shrink: 0;
+    }
+
+    .logo-mark svg {
+      width: 16px;
+      height: 16px;
+      fill: #FFFFFF;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .nav-links a {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--fg-muted);
+      transition: color 0.15s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--teal);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* Buttons */
+    .btn-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 9px 20px;
+      font-family: var(--font-body);
+      font-size: 0.88rem;
+      font-weight: 600;
+      border-radius: var(--radius-full);
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      white-space: nowrap;
+      outline: none;
+    }
+
+    .btn-pill:active {
+      transform: scale(0.97);
+    }
+
+    /* Primary CTA: Solid Teal Fill */
+    .btn-primary, .btn-teal {
+      background: var(--teal);
+      color: #FFFFFF;
+      box-shadow: 0 3px 12px rgba(27, 154, 170, 0.25);
+    }
+
+    .btn-primary:hover, .btn-teal:hover {
+      background: var(--teal-dark);
+      box-shadow: 0 4px 16px rgba(27, 154, 170, 0.35);
+    }
+
+    /* Secondary CTA: Outline Style with Dark Border */
+    .btn-secondary, .btn-outline {
+      background: transparent;
+      color: var(--fg);
+      border: 1.5px solid var(--border-dark);
+    }
+
+    .btn-secondary:hover, .btn-outline:hover {
+      background: var(--fg);
+      color: var(--bg-card);
+    }
+
+    /* Small pill badges */
+    .pill-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: transparent;
+      border: 1.5px solid var(--teal);
+      border-radius: var(--radius-full);
+      padding: 6px 14px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--teal);
+      width: fit-content;
+    }
+
+    .pill-badge svg {
+      width: 14px;
+      height: 14px;
+      stroke: var(--teal);
+    }
+
+    @media (max-width: 820px) {
+      .nav-links { display: none; }
+    }
+
+    /* ==========================================================================
+       SCATTERED BACKGROUND DECORATION (Hand-crafted Confetti Shapes)
+       ========================================================================== */
+    .confetti-container {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .confetti-shape {
+      position: absolute;
+      opacity: 0.32;
+      stroke-width: 1.75;
+      fill: none;
+      vector-effect: non-scaling-stroke;
+    }
+
+    /* Animations for gentle floating */
+    @keyframes floatSoft {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-8px) rotate(4deg); }
+    }
+    @keyframes floatAlt {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(7px) rotate(-5deg); }
+    }
+
+    .cs-1 { top: 8%; left: 4%; width: 26px; height: 26px; stroke: var(--confetti-teal); animation: floatSoft 7s ease-in-out infinite; }
+    .cs-2 { top: 18%; left: 32%; width: 22px; height: 22px; stroke: var(--confetti-pink); animation: floatAlt 8s ease-in-out infinite; }
+    .cs-3 { top: 12%; right: 8%; width: 34px; height: 34px; stroke: var(--confetti-yellow); animation: floatSoft 6s ease-in-out infinite; }
+    .cs-4 { top: 38%; right: 4%; width: 20px; height: 20px; stroke: var(--confetti-teal); animation: floatAlt 9s ease-in-out infinite; }
+    .cs-5 { top: 48%; left: 2%; width: 28px; height: 28px; stroke: var(--confetti-yellow); animation: floatSoft 8.5s ease-in-out infinite; }
+    .cs-6 { top: 62%; right: 12%; width: 24px; height: 24px; stroke: var(--confetti-pink); animation: floatAlt 7.5s ease-in-out infinite; }
+    .cs-7 { top: 75%; left: 26%; width: 18px; height: 18px; stroke: var(--confetti-teal); animation: floatSoft 9s ease-in-out infinite; }
+
+    /* ==========================================================================
+       HERO SECTION — Left-Aligned & Asymmetric
+       ========================================================================== */
+    .hero {
+      position: relative;
+      padding: 130px 24px 70px 24px;
+      max-width: 1240px;
+      margin: 0 auto;
+      z-index: 2;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 22px;
+      text-align: left;
+    }
+
+    /* Heavy Geometric Sans Headline */
+    h1.hero-headline {
+      font-family: var(--font-display);
+      font-size: clamp(2.7rem, 4.8vw, 4.2rem);
+      font-weight: 800;
+      line-height: 1.12;
+      letter-spacing: -0.035em;
+      color: var(--fg);
+    }
+
+    /* Hand-Drawn Wavy Underline */
+    .wavy-highlight {
+      position: relative;
+      display: inline-block;
+      white-space: nowrap;
+    }
+
+    .wavy-svg {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -10px;
+      width: 100%;
+      height: 14px;
+      pointer-events: none;
+      overflow: visible;
+    }
+
+    .wavy-svg path {
+      stroke: var(--teal);
+      stroke-width: 3.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      fill: none;
+    }
+
+    .hero-subtext {
+      font-size: 1.12rem;
+      color: var(--fg-muted);
+      line-height: 1.65;
+      max-width: 500px;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 6px;
+    }
+
+    .hero-trust-bar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 14px;
+      font-size: 0.85rem;
+      color: var(--fg-muted);
+    }
+
+    .trust-avatars {
+      display: flex;
+      margin-left: 4px;
+    }
+
+    .avatar-mini {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 2px solid var(--bg);
+      background: var(--bg-card-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      margin-left: -7px;
+    }
+
+    .avatar-mini:first-child { margin-left: 0; }
+
+    /* ==========================================================================
+       HERO RIGHT: FEATURE DEMO CARD (Step-Numbered Interactive Widget)
+       ========================================================================== */
+    .demo-card {
+      background: var(--bg-card);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-card);
+      padding: 26px;
+      position: relative;
+    }
+
+    .demo-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1.5px solid var(--border);
+      padding-bottom: 14px;
+      margin-bottom: 20px;
+    }
+
+    .demo-badge-title {
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--teal);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .live-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--teal);
+      box-shadow: 0 0 8px rgba(27, 154, 170, 0.6);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.85); }
+    }
+
+    .step-section {
+      margin-bottom: 18px;
+    }
+
+    .step-header {
+      font-size: 0.74rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--fg-muted);
+      margin-bottom: 9px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .step-header span.num {
+      width: 17px;
+      height: 17px;
+      border-radius: 50%;
+      background: var(--bg-card-subtle);
+      border: 1px solid var(--border);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.68rem;
+      color: var(--fg);
+    }
+
+    .step-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+    }
+
+    .step-pill {
+      background: transparent;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-full);
+      padding: 5px 12px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--fg-muted);
+      cursor: pointer;
+      transition: all 0.15s ease;
+      user-select: none;
+    }
+
+    .step-pill:hover {
+      border-color: var(--teal);
+      color: var(--fg);
+    }
+
+    .step-pill.selected {
+      background: var(--teal-light);
+      border-color: var(--teal);
+      color: var(--teal-dark);
+      font-weight: 600;
+    }
+
+    /* Live Output Snippet inside Demo Card */
+    .demo-output-preview {
+      background: var(--bg-card-subtle);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      margin-top: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .dop-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .dop-verdict {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--teal);
+    }
+
+    .dop-score {
+      font-size: 0.75rem;
+      font-weight: 800;
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-full);
+      padding: 2px 8px;
+      color: var(--teal-dark);
+    }
+
+    .dop-tool {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--fg);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .dop-tool img {
+      width: 22px;
+      height: 22px;
+      border-radius: 6px;
+      object-fit: contain;
+    }
+
+    .dop-reason {
+      font-size: 0.82rem;
+      color: var(--fg-muted);
+      line-height: 1.45;
+    }
+
+    /* ==========================================================================
+       TRUST LOGOS STRIP
+       ========================================================================== */
+    .trust-strip {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 24px 60px 24px;
+      text-align: center;
+    }
+
+    .trust-label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--fg-subtle);
+      margin-bottom: 22px;
+    }
+
+    .logo-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 36px;
+    }
+
+    .logo-badge {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-display);
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--fg-subtle);
+      opacity: 0.7;
+      transition: opacity 0.2s ease, color 0.2s ease;
+    }
+
+    .logo-badge:hover {
+      opacity: 1;
+      color: var(--fg);
+    }
+
+    /* ==========================================================================
+       CORE INTERACTIVE ASK SECTION (#ask)
+       ========================================================================== */
+    .ask-section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 40px 24px 80px 24px;
+    }
+
+    .ask-box {
+      background: var(--bg-card);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-card);
+      overflow: hidden;
+    }
+
+    .ask-box-top {
+      padding: 30px 32px 18px 32px;
+    }
+
+    .ask-label {
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--teal);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .ask-textarea {
+      width: 100%;
+      background: transparent;
+      border: none;
+      outline: none;
+      font-size: 1.15rem;
+      font-family: var(--font-body);
+      color: var(--fg);
+      line-height: 1.55;
+      resize: none;
+      min-height: 90px;
+    }
+
+    .ask-textarea::placeholder {
+      color: var(--fg-subtle);
+      opacity: 0.8;
+    }
+
+    .ask-box-bottom {
+      border-top: 1.5px solid var(--border);
+      background: #FDFAF3;
+      padding: 16px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .ctx-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .ctx-select {
+      background: #FFFFFF;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-full);
+      padding: 6px 14px;
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--fg-muted);
+      cursor: pointer;
+      outline: none;
+      font-family: var(--font-body);
+      transition: all 0.15s ease;
+    }
+
+    .ctx-select:focus, .ctx-select:hover {
+      border-color: var(--teal);
+      color: var(--fg);
+    }
+
+    .presets-row {
+      padding: 14px 32px 22px 32px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      background: #FDFAF3;
+    }
+
+    .preset-chip {
+      background: #FFFFFF;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-full);
+      padding: 5px 14px;
+      font-size: 0.78rem;
+      color: var(--fg-muted);
+      cursor: pointer;
+      font-family: var(--font-body);
+      transition: all 0.15s ease;
+    }
+
+    .preset-chip:hover {
+      border-color: var(--teal);
+      color: var(--teal-dark);
+      background: var(--teal-light);
+    }
+
+    /* ==========================================================================
+       LIVE RESULTS CONTAINER (#results-section)
+       ========================================================================== */
+    .results-section {
+      display: none;
+      margin-top: 36px;
+    }
+
+    .results-section.visible {
+      display: block;
+      animation: fadeIn 0.4s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .results-card {
+      background: var(--bg-card);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-card);
+      padding: 28px;
+    }
+
+    .results-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 22px;
+      flex-wrap: wrap;
+      gap: 12px;
+      border-bottom: 1.5px solid var(--border);
+      padding-bottom: 18px;
+    }
+
+    .lens-tabs {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .lens-tab {
+      padding: 7px 16px;
+      border-radius: var(--radius-full);
+      background: transparent;
+      border: 1.5px solid var(--border);
+      font-size: 0.84rem;
+      font-weight: 600;
+      color: var(--fg-muted);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .lens-tab.active {
+      background: var(--teal-light);
+      border-color: var(--teal);
+      color: var(--teal-dark);
+    }
+
+    .results-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 1fr 1fr;
+      gap: 24px;
+    }
+
+    .score-badge-huge {
+      font-family: var(--font-display);
+      font-size: 2.6rem;
+      font-weight: 800;
+      color: var(--teal);
+      line-height: 1;
+      margin: 8px 0 14px 0;
+    }
+
+    .score-bar-item {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      margin-bottom: 9px;
+    }
+
+    .score-bar-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--fg-muted);
+    }
+
+    .score-bar-track {
+      height: 6px;
+      background: var(--bg-card-subtle);
+      border-radius: var(--radius-full);
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+
+    .score-bar-fill {
+      height: 100%;
+      background: var(--teal);
+      border-radius: var(--radius-full);
+    }
+
+    /* Live Citations Box */
+    .citations-box {
+      margin-top: 24px;
+      padding-top: 18px;
+      border-top: 1.5px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .citation-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.8rem;
+      color: var(--teal-dark);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    /* ==========================================================================
+       FEATURES SHOWCASE (Three Lenses & Cal.com Minimalist Flow)
+       ========================================================================== */
+    section.features-section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 60px 24px;
+    }
+
+    .section-headline {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 3.6vw, 2.75rem);
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      color: var(--fg);
+      margin-bottom: 12px;
+      text-align: left;
+    }
+
+    .section-subtext {
+      font-size: 1.05rem;
+      color: var(--fg-muted);
+      max-width: 600px;
+      margin-bottom: 40px;
+      text-align: left;
+    }
+
+    .features-two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+    }
+
+    .feature-card {
+      background: var(--bg-card);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-card);
+    }
+
+    .feature-tag {
+      font-size: 0.76rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--teal);
+    }
+
+    .feature-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: var(--fg);
+      letter-spacing: -0.02em;
+    }
+
+    .feature-card p {
+      font-size: 0.92rem;
+      color: var(--fg-muted);
+      line-height: 1.6;
+    }
+
+    /* ==========================================================================
+       PRODUCTION TECH STACK TABLE
+       ========================================================================== */
+    .stack-section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 60px 24px;
+    }
+
+    .stack-table-wrap {
+      background: var(--bg-card);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-card);
+      overflow-x: auto;
+    }
+
+    table.stack-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.88rem;
+    }
+
+    table.stack-table th {
+      padding: 16px 24px;
+      background: #FDF9F0;
+      border-bottom: 1.5px solid var(--border);
+      font-weight: 700;
+      color: var(--fg);
+      font-family: var(--font-display);
+    }
+
+    table.stack-table td {
+      padding: 16px 24px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+
+    table.stack-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .tool-pill-tag {
+      display: inline-block;
+      background: var(--teal-light);
+      color: var(--teal-dark);
+      border: 1px solid var(--teal-border);
+      padding: 3px 10px;
+      border-radius: var(--radius-full);
+      font-weight: 600;
+      font-size: 0.82rem;
+    }
+
+    /* ==========================================================================
+       PRICING SECTION (Featured Tier has the ONE Secondary Accent: Warm Amber)
+       ========================================================================== */
+    .pricing-section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 60px 24px;
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-top: 36px;
+    }
+
+    .pricing-card {
+      background: var(--bg-card);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 28px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      position: relative;
+      box-shadow: var(--shadow-sm);
+    }
+
+    /* THE ONE FEATURED ACCENT: Warm Amber / Gold (#F5A623) applied ONLY here */
+    .pricing-card.featured {
+      border: 2px solid var(--amber);
+      box-shadow: 0 12px 32px rgba(245, 166, 35, 0.14);
+      background: #FFFFFF;
+    }
+
+    .featured-badge {
+      position: absolute;
+      top: -13px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--amber);
+      color: #FFFFFF;
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 4px 14px;
+      border-radius: var(--radius-full);
+      white-space: nowrap;
+      box-shadow: 0 2px 8px rgba(245, 166, 35, 0.4);
+    }
+
+    .plan-name {
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--fg-muted);
+    }
+
+    .plan-price {
+      font-family: var(--font-display);
+      font-size: 2.4rem;
+      font-weight: 800;
+      color: var(--fg);
+      letter-spacing: -0.03em;
+      margin: 4px 0;
+    }
+
+    .plan-period {
+      font-size: 0.82rem;
+      color: var(--fg-subtle);
+    }
+
+    .plan-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      flex: 1;
+    }
+
+    .plan-features li {
+      font-size: 0.84rem;
+      color: var(--fg-muted);
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .plan-check {
+      color: var(--teal);
+      font-weight: 800;
+    }
+
+    /* ==========================================================================
+       TESTIMONIALS
+       ========================================================================== */
+    .testimonials-section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 60px 24px;
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 36px;
+    }
+
+    .testimonial-card {
+      background: var(--bg-card);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .testimonial-stars {
+      color: #E29578;
+      font-size: 0.95rem;
+      margin-bottom: 12px;
+    }
+
+    .testimonial-text {
+      font-size: 0.9rem;
+      color: var(--fg-muted);
+      line-height: 1.65;
+      margin-bottom: 18px;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .author-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--bg-card-subtle);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+    }
+
+    /* ==========================================================================
+       CTA BANNER & FOOTER
+       ========================================================================== */
+    .cta-section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 24px 80px 24px;
+    }
+
+    .cta-card {
+      background: #FFFFFF;
+      border: 2px solid var(--border);
+      border-radius: var(--radius-xl);
+      padding: 60px 36px;
+      text-align: center;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .cta-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 4vw, 3rem);
+      font-weight: 800;
+      color: var(--fg);
+      letter-spacing: -0.03em;
+      margin-bottom: 14px;
+    }
+
+    .cta-sub {
+      font-size: 1.05rem;
+      color: var(--fg-muted);
+      max-width: 520px;
+      margin: 0 auto 30px auto;
+    }
+
+    footer {
+      border-top: 1.5px solid var(--border);
+      background: #FAF6EC;
+      padding: 60px 24px 36px 24px;
+    }
+
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px;
+    }
+
+    .footer-brand-name {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 1.15rem;
+      color: var(--fg);
+      margin-bottom: 10px;
+    }
+
+    .footer-col h4 {
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--fg);
+      margin-bottom: 14px;
+    }
+
+    .footer-col ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+
+    .footer-col ul li a {
+      font-size: 0.86rem;
+      color: var(--fg-muted);
+      transition: color 0.15s ease;
+    }
+
+    .footer-col ul li a:hover {
+      color: var(--teal);
+    }
+
+    .footer-bottom {
+      max-width: 1200px;
+      margin: 36px auto 0 auto;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.82rem;
+      color: var(--fg-subtle);
+    }
+
+    /* Modal Styles */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 500;
+      background: rgba(30, 26, 23, 0.5);
+      backdrop-filter: blur(8px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal-overlay.open { display: flex; }
+
+    .modal-box {
+      background: #FFFFFF;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-xl);
+      width: 100%;
+      max-width: 480px;
+      padding: 32px;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 18px;
+    }
+
+    .modal-title {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--fg);
+    }
+
+    .modal-close {
+      background: none;
+      border: none;
+      color: var(--fg-muted);
+      font-size: 1.4rem;
+      cursor: pointer;
+    }
+
+    /* Progress Overlay */
+    #research-progress {
+      position: fixed;
+      inset: 0;
+      z-index: 400;
+      background: rgba(250, 246, 236, 0.94);
+      backdrop-filter: blur(12px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #research-progress.visible { display: flex; }
+
+    .progress-box {
+      background: #FFFFFF;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-xl);
+      padding: 36px;
+      width: 100%;
+      max-width: 440px;
+      text-align: center;
+      box-shadow: var(--shadow-card);
+    }
+
+    .step-list {
+      list-style: none;
+      text-align: left;
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .step-list li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.88rem;
+      color: var(--fg-muted);
+    }
+
+    .step-list .stp-icon {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--bg-card-subtle);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.65rem;
+      font-weight: 700;
+    }
+
+    .step-list li.done .stp-icon {
+      background: var(--teal);
+      border-color: var(--teal);
+      color: #FFFFFF;
+    }
+
+    .step-list li.active .stp-icon {
+      background: var(--teal-light);
+      border-color: var(--teal);
+      color: var(--teal-dark);
+    }
+
+    /* Responsive */
+    @media (max-width: 980px) {
+      .hero-grid { grid-template-columns: 1fr; }
+      .results-grid { grid-template-columns: 1fr; }
+      .pricing-grid { grid-template-columns: 1fr 1fr; }
+      .features-two-col { grid-template-columns: 1fr; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .footer-inner { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 640px) {
+      .pricing-grid { grid-template-columns: 1fr; }
+      .footer-inner { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ======================== SCATTERED CONFETTI DECORATION ======================== -->
+  <div class="confetti-container">
+    <!-- Circle -->
+    <svg class="confetti-shape cs-1" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/></svg>
+    <!-- Triangle -->
+    <svg class="confetti-shape cs-2" viewBox="0 0 24 24"><polygon points="12 4, 21 20, 3 20"/></svg>
+    <!-- Square (Rotated) -->
+    <svg class="confetti-shape cs-3" viewBox="0 0 24 24"><rect x="5" y="5" width="14" height="14" rx="3" transform="rotate(15 12 12)"/></svg>
+    <!-- Circle -->
+    <svg class="confetti-shape cs-4" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/></svg>
+    <!-- Triangle -->
+    <svg class="confetti-shape cs-5" viewBox="0 0 24 24"><polygon points="12 5, 20 19, 4 19" transform="rotate(30 12 12)"/></svg>
+    <!-- Squiggle -->
+    <svg class="confetti-shape cs-6" viewBox="0 0 24 24"><path d="M4 14 Q 8 8, 12 14 T 20 14"/></svg>
+    <!-- Square -->
+    <svg class="confetti-shape cs-7" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="4" transform="rotate(45 12 12)"/></svg>
+  </div>
+
+  <!-- ======================== HEADER ======================== -->
+  <header>
+    <div class="nav-inner">
+      <a href="/" class="nav-logo">
+        <div class="logo-mark" style="padding:0; overflow:hidden; background:transparent;">
+          <svg viewBox="0 0 36 36" width="34" height="34" fill="none">
+            <rect width="36" height="36" rx="10" fill="#1B9AAA"/>
+            <circle cx="16" cy="16" r="7" stroke="white" stroke-width="2.6" stroke-linecap="round"/>
+            <path d="M21 21L27 27" stroke="white" stroke-width="2.8" stroke-linecap="round"/>
+            <path d="M16 11.5C16 13.8 14 16 11.5 16C14 16 16 18.2 16 20.5C16 18.2 18 16 20.5 16C18 16 16 13.8 16 11.5Z" fill="#F5A623"/>
+            <circle cx="16" cy="16" r="1.1" fill="white"/>
+          </svg>
+        </div>
+        Search.ai
+      </a>
+      <nav class="nav-links">
+        <a href="#features">Features</a>
+        <a href="#demo-widget">Interactive Demo</a>
+        <a href="#stack">Tech Stack</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#ask">Try Free</a>
+      </nav>
+      <div class="nav-actions">
+        <a href="/login" class="btn-pill btn-outline">Sign In</a>
+        <a href="#ask" class="btn-pill btn-primary">Start Free →</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ======================== HERO SECTION ======================== -->
+  <section class="hero">
+    <div class="hero-grid">
+      
+      <!-- Left Column: Typography & CTAs (Left-Aligned) -->
+      <div class="hero-left">
+        <!-- Eyebrow Pill -->
+        <div class="pill-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+          Decision Intelligence Platform · 50+ Verified Tools
+        </div>
+
+        <!-- Heavy Headline with Wavy Underline -->
+        <h1 class="hero-headline">
+          Turn uncertainty into your
+          <span class="wavy-highlight">
+            next best move.
+            <!-- Hand-drawn wavy SVG underline in Teal -->
+            <svg class="wavy-svg" viewBox="0 0 300 18" preserveAspectRatio="none">
+              <path d="M3 12 C 30 3, 50 20, 80 11 C 110 2, 130 20, 160 11 C 190 2, 210 20, 240 11 C 270 2, 285 18, 297 10"/>
+            </svg>
+          </span>
+        </h1>
+
+        <!-- Muted Gray-Brown Subtext -->
+        <p class="hero-subtext">
+          Map your exact budget, timeline, and tech stack in seconds. Search.ai synthesizes 50+ verified tools across 8 explainable signals to hand you an evidence-grounded decision brief.
+        </p>
+
+        <!-- Actions -->
+        <div class="hero-actions">
+          <button class="btn-pill btn-primary" onclick="document.getElementById('ask').scrollIntoView({behavior:'smooth'})" style="padding: 12px 28px; font-size: 0.98rem;">
+            Map Your Decision Free →
+          </button>
+          <a href="#features" class="btn-pill btn-outline" style="padding: 12px 24px;">
+            How It Works
+          </a>
+        </div>
+
+        <!-- Trust Social Proof -->
+        <div class="hero-trust-bar">
+          <div class="trust-avatars">
+            <div class="avatar-mini">🚀</div>
+            <div class="avatar-mini">⚡</div>
+            <div class="avatar-mini">💻</div>
+            <div class="avatar-mini">🎯</div>
+          </div>
+          <span>Trusted by founders from Y Combinator, NSUT, and IIT</span>
+        </div>
+      </div>
+
+      <!-- Right Column: Step-Numbered Interactive Widget Card -->
+      <div class="hero-right" id="demo-widget">
+        <div class="demo-card">
+          <div class="demo-card-header">
+            <div class="demo-badge-title">
+              <div class="live-dot"></div>
+              Interactive Decision Mapper
+            </div>
+            <span style="font-size: 0.75rem; color: var(--fg-subtle); font-weight: 500;">Instant Preview</span>
+          </div>
+
+          <!-- Section 1 -->
+          <div class="step-section">
+            <div class="step-header">
+              <span class="num">1</span>
+              WHAT YOU'RE WORKING ON
+            </div>
+            <div class="step-pills" id="pills-project">
+              <div class="step-pill selected" data-val="Next.js SaaS Backend">Next.js SaaS Stack</div>
+              <div class="step-pill" data-val="E-Commerce Store">E-Commerce Store</div>
+              <div class="step-pill" data-val="Student AI Research">Student AI Study</div>
+              <div class="step-pill" data-val="Freelance Portfolio">Freelance Portfolio</div>
+            </div>
+          </div>
+
+          <!-- Section 2 -->
+          <div class="step-section">
+            <div class="step-header">
+              <span class="num">2</span>
+              BUDGET & CONSTRAINTS
+            </div>
+            <div class="step-pills" id="pills-budget">
+              <div class="step-pill selected" data-val="Free / ₹0">Free Forever (₹0)</div>
+              <div class="step-pill" data-val="Under ₹10,000">Under ₹10,000</div>
+              <div class="step-pill" data-val="Under $50/mo">Under $50/mo</div>
+              <div class="step-pill" data-val="Flexible Scale">Scale Ready</div>
+            </div>
+          </div>
+
+          <!-- Section 3 -->
+          <div class="step-section">
+            <div class="step-header">
+              <span class="num">3</span>
+              YOUR TOP PRIORITY
+            </div>
+            <div class="step-pills" id="pills-priority">
+              <div class="step-pill selected" data-val="Fastest to Ship">Fastest to Ship</div>
+              <div class="step-pill" data-val="Lowest Long-term Cost">Lowest Cost</div>
+              <div class="step-pill" data-val="Beginner Friendly">Beginner Friendly</div>
+            </div>
+          </div>
+
+          <!-- Live Reactive Decision Preview -->
+          <div class="demo-output-preview" id="hero-preview-box">
+            <div class="dop-top">
+              <span class="dop-verdict" id="prev-verdict">TOP RECOMMENDATION · BEST FIT</span>
+              <span class="dop-score" id="prev-score">96% Fit Score</span>
+            </div>
+            <div class="dop-tool" id="prev-tool">
+              <img src="https://img.logo.dev/supabase.com?token=pk_V9sJFFV4S5SQjdahqKezzA&size=128&format=png" id="prev-tool-logo" alt="Tool" onerror="this.src='https://www.google.com/s2/favicons?domain=supabase.com&sz=128'" />
+              <span id="prev-tool-name">Supabase + Vercel</span>
+            </div>
+            <div class="dop-reason" id="prev-reason">
+              Generous free tier (50k MAUs), instant PostgreSQL auth & storage, and zero-config deployment. Setup in under 2 hours.
+            </div>
+          </div>
+
+          <button class="btn-pill btn-primary" style="width: 100%; margin-top: 16px;" onclick="syncHeroToAsk()">
+            Explore Full Decision Brief ↓
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ======================== TRUST STRIP ======================== -->
+  <div class="trust-strip">
+    <div class="trust-label">Evaluated against verified data across industry leaders</div>
+    <div class="logo-row">
+      <div class="logo-badge">Y Combinator</div>
+      <div class="logo-badge">Supabase</div>
+      <div class="logo-badge">Vercel</div>
+      <div class="logo-badge">Stripe</div>
+      <div class="logo-badge">PostHog</div>
+      <div class="logo-badge">Razorpay</div>
+    </div>
+  </div>
+
+  <!-- ======================== CORE SEARCH SECTION (#ask) ======================== -->
+  <div class="ask-section" id="ask">
+    <div style="margin-bottom: 24px;">
+      <h2 class="section-headline">Ask Search.ai anything.</h2>
+      <p class="section-subtext">Enter your problem statement in English, Hindi, or Hinglish. We evaluate constraints automatically.</p>
+    </div>
+
+    <div class="ask-box">
+      <div class="ask-box-top">
+        <div class="ask-label">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          Your Goal or Problem Statement
+        </div>
+        <textarea id="ask-textarea" class="ask-textarea" placeholder="e.g. Best backend stack to launch a Next.js SaaS under $25/month with authentication and PostgreSQL...&#10;or: Mujhe ₹10,000 ke under online store kholna hai bina code ke."></textarea>
+      </div>
+
+      <div id="safety-alert-container"></div>
+
+      <div class="ask-box-bottom">
+        <div class="ctx-pills">
+          <select class="ctx-select" id="ctx-domain">
+            <option value="Technology">Tech & Dev</option>
+            <option value="Business">Business</option>
+            <option value="Education">Education</option>
+            <option value="Career">Career</option>
+            <option value="Productivity">Productivity</option>
+          </select>
+          <select class="ctx-select" id="ctx-budget">
+            <option value="Free (₹0)">Free / ₹0</option>
+            <option value="Under ₹5,000">Under ₹5K</option>
+            <option value="Under ₹10,000">Under ₹10K</option>
+            <option value="Under $50/mo" selected>Under $50/mo</option>
+            <option value="Flexible">Flexible</option>
+          </select>
+          <select class="ctx-select" id="ctx-skill">
+            <option value="Beginner (No-Code)">Beginner</option>
+            <option value="Intermediate">Intermediate</option>
+            <option value="Technical / Dev" selected>Developer</option>
+          </select>
+          <select class="ctx-select" id="ctx-location">
+            <option value="Global" selected>Global</option>
+            <option value="India">India (UPI)</option>
+          </select>
+        </div>
+        <button class="btn-pill btn-primary" id="map-btn" style="padding: 10px 24px;">
+          Map My Options →
+        </button>
+      </div>
+
+      <!-- Quick Preset Chips -->
+      <div class="presets-row">
+        <span style="font-size: 0.78rem; font-weight: 600; color: var(--fg-subtle); margin-right: 4px;">Quick Presets:</span>
+        <button class="preset-chip" data-q="Best tech stack to launch a SaaS MVP under $25/month with database and auth.">Next.js SaaS Stack</button>
+        <button class="preset-chip" data-q="I want to start an online store under ₹10,000 with no coding experience in India.">₹10K Online Store</button>
+        <button class="preset-chip" data-q="Best free CRM for a 3-person sales team with lead tracking.">Free 3-Person CRM</button>
+        <button class="preset-chip" data-q="Best study & spaced repetition tools for UPSC prep with zero budget.">UPSC Study Tools</button>
+        <button class="preset-chip" data-q="Mujhe ek commission-free freelance portfolio banana hai bina coding ke.">Freelance Portfolio (Hinglish)</button>
+      </div>
+    </div>
+
+    <!-- Live Results Section -->
+    <div id="results-section" class="results-section">
+      <div class="results-card">
+        <div class="results-header">
+          <div>
+            <div style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: var(--teal); letter-spacing: 0.05em; margin-bottom: 6px;">DECISION PERSPECTIVE</div>
+            <div class="lens-tabs">
+              <button class="lens-tab active" data-lens="best">🏆 Best Overall Fit</button>
+              <button class="lens-tab" data-lens="value">💎 Best Value</button>
+              <button class="lens-tab" data-lens="alt">🔀 Strong Alternative</button>
+            </div>
+          </div>
+          <div style="display: flex; gap: 8px;">
+            <button class="btn-pill btn-outline" id="save-btn" style="padding: 7px 16px; font-size: 0.82rem;">Save Decision</button>
+            <button class="btn-pill btn-outline" id="export-btn" style="padding: 7px 16px; font-size: 0.82rem;">Export Brief ↓</button>
+          </div>
+        </div>
+
+        <div id="results-goal-box" style="background: var(--bg-card-subtle); border-left: 3px solid var(--teal); padding: 12px 18px; border-radius: 0 10px 10px 0; margin-bottom: 20px;">
+          <div style="font-size: 0.72rem; font-weight: 700; text-transform: uppercase; color: var(--teal); margin-bottom: 2px;">Synthesized Goal</div>
+          <div id="results-goal-text" style="font-size: 0.95rem; font-weight: 600; color: var(--fg);"></div>
+        </div>
+
+        <div id="results-panel"></div>
+
+        <!-- Live Citations -->
+        <div class="citations-box">
+          <div style="font-size: 0.78rem; font-weight: 700; text-transform: uppercase; color: var(--fg-subtle); display: flex; align-items: center; gap: 6px;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+            Verified Primary Evidence & 2026 Citations
+          </div>
+          <div id="citations-list" style="display: flex; flex-wrap: wrap; gap: 14px;">
+            <a href="https://supabase.com/pricing" target="_blank" class="citation-link">Supabase Official Pricing Documentation ↗</a>
+            <a href="https://vercel.com/docs" target="_blank" class="citation-link">Vercel Edge Platform Specs ↗</a>
+            <a href="https://mydukaan.io" target="_blank" class="citation-link">Dukaan India UPI Gateway Benchmarks ↗</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================== FEATURES SECTION ======================== -->
+  <section class="features-section" id="features">
+    <h2 class="section-headline">Clarity. Evidence. Action.</h2>
+    <p class="section-subtext">Cal.com-inspired workflow transparency. No black-box algorithms or sponsored placements.</p>
+
+    <div class="features-two-col">
+      <!-- Feature 1 -->
+      <div class="feature-card">
+        <div class="feature-tag">Executive Suite</div>
+        <h3>8-Signal Explainability Matrix</h3>
+        <p>Every tool is audited across Goal Fit, Budget Tolerance, Technical Skill, Region (e.g. India UPI vs Global), Time-to-Value, and Evidence Confidence.</p>
+        <div style="display: flex; gap: 6px; flex-wrap: wrap; margin-top: 10px;">
+          <span class="tool-pill-tag">Goal Alignment</span>
+          <span class="tool-pill-tag">Budget Fit</span>
+          <span class="tool-pill-tag">Zero Hallucination</span>
+        </div>
+      </div>
+
+      <!-- Feature 2 -->
+      <div class="feature-card">
+        <div class="feature-tag">Execution Plan</div>
+        <h3>7-Day Structured Action Plan</h3>
+        <p>A decision brief is useless without next steps. Search.ai generates an actionable checklist to ship your MVP or project from Day 1 to Day 7.</p>
+        <div style="display: flex; gap: 6px; flex-wrap: wrap; margin-top: 10px;">
+          <span class="tool-pill-tag">Step-by-step Setup</span>
+          <span class="tool-pill-tag">Vendor Red Flags</span>
+          <span class="tool-pill-tag">Risk Mitigation</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================== RECOMMENDED TECH STACK TABLE ======================== -->
+  <section class="stack-section" id="stack">
+    <div style="margin-bottom: 30px;">
+      <div class="pill-badge" style="margin-bottom: 12px;">Production Architecture</div>
+      <h2 class="section-headline">Recommended Modern SaaS Tech Stack</h2>
+      <p class="section-subtext">Battle-tested, production-ready stack for zero-latency execution and scalable security.</p>
+    </div>
+
+    <div class="stack-table-wrap">
+      <table class="stack-table">
+        <thead>
+          <tr>
+            <th style="width: 22%;">Layer / Need</th>
+            <th style="width: 28%;">Recommended Tool</th>
+            <th>Strategic Rationale & Architectural Purpose</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Frontend & Backend</strong></td>
+            <td><span class="tool-pill-tag">Next.js 14 + TypeScript</span></td>
+            <td style="color: var(--fg-muted);">Unified App Router monorepo; serverless API routes, SSG/SSR optimization, and strict type safety.</td>
+          </tr>
+          <tr>
+            <td><strong>Authentication</strong></td>
+            <td><span class="tool-pill-tag">Supabase Auth</span></td>
+            <td style="color: var(--fg-muted);">Native Google OAuth, passwordless Magic Links, automated email verification, and session JWTs.</td>
+          </tr>
+          <tr>
+            <td><strong>Database</strong></td>
+            <td><span class="tool-pill-tag">Supabase PostgreSQL</span></td>
+            <td style="color: var(--fg-muted);">Row-Level Security (RLS) for multi-tenant data protection, relational queries, and pgvector.</td>
+          </tr>
+          <tr>
+            <td><strong>AI Inference</strong></td>
+            <td><span class="tool-pill-tag">Gemini 2.5 Flash / Groq</span></td>
+            <td style="color: var(--fg-muted);">Sub-second execution speeds, native structured JSON mode, and high token throughput.</td>
+          </tr>
+          <tr>
+            <td><strong>Live Web Grounding</strong></td>
+            <td><span class="tool-pill-tag">Tavily AI Search</span></td>
+            <td style="color: var(--fg-muted);">Real-time live web facts, pricing verification, and live citations to prevent outdated benchmarks.</td>
+          </tr>
+          <tr>
+            <td><strong>Brand Assets</strong></td>
+            <td><span class="tool-pill-tag">Logo.dev API</span></td>
+            <td style="color: var(--fg-muted);">High-resolution verified company logos and brand icons served dynamically per recommendation.</td>
+          </tr>
+          <tr>
+            <td><strong>Transactional Email</strong></td>
+            <td><span class="tool-pill-tag">Resend SMTP</span></td>
+            <td style="color: var(--fg-muted);">High-deliverability verification emails, welcome letters, and decision report exports.</td>
+          </tr>
+          <tr>
+            <td><strong>Analytics</strong></td>
+            <td><span class="tool-pill-tag">PostHog Analytics</span></td>
+            <td style="color: var(--fg-muted);">Privacy-first user event tracking, conversion funnel visualization, and session replays.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ======================== PRICING ======================== -->
+  <section class="pricing-section" id="pricing">
+    <div style="margin-bottom: 24px;">
+      <h2 class="section-headline">Simple, transparent pricing.</h2>
+      <p class="section-subtext">No hidden fees. Free tier available forever. Upgrade whenever your team scales.</p>
+    </div>
+
+    <div class="pricing-grid">
+      <!-- Starter -->
+      <div class="pricing-card">
+        <div>
+          <div class="plan-name">Starter</div>
+          <div class="plan-price">₹0</div>
+          <div class="plan-period">Free forever</div>
+        </div>
+        <ul class="plan-features">
+          <li><span class="plan-check">✓</span> 10 decision queries / day</li>
+          <li><span class="plan-check">✓</span> 3 deep comparisons / mo</li>
+          <li><span class="plan-check">✓</span> 7-Day structured action plans</li>
+          <li><span class="plan-check">✓</span> 10 saved workspace items</li>
+        </ul>
+        <button class="btn-pill btn-outline" style="width: 100%;" onclick="document.getElementById('ask').scrollIntoView({behavior:'smooth'})">Get Started Free</button>
+      </div>
+
+      <!-- Plus (Featured: ONLY PLACE WITH WARM AMBER ACCENT) -->
+      <div class="pricing-card featured">
+        <div class="featured-badge">MOST POPULAR</div>
+        <div>
+          <div class="plan-name" style="color: var(--amber);">Plus</div>
+          <div class="plan-price">₹299<span style="font-size: 1rem; font-weight: 500; color: var(--fg-muted);">/mo</span></div>
+          <div class="plan-period">Students: ₹149/mo with .edu email</div>
+        </div>
+        <ul class="plan-features">
+          <li><span class="plan-check">✓</span> Unlimited questions</li>
+          <li><span class="plan-check">✓</span> 100 deep comparisons / mo</li>
+          <li><span class="plan-check">✓</span> Full 12-criteria matrix</li>
+          <li><span class="plan-check">✓</span> Live Tavily web grounding</li>
+          <li><span class="plan-check">✓</span> Markdown & PDF exports</li>
+        </ul>
+        <button class="btn-pill btn-primary" style="width: 100%;" onclick="document.getElementById('auth-modal').classList.add('open')">Upgrade to Plus</button>
+      </div>
+
+      <!-- Pro -->
+      <div class="pricing-card">
+        <div>
+          <div class="plan-name">Pro</div>
+          <div class="plan-price">₹799<span style="font-size: 1rem; font-weight: 500; color: var(--fg-muted);">/mo</span></div>
+          <div class="plan-period">For founders & consultants</div>
+        </div>
+        <ul class="plan-features">
+          <li><span class="plan-check">✓</span> 500 comparisons / month</li>
+          <li><span class="plan-check">✓</span> ROI scenario financial modeling</li>
+          <li><span class="plan-check">✓</span> Custom signal weight tuning</li>
+          <li><span class="plan-check">✓</span> Private project folders</li>
+        </ul>
+        <button class="btn-pill btn-outline" style="width: 100%;">Start Pro Trial</button>
+      </div>
+
+      <!-- Teams -->
+      <div class="pricing-card">
+        <div>
+          <div class="plan-name">Teams</div>
+          <div class="plan-price">₹1,499<span style="font-size: 0.9rem; font-weight: 500; color: var(--fg-muted);">/seat</span></div>
+          <div class="plan-period">Collaborative decision rooms</div>
+        </div>
+        <ul class="plan-features">
+          <li><span class="plan-check">✓</span> Shared decision rooms</li>
+          <li><span class="plan-check">✓</span> Team voting & annotations</li>
+          <li><span class="plan-check">✓</span> Admin analytics & SSO</li>
+          <li><span class="plan-check">✓</span> Vendor shortlist workflows</li>
+        </ul>
+        <button class="btn-pill btn-outline" style="width: 100%;">Contact Sales</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================== TESTIMONIALS ======================== -->
+  <section class="testimonials-section">
+    <h2 class="section-headline">Trusted by builders everywhere</h2>
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">"Saved me 4 hours of Googling. I typed my problem in Hinglish and got a scored comparison with actual Indian pricing. Picked Dukaan over Shopify and saved ₹15K/year."</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">🧑‍💻</div>
+          <div>
+            <div style="font-size: 0.88rem; font-weight: 700; color: var(--fg);">Arjun Mehta</div>
+            <div style="font-size: 0.78rem; color: var(--fg-muted);">Founder, Delhi · Bakery Launch</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">"As an engineering student preparing for exams, I had no idea which study tools to use. The 8-signal scoring made it obvious — Anki beat Quizlet by a mile."</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">👩‍🎓</div>
+          <div>
+            <div style="font-size: 0.88rem; font-weight: 700; color: var(--fg);">Priya Sharma</div>
+            <div style="font-size: 0.78rem; color: var(--fg-muted);">NSUT Delhi · UPSC Prep</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">"I needed a SaaS backend stack on a $25/month budget. Search.ai gave me Supabase + Vercel with a setup checklist. Shipped my MVP in 10 days. Zero BS."</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">🚀</div>
+          <div>
+            <div style="font-size: 0.88rem; font-weight: 700; color: var(--fg);">Sid Kapoor</div>
+            <div style="font-size: 0.78rem; color: var(--fg-muted);">Indie Hacker · SaaS MVP</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================== CTA BANNER ======================== -->
+  <section class="cta-section">
+    <div class="cta-card">
+      <h2 class="cta-title">Stop drowning in browser tabs.</h2>
+      <p class="cta-sub">Get your first evidence-grounded decision brief in under 60 seconds. Free. No credit card required.</p>
+      <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+        <button class="btn-pill btn-primary" onclick="document.getElementById('ask').scrollIntoView({behavior:'smooth'})" style="padding: 12px 30px; font-size: 1rem;">
+          Get Started For Free →
+        </button>
+        <button class="btn-pill btn-outline" onclick="document.getElementById('auth-modal').classList.add('open')" style="padding: 12px 24px;">
+          Sign in to Workspace
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================== FOOTER ======================== -->
+  <footer>
+    <div class="footer-inner">
+      <div>
+        <div class="footer-brand-name">
+          <div class="logo-mark" style="width: 28px; height: 28px; border-radius: 8px; padding:0; overflow:hidden; background:transparent;">
+            <svg viewBox="0 0 36 36" width="28" height="28" fill="none">
+              <rect width="36" height="36" rx="10" fill="#1B9AAA"/>
+              <circle cx="16" cy="16" r="7" stroke="white" stroke-width="2.6" stroke-linecap="round"/>
+              <path d="M21 21L27 27" stroke="white" stroke-width="2.8" stroke-linecap="round"/>
+              <path d="M16 11.5C16 13.8 14 16 11.5 16C14 16 16 18.2 16 20.5C16 18.2 18 16 20.5 16C18 16 16 13.8 16 11.5Z" fill="#F5A623"/>
+              <circle cx="16" cy="16" r="1.1" fill="white"/>
+            </svg>
+          </div>
+          Search.ai
+        </div>
+        <p style="font-size: 0.86rem; color: var(--fg-muted); max-width: 280px; line-height: 1.6;">
+          The decision-intelligence platform for founders, students, and freelancers. Zero sponsored rankings. Full source transparency.
+        </p>
+      </div>
+      <div class="footer-col">
+        <h4>Platform</h4>
+        <ul>
+          <li><a href="#ask">Ask & Clarify</a></li>
+          <li><a href="#demo-widget">Interactive Demo</a></li>
+          <li><a href="#stack">Tech Stack</a></li>
+          <li><a href="#pricing">Pricing Plans</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#">About Search.ai</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Security & Privacy</a></li>
+          <li><a href="#">Careers</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Trust & Policy</h4>
+        <ul>
+          <li><a href="#">Evidence Policy</a></li>
+          <li><a href="#">No Sponsored Bias</a></li>
+          <li><a href="#">Data Privacy (GDPR)</a></li>
+          <li><a href="#">Report Outdated Data</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Search.ai · Handcrafted for builders with evidence, not opinion.</span>
+      <span>Maximize clarity per minute.</span>
+    </div>
+  </footer>
+
+  <!-- ======================== AUTH MODAL ======================== -->
+  <div class="modal-overlay" id="auth-modal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <div class="modal-title" style="display:flex; align-items:center; gap:8px;">
+          <div class="logo-mark" style="width: 26px; height: 26px; border-radius: 7px; padding:0; overflow:hidden; background:transparent;">
+            <svg viewBox="0 0 36 36" width="26" height="26" fill="none">
+              <rect width="36" height="36" rx="10" fill="#1B9AAA"/>
+              <circle cx="16" cy="16" r="7" stroke="white" stroke-width="2.6" stroke-linecap="round"/>
+              <path d="M21 21L27 27" stroke="white" stroke-width="2.8" stroke-linecap="round"/>
+              <path d="M16 11.5C16 13.8 14 16 11.5 16C14 16 16 18.2 16 20.5C16 18.2 18 16 20.5 16C18 16 16 13.8 16 11.5Z" fill="#F5A623"/>
+            </svg>
+          </div>
+          Sign in to Search.ai
+        </div>
+        <button class="modal-close" onclick="document.getElementById('auth-modal').classList.remove('open')">&times;</button>
+      </div>
+      <p style="font-size: 0.88rem; color: var(--fg-muted); margin-bottom: 18px;">
+        Save decisions, sync your workspace, and unlock unlimited multi-lens comparisons.
+      </p>
+
+      <div id="auth-status-msg" style="display:none; padding:10px 14px; border-radius:10px; font-size:0.84rem; margin-bottom:14px;"></div>
+
+      <form id="landing-auth-form" onsubmit="handleLandingLogin(event)" style="display: flex; flex-direction: column; gap: 12px;">
+        <div>
+          <label style="font-size: 0.8rem; font-weight: 600; color: var(--fg-muted); display: block; margin-bottom: 5px;">Email address</label>
+          <input type="email" id="auth-email-input" required placeholder="founder@example.com" style="width: 100%; padding: 10px 14px; border: 1.5px solid var(--border); border-radius: var(--radius-md); font-family: var(--font-body); font-size: 0.9rem; outline: none; background: #FAF6EC;" />
+        </div>
+        <div>
+          <label style="font-size: 0.8rem; font-weight: 600; color: var(--fg-muted); display: block; margin-bottom: 5px;">Password</label>
+          <input type="password" id="auth-password-input" required placeholder="••••••••" style="width: 100%; padding: 10px 14px; border: 1.5px solid var(--border); border-radius: var(--radius-md); font-family: var(--font-body); font-size: 0.9rem; outline: none; background: #FAF6EC;" />
+        </div>
+        <button type="submit" id="auth-submit-btn" class="btn-pill btn-primary" style="width: 100%; padding: 11px; justify-content: center; margin-top: 4px;">
+          Sign In / Create Account →
+        </button>
+      </form>
+
+      <div style="text-align: center; font-size: 0.76rem; color: var(--fg-subtle); margin: 16px 0 12px 0;">— or quick access —</div>
+
+      <button type="button" class="btn-pill btn-outline" style="width: 100%; padding: 9px; justify-content: center; font-size: 0.84rem;" onclick="fillAndLoginDemo()">
+        ⚡ 1-Click Instant Login (Demo Account)
+      </button>
+    </div>
+  </div>
+
+  <!-- ======================== RESEARCH PROGRESS OVERLAY ======================== -->
+  <div id="research-progress">
+    <div class="progress-box">
+      <div style="font-size: 0.76rem; font-weight: 700; text-transform: uppercase; color: var(--teal); letter-spacing: 0.06em; margin-bottom: 8px;">Decision Engine Active</div>
+      <h3 style="font-family: var(--font-display); font-size: 1.25rem; font-weight: 800; color: var(--fg); margin-bottom: 12px;">Converging live evidence...</h3>
+      <ul class="step-list">
+        <li id="p-step-1"><div class="stp-icon">1</div> Parse natural language intent & budget</li>
+        <li id="p-step-2"><div class="stp-icon">2</div> Retrieve verified tool directory & logos</li>
+        <li id="p-step-3"><div class="stp-icon">3</div> Run 8-signal scoring & multi-criteria fit</li>
+        <li id="p-step-4"><div class="stp-icon">4</div> Synthesize verified decision brief</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ======================== JAVASCRIPT ENGINE & LOGIC ======================== -->
+  <script type="module">
+    import { scoreTools } from './js/engine/scoringEngine.js';
+
+    // ===== HERO STEP-NUMBERED WIDGET INTERACTION =====
+    const demoPresets = {
+      'Next.js SaaS Backend': {
+        verdict: 'TOP RECOMMENDATION · BEST FIT',
+        score: '96% Fit Score',
+        tool: 'Supabase + Vercel',
+        logo: 'https://img.logo.dev/supabase.com?token=pk_V9sJFFV4S5SQjdahqKezzA&size=128&format=png',
+        reason: 'Generous free tier (50k MAUs), instant PostgreSQL auth & storage, and zero-config deployment. Setup in under 2 hours.',
+        query: 'Best tech stack to launch a SaaS MVP under $25/month with database and auth.',
+        domain: 'Technology',
+        budget: 'Under $50/mo',
+        skill: 'Technical / Dev'
+      },
+      'E-Commerce Store': {
+        verdict: 'TOP RECOMMENDATION · BEST VALUE',
+        score: '94% Fit Score',
+        tool: 'Dukaan',
+        logo: 'https://img.logo.dev/mydukaan.io?token=pk_V9sJFFV4S5SQjdahqKezzA&size=128&format=png',
+        reason: 'Integrated WhatsApp catalog, native Indian UPI checkout with Razorpay, and ₹699/mo starting price. Setup in 1 hour without coding.',
+        query: 'I want to start an online business under ₹10,000 with no coding experience in India.',
+        domain: 'Business',
+        budget: 'Under ₹10,000',
+        skill: 'Beginner (No-Code)'
+      },
+      'Student AI Research': {
+        verdict: 'TOP RECOMMENDATION · ZERO COST',
+        score: '98% Fit Score',
+        tool: 'Anki + Obsidian',
+        logo: 'https://img.logo.dev/obsidian.md?token=pk_V9sJFFV4S5SQjdahqKezzA&size=128&format=png',
+        reason: '100% free open-source spaced repetition engine with bidirectional markdown note linking. Offline first, no subscription fees.',
+        query: 'Best study and spaced repetition tools for student exam prep with zero budget.',
+        domain: 'Education',
+        budget: 'Free (₹0)',
+        skill: 'Beginner (No-Code)'
+      },
+      'Freelance Portfolio': {
+        verdict: 'TOP RECOMMENDATION · 0% COMMISSION',
+        score: '91% Fit Score',
+        tool: 'Contra',
+        logo: 'https://img.logo.dev/contra.com?token=pk_V9sJFFV4S5SQjdahqKezzA&size=128&format=png',
+        reason: 'Commission-free contract payments, portfolio showcase, and built-in client invoicing for designers and developers.',
+        query: 'Mujhe ek commission-free freelance portfolio banana hai bina coding ke.',
+        domain: 'Career',
+        budget: 'Free (₹0)',
+        skill: 'Beginner (No-Code)'
+      }
+    };
+
+    document.querySelectorAll('#pills-project .step-pill').forEach(pill => {
+      pill.addEventListener('click', () => {
+        document.querySelectorAll('#pills-project .step-pill').forEach(p => p.classList.remove('selected'));
+        pill.classList.add('selected');
+        const data = demoPresets[pill.dataset.val];
+        if (data) {
+          document.getElementById('prev-verdict').textContent = data.verdict;
+          document.getElementById('prev-score').textContent = data.score;
+          document.getElementById('prev-tool-name').textContent = data.tool;
+          document.getElementById('prev-tool-logo').src = data.logo;
+          document.getElementById('prev-reason').textContent = data.reason;
+        }
+      });
+    });
+
+    document.querySelectorAll('#pills-budget .step-pill, #pills-priority .step-pill').forEach(pill => {
+      pill.addEventListener('click', (e) => {
+        const parent = pill.parentElement;
+        parent.querySelectorAll('.step-pill').forEach(p => p.classList.remove('selected'));
+        pill.classList.add('selected');
+      });
+    });
+
+    window.syncHeroToAsk = function() {
+      const activeProjectPill = document.querySelector('#pills-project .step-pill.selected');
+      const val = activeProjectPill?.dataset.val || 'Next.js SaaS Backend';
+      const data = demoPresets[val];
+      if (data) {
+        document.getElementById('ask-textarea').value = data.query;
+        document.getElementById('ctx-domain').value = data.domain;
+        document.getElementById('ctx-budget').value = data.budget;
+        document.getElementById('ctx-skill').value = data.skill;
+      }
+      document.getElementById('ask').scrollIntoView({ behavior: 'smooth' });
+    };
+
+    // ===== PRESET CHIPS =====
+    document.querySelectorAll('.preset-chip').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.getElementById('ask-textarea').value = btn.dataset.q;
+        detectContext(btn.dataset.q);
+      });
+    });
+
+    // ===== CONTEXT DETECTION =====
+    document.getElementById('ask-textarea').addEventListener('input', e => detectContext(e.target.value));
+
+    function detectContext(text) {
+      if (!text.trim()) return;
+      const lower = text.toLowerCase();
+
+      // Domain
+      const domainMap = {
+        'Business': ['store', 'business', 'dukaan', 'shop', 'ecommerce', 'vyapar', 'crm', 'sell'],
+        'Education': ['study', 'exam', 'neet', 'jee', 'upsc', 'notes', 'anki', 'student'],
+        'Career': ['freelance', 'portfolio', 'resume', 'contra', 'job', 'interview'],
+        'Technology': ['saas', 'backend', 'next.js', 'database', 'deploy', 'api', 'postgres'],
+        'Productivity': ['todo', 'task', 'habit', 'focus', 'linear']
+      };
+      for (const [dom, kws] of Object.entries(domainMap)) {
+        if (kws.some(k => lower.includes(k))) {
+          document.getElementById('ctx-domain').value = dom;
+          break;
+        }
+      }
+
+      // Budget
+      const inrM = lower.match(/(?:₹|rs\.?|inr)\s*([\d,]+)/i);
+      if (lower.includes('free') || lower.includes('zero') || lower.includes('bina paise')) {
+        document.getElementById('ctx-budget').value = 'Free (₹0)';
+      } else if (inrM) {
+        const amt = parseInt(inrM[1].replace(/,/g, ''));
+        document.getElementById('ctx-budget').value = amt <= 5000 ? 'Under ₹5,000' : 'Under ₹10,000';
+      }
+
+      // Skill
+      if (lower.includes('no code') || lower.includes('bina code') || lower.includes('beginner')) {
+        document.getElementById('ctx-skill').value = 'Beginner (No-Code)';
+      } else if (lower.includes('developer') || lower.includes('api') || lower.includes('backend')) {
+        document.getElementById('ctx-skill').value = 'Technical / Dev';
+      }
+    }
+
+    // ===== MAP MY OPTIONS ACTION =====
+    document.getElementById('map-btn').addEventListener('click', async () => {
+      const query = document.getElementById('ask-textarea').value.trim();
+      if (!query) {
+        document.getElementById('ask-textarea').focus();
+        return;
+      }
+      await runDecisionMapping(query);
+    });
+
+    async function runDecisionMapping(query) {
+      const progress = document.getElementById('research-progress');
+      progress.classList.add('visible');
+      const steps = ['p-step-1', 'p-step-2', 'p-step-3', 'p-step-4'];
+
+      for (let i = 0; i < steps.length; i++) {
+        document.getElementById(steps[i]).className = 'active';
+        document.getElementById(steps[i]).querySelector('.stp-icon').textContent = '…';
+        await delay(200);
+        document.getElementById(steps[i]).className = 'done';
+        document.getElementById(steps[i]).querySelector('.stp-icon').textContent = '✓';
+      }
+      await delay(120);
+      progress.classList.remove('visible');
+
+      const ctx = {
+        rawQuery: query,
+        domain: document.getElementById('ctx-domain').value,
+        budget: document.getElementById('ctx-budget').value,
+        skill: document.getElementById('ctx-skill').value,
+        location: document.getElementById('ctx-location').value,
+        timeframe: '7 Days',
+        priority: 'Balanced Fit & Value',
+        safety: { isSensitive: false }
+      };
+
+      const brief = scoreTools(ctx);
+      renderResults(brief, ctx);
+    }
+
+    function renderResults(brief, ctx) {
+      if (!brief || !brief.topRanked) return;
+
+      const section = document.getElementById('results-section');
+      section.classList.add('visible');
+      section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+      document.getElementById('results-goal-text').textContent = brief.restatedGoal;
+      renderLens(brief, 0);
+
+      document.querySelectorAll('.lens-tab').forEach((tab, idx) => {
+        tab.addEventListener('click', () => {
+          document.querySelectorAll('.lens-tab').forEach(t => t.classList.remove('active'));
+          tab.classList.add('active');
+          renderLens(brief, idx);
+        });
+      });
+
+      // Save
+      document.getElementById('save-btn').addEventListener('click', () => {
+        document.getElementById('save-btn').textContent = '✓ Saved to Workspace';
+        setTimeout(() => document.getElementById('save-btn').textContent = 'Save Decision', 2000);
+      });
+
+      // Export Markdown
+      document.getElementById('export-btn').addEventListener('click', () => {
+        const tool = brief.topRanked[0].data.tool;
+        const md = `# Search.ai Decision Brief\n**Goal**: ${brief.restatedGoal}\n**Confidence**: ${brief.confidence.level}\n\n## Best Fit: ${tool.name}\n- URL: ${tool.official_url}\n- Price: ${tool.price_notes}\n- Setup Time: ${tool.setup_time_estimate}\n\n### Why it fits:\n${brief.topRanked[0].data.fitRationale.map(r => `- ${r}`).join('\n')}\n\n---\n*Generated by Search.ai*`;
+        const blob = new Blob([md], { type: 'text/markdown' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a'); a.href = url; a.download = `SearchAI_${tool.slug}.md`; a.click();
+        URL.revokeObjectURL(url);
+      });
+    }
+
+    function renderLens(brief, lensIdx) {
+      const item = brief.topRanked[lensIdx];
+      if (!item) return;
+      const tool = item.data.tool;
+      const bd = item.data.breakdown;
+      const score = item.data.totalScore;
+      const cost = item.data.estimatedMonthlyCost;
+
+      // Extract domain for high-res logo from Logo.dev
+      let domain = "supabase.com";
+      try {
+        domain = new URL(tool.official_url).hostname.replace("www.", "");
+      } catch(e) {}
+      const logoUrl = `https://img.logo.dev/${domain}?token=pk_V9sJFFV4S5SQjdahqKezzA&size=128&format=png`;
+
+      const html = `
+        <div class="results-grid">
+          <!-- Left Column -->
+          <div>
+            <div style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: var(--teal); margin-bottom: 4px;">${item.lens} · ${item.label}</div>
+            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 4px;">
+              <img src="${logoUrl}" alt="${tool.name}" style="width: 32px; height: 32px; border-radius: 8px; object-fit: contain;" onerror="this.src='https://www.google.com/s2/favicons?domain=${domain}&sz=128'" />
+              <h3 style="font-family: var(--font-display); font-size: 1.45rem; font-weight: 800; color: var(--fg);">${tool.name}</h3>
+            </div>
+            <div style="font-size: 0.82rem; color: var(--fg-muted); margin-bottom: 12px;">${tool.subCategory}</div>
+            <div class="score-badge-huge">${score}<span style="font-size: 1rem; color: var(--fg-muted); font-weight: 500;">/100</span></div>
+            <p style="font-size: 0.86rem; color: var(--fg-muted); line-height: 1.5; margin-bottom: 14px;">${tool.description}</p>
+            <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+              <a href="${tool.official_url}" target="_blank" class="btn-pill btn-primary" style="padding: 7px 16px; font-size: 0.82rem;">Visit Site ↗</a>
+              <a href="${tool.pricing_url}" target="_blank" class="btn-pill btn-outline" style="padding: 7px 14px; font-size: 0.82rem;">Pricing ↗</a>
+            </div>
+            <div style="font-size: 0.82rem; color: var(--fg-muted); margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--border);">
+              <strong>Estimated Cost:</strong> ${cost.recurringCost}
+            </div>
+          </div>
+
+          <!-- Middle Column: Why it fits -->
+          <div>
+            <div style="font-size: 0.74rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--teal); margin-bottom: 10px;">Why This Fits</div>
+            <ul style="list-style: none; display: flex; flex-direction: column; gap: 8px;">
+              ${item.data.fitRationale.map(r => `
+                <li style="font-size: 0.84rem; color: var(--fg); display: flex; align-items: flex-start; gap: 8px;">
+                  <span style="color: var(--teal); font-weight: 800; flex-shrink: 0;">✓</span>
+                  <span>${r}</span>
+                </li>
+              `).join('')}
+            </ul>
+
+            <div style="margin-top: 18px;">
+              <div style="font-size: 0.74rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #D97706; margin-bottom: 8px;">Key Trade-offs</div>
+              <ul style="list-style: none; display: flex; flex-direction: column; gap: 7px;">
+                ${item.data.tradeOffs.map(t => `
+                  <li style="font-size: 0.82rem; color: var(--fg-muted); display: flex; align-items: flex-start; gap: 8px;">
+                    <span style="color: #D97706; flex-shrink: 0;">⚠</span>
+                    <span>${t}</span>
+                  </li>
+                `).join('')}
+              </ul>
+            </div>
+          </div>
+
+          <!-- Right Column: 8-Signal Breakdown -->
+          <div>
+            <div style="font-size: 0.74rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--fg-muted); margin-bottom: 12px;">8-Signal Scoring Weights</div>
+            <div style="display: flex; flex-direction: column; gap: 6px;">
+              ${[
+                ['Goal Fit', bd.goalFit, 25],
+                ['Budget Fit', bd.budgetFit, 20],
+                ['Required Capabilities', bd.capabilityFit, 20],
+                ['Skill Level Ease', bd.skillFit, 10],
+                ['Regional Fit', bd.locationFit, 10],
+                ['Time-to-Value', bd.timeToValue, 5],
+                ['Evidence Confidence', bd.evidenceConfidence, 5],
+                ['Preference Match', bd.preferenceFit, 5]
+              ].map(([label, val, max]) => `
+                <div class="score-bar-item">
+                  <div class="score-bar-label">
+                    <span>${label}</span>
+                    <span style="color: var(--fg);">${Math.round(val)}/${max}</span>
+                  </div>
+                  <div class="score-bar-track">
+                    <div class="score-bar-fill" style="width: ${(val/max)*100}%"></div>
+                  </div>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        </div>
+      `;
+
+      document.getElementById('results-panel').innerHTML = html;
+    }
+
+    function delay(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+    // ===== SUPABASE AUTH HANDLERS =====
+    const SUPABASE_URL = "https://tbcqctzzjvknskfbonyq.supabase.co";
+    const SUPABASE_ANON = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRiY3FjdHp6anZrbnNrZmJvbnlxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg1ODY2NjksImV4cCI6MjEwNDE2MjY2OX0.brxpf5kVnlZWg91XWYkoQeRFxnflusl1GPCyu6zsF78";
+
+    window.fillAndLoginDemo = async function() {
+      document.getElementById('auth-email-input').value = 'demo@searchai.app';
+      document.getElementById('auth-password-input').value = 'SearchAI2026!';
+      await performAuth('demo@searchai.app', 'SearchAI2026!');
+    };
+
+    window.handleLandingLogin = async function(e) {
+      e.preventDefault();
+      const email = document.getElementById('auth-email-input').value.trim();
+      const password = document.getElementById('auth-password-input').value;
+      await performAuth(email, password);
+    };
+
+    async function performAuth(email, password) {
+      const statusBox = document.getElementById('auth-status-msg');
+      const submitBtn = document.getElementById('auth-submit-btn');
+      statusBox.style.display = 'block';
+      statusBox.style.background = '#E8F5F7';
+      statusBox.style.color = '#147B88';
+      statusBox.textContent = 'Connecting to Supabase...';
+      submitBtn.disabled = true;
+
+      try {
+        // Step 1: Try Sign In
+        const signInRes = await fetch(`${SUPABASE_URL}/auth/v1/token?grant_type=password`, {
+          method: 'POST',
+          headers: { 'apikey': SUPABASE_ANON, 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, password })
+        });
+        const signInData = await signInRes.json();
+
+        if (signInRes.ok && signInData.access_token) {
+          // ✅ Sign In Successful
+          statusBox.style.background = '#ECFDF5';
+          statusBox.style.color = '#065F46';
+          statusBox.textContent = '✓ Signed in! Redirecting to workspace...';
+          localStorage.setItem('search_ai_session', JSON.stringify(signInData));
+          localStorage.setItem('search_ai_user_email', email);
+          setTimeout(() => {
+            document.getElementById('auth-modal').classList.remove('open');
+            updateNavForLoggedInUser(email);
+            window.location.reload();
+          }, 900);
+          return;
+        }
+
+        // Step 2: If "Invalid credentials" → try Sign Up (new user)
+        const errMsg = (signInData.error_description || signInData.msg || signInData.error || '').toLowerCase();
+        const isNewUser = errMsg.includes('invalid') || errMsg.includes('credentials') || errMsg.includes('not found') || errMsg.includes('email not confirmed');
+
+        if (isNewUser) {
+          statusBox.textContent = 'New account detected — creating your workspace...';
+
+          const signUpRes = await fetch(`${SUPABASE_URL}/auth/v1/signup`, {
+            method: 'POST',
+            headers: { 'apikey': SUPABASE_ANON, 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, password, data: { full_name: email.split('@')[0] } })
+          });
+          const signUpData = await signUpRes.json();
+
+          if (signUpRes.ok && (signUpData.id || signUpData.user)) {
+            // ✅ Sign Up Successful
+            if (signUpData.access_token) {
+              // Supabase returned token directly (email confirm disabled)
+              localStorage.setItem('search_ai_session', JSON.stringify(signUpData));
+              localStorage.setItem('search_ai_user_email', email);
+              statusBox.style.background = '#ECFDF5';
+              statusBox.style.color = '#065F46';
+              statusBox.textContent = '✓ Account created! Welcome to Search.ai 🎉';
+              setTimeout(() => {
+                document.getElementById('auth-modal').classList.remove('open');
+                updateNavForLoggedInUser(email);
+              }, 1200);
+            } else {
+              // Email confirmation required
+              statusBox.style.background = '#FEF9C3';
+              statusBox.style.color = '#78350F';
+              statusBox.textContent = '📧 Check your email — a confirmation link has been sent to ' + email + '. Click it to activate your account.';
+            }
+          } else {
+            // Sign Up also failed
+            const signUpErr = signUpData.error_description || signUpData.msg || signUpData.message || 'Could not create account.';
+            statusBox.style.background = '#FEF2F2';
+            statusBox.style.color = '#991B1B';
+            statusBox.textContent = '⚠ ' + signUpErr;
+          }
+        } else {
+          // Some other error (network, server issue)
+          statusBox.style.background = '#FEF2F2';
+          statusBox.style.color = '#991B1B';
+          statusBox.textContent = '⚠ ' + (signInData.error_description || signInData.msg || signInData.message || 'Authentication failed. Please try again.');
+        }
+
+      } catch (err) {
+        statusBox.style.background = '#FEF2F2';
+        statusBox.style.color = '#991B1B';
+        statusBox.textContent = 'Network error — please check your internet connection.';
+      } finally {
+        submitBtn.disabled = false;
+      }
+    }
+
+    function updateNavForLoggedInUser(email) {
+      const navActions = document.querySelector('.nav-actions');
+      if (navActions) {
+        const initial = (email || 'U').charAt(0).toUpperCase();
+        navActions.innerHTML = `
+          <span style="font-size:0.85rem; color:var(--fg-muted); font-weight:500;">Hi, ${email.split('@')[0]}</span>
+          <div style="width:32px;height:32px;border-radius:50%;background:var(--teal);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.85rem;">${initial}</div>
+          <button onclick="signOutUser()" class="btn-pill btn-outline" style="padding:6px 14px;font-size:0.82rem;">Sign Out</button>
+        `;
+      }
+    }
+
+    window.signOutUser = async function() {
+      try {
+        const session = JSON.parse(localStorage.getItem('search_ai_session') || '{}');
+        if (session.access_token) {
+          await fetch(`${SUPABASE_URL}/auth/v1/logout`, {
+            method: 'POST',
+            headers: { 'apikey': SUPABASE_ANON, 'Authorization': `Bearer ${session.access_token}` }
+          });
+        }
+      } catch(e) {}
+      localStorage.removeItem('search_ai_session');
+      localStorage.removeItem('search_ai_user_email');
+      window.location.reload();
+    };
+
+    // Auto-restore session on page load
+    (function restoreSession() {
+      const session = localStorage.getItem('search_ai_session');
+      const email = localStorage.getItem('search_ai_user_email');
+      if (session && email) {
+        try {
+          const parsed = JSON.parse(session);
+          if (parsed.access_token) {
+            updateNavForLoggedInUser(email);
+          }
+        } catch(e) {}
+      }
+    })();
+  </script>
+</body>
+</html>
